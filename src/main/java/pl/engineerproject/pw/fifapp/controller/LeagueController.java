@@ -25,6 +25,7 @@ public class LeagueController {
 
     @RequestMapping("/getAllLeagues")
     public List<LeagueDto> getAllLeagues() {
+        System.out.println("Zawołałe musługę getAllLeagues()");
         return leagueService.getAllLeagues();
     }
 

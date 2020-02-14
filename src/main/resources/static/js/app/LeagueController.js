@@ -1,14 +1,20 @@
-'use strict'
+//'use strict'
 
-var module = angular.module('league.controllers', []);
+//var module = angular.module('league.controllers', []);
+var fifapp = angular.module('league.controllers', []);
 
-module.controller("LeagueController", ["$scope", "LeagueService",
-    function($scope, LeagueService) {
+fifapp.controller('LeagueController', ["$scope", "$http", getListOfLeagues]);
 
-        $scope.getListOfLeagues = function() {
-            LeagueService.getAllLeagues().then(function(value) {
-                $scope.allLeagues = value.data;
-            });
-        }
-    }
-])
+
+function getListOfLeagues($scope, $http) {
+    $scope.leagues = [];
+    $http({
+        method: 'GET',
+        url: 'leagues/getAllLeagues'
+    }).then(function successCallback(response) {
+        $scope.leagues = response.data;
+    }, function errorCallback(response) {
+        console.log(response.statusText);
+    });
+
+}

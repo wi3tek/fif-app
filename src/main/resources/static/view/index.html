@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" ng-app="fifapp">
+<html lang="pl">
 
 <head>
     <meta charset="utf-8">
@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../js/lib/angular.js"></script>
+    <script src="../js/lib/angular.min.js"></script>
     <script src="/js/app/app.js"></script>
     <script src="/js/app/LeagueController.js"></script>
     <script src="/js/app/LeagueService.js"></script>
@@ -14,7 +16,7 @@
     <title>Fifapp</title>
 </head>
 
-<body>
+<body ng-app="fifapp">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -25,17 +27,16 @@
             </button>
                 <a class="navbar-brand" href="#">FIF APP</a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="collapse navbar-collapse" id="myNavbar" ng-controller="LeagueController">
+
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Strona główna</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sezony<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <!-- <li><a href="#">Utwórz nowy+</a></li> -->
-                            <div ng-controller="LeagueController">
-                                <li ng-repeat="leagues in allLeagues"><a ng-click="getListOfLeagues">{{leagues.name}}</a>
-                                </li>
-                            </div>
+                            <li><a href="#">Utwórz nowy+</a></li>
+                            <li ng-repeat="league in leagues"><a href="#">{{league.name}}</a></li>
+                            <!-- <li ng-repeat="leagues in allLeagues">{{leagues.name}} -->
                         </ul>
                     </li>
                     <li><a href="#">Statystyki</a></li>
@@ -48,11 +49,6 @@
             </div>
         </div>
     </nav>
-
-    <div class="container" ng-controller=>
-        <div ui-view></div>
-    </div>
-    <div class="panel-footer">
 
     </div>
 </body>
