@@ -6,7 +6,7 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
         return $http({
             method: 'GET',
             url: 'leagues/getAllLeagues'
-        })
+        });
     }
 
     this.addLeague = function addLeague(name, startDate, endDate, description, location) {
@@ -20,6 +20,6 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
                 endDate: endDate,
                 location: location
             }
-        })
+        });
     }
 }]);

@@ -10,21 +10,16 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
             LeagueService.addLeague($scope.league.name, $scope.league.startDate, $scope.league.endDate,
                     $scope.league.description, $scope.league.location)
                 .then(function success(response) {
-                        console.log(response.statusText);
-                        console.log('Poprawnie dodano ligę');
                         $scope.message = 'Poprawnie dodano ligę';
                         $scope.errorMessage = '';
+                        $scope.reset();
                     },
                     function error(response) {
-                        console.log(response.statusText);
-                        console.log('Błąd podczas dodawania ligi');
                         $scope.errorMessage = 'Błąd podczas dodawania ligi';
                         $scope.message = '';
 
                     });
         } else {
-            console.log(response.statusText);
-            console.log('Błąd podczas dodawania ligi x2');
             $scope.errorMessage = 'Uzupełnij dane';
             $scope.message = '';
         }
@@ -42,6 +37,11 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
                     $scope.message = '';
                     $scope.errorMessage = 'Błąd podczas pobierania lig!';
                 });
+    }
+
+    $scope.reset = function() {
+        $scope.league = {};
+        $scope.leagueForm.$setPristine();
     }
 
 }]);

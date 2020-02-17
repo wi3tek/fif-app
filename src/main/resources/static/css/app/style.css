@@ -12,6 +12,16 @@
                                             font-family: 'Open Sans', sans-serif;
                                         }
                                         
+                                        .scrollable-menu {
+                                            height: auto;
+                                            max-height: 300px;
+                                            overflow-x: hidden;
+                                        }
+                                        
+                                        .error {
+                                            color: rgb(151, 21, 21);
+                                        }
+                                        
                                         p {
                                             color: #A7A7A7;
                                         }

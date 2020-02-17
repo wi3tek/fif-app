@@ -38,8 +38,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">Strona główna</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="getAllLeagues()" href="#">Sezony<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="getListOfLeagues()" href="#">Sezony<span class="caret"></span></a>
+                        <ul class="dropdown-menu scrollable-menu" role="menu">
                             <li><a href="" data-toggle="modal" data-target="#exampleModal">Utwórz nowy+</a></li>
                             <li ng-repeat="league in leagues"><a href="#">{{league.name}}</a></li>
                             <!-- <li ng-repeat="leagues in allLeagues">{{leagues.name}} -->
@@ -114,15 +114,21 @@
                 <div class="modal-body">
 
                     <!-- Create league form -->
-                    <form name="createForm">
+                    <form novalidate name="leagueForm">
                         <div class=form-row>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.leagueName.$invalid}">
                                 <label for="leagueName">Nazwa Ligi</label>
-                                <input type="text" class="form-control" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi">
+                                <input type="text" class="form-control" name="leagueName" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
+                                <small class="error" ng-show="leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
                             </div>
-                            <div class="form-group col-md-6">
+
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.startDate.$invalid}">
                                 <label for="startDate">Data rozpoczęcia</label>
-                                <input type="date" class="form-control" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie">
+                                <input type="date" class="form-control" name="startDate" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie" required>
+                                <small class="error" ng-show="leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
+
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="endDate">Data zakończenia</label>
@@ -132,21 +138,19 @@
                                 <label for="location">Lokalizacja</label>
                                 <input type="text" class="form-control" ng-model="league.location" id="location" placeholder="Lokalizacja">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-6">
                                 <label for="description" class="col-form-label">Opis</label>
                                 <textarea class="form-control" ng-model="league.description" id="desc" placeholder="Opis"></textarea>
                             </div>
                         </div>
-
-                        <input type="submit" ng-click="addLeague(league.name, league.startDate, league.endDate,
-                        league.description, league.location)">DODAJ LIGĘ</a>
                     </form>
                 </div>
                 <div class="modal-footer">
 
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-primary" ng-click="addLeague(league.name, league.startDate, league.endDate,
-                    league.description, league.location)">Zapisz</button>
+                    <button type="reset" class="btn btn-info" id="reset-btn" ng-click="reset()">Reset?</button>
+                    <button type="submit" class="btn btn-primary" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                    league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid">Zapisz</button>
                 </div>
             </div>
         </div>
