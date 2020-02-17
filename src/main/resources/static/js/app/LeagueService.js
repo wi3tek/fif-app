@@ -1,18 +1,25 @@
 //'use strict'
 
-angular.module('league.services', []).factory('LeagueService', ["$http", "CONSTANTS", function($http, CONSTANTS) {
-    var service = [];
-    service.getAllLeagues = function() {
-        //return $http.get(CONSTANTS.getAllLeagues);
+angular.module('league.services', []).service('LeagueService', ["$http", function($http) {
 
+    this.getAllLeagues = function getAllLeagues() {
         return $http({
             method: 'GET',
             url: 'leagues/getAllLeagues'
-        }).then(function successCallback(response) {
-            $scope.service = response.data.service;
-        }, function errorCallback(response) {
-            console.log(response.statusText);
-        });
+        })
     }
-    return service;
+
+    this.addLeague = function addLeague(name, startDate, endDate, description, location) {
+        return $http({
+            method: 'POST',
+            url: 'leagues/saveLeague',
+            data: {
+                name: name,
+                description: description,
+                startDate: startDate,
+                endDate: endDate,
+                location: location
+            }
+        })
+    }
 }]);

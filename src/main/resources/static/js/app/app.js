@@ -1,6 +1,6 @@
 //'use strict'
 
-var fifapp = angular.module('fifapp', ['league.controllers', 'league.services']);
+var fifapp = angular.module('fifapp', ['ui.router', 'league.controllers', 'league.services']);
 
 fifapp.constant("CONSTANTS", {
     getLeagueByIdUrl: "/leagues/getLeague",

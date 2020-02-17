@@ -4,19 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/app/style.css" rel="stylesheet">
     <script src="../js/lib/angular.js"></script>
     <script src="../js/lib/angular.min.js"></script>
+    <script src="../js/lib/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/js/app/app.js"></script>
     <script src="/js/app/LeagueController.js"></script>
     <script src="/js/app/LeagueService.js"></script>
-
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <title>Fifapp</title>
 </head>
 
-<body ng-app="fifapp">
+<body ng-app="fifapp" ng-controller="LeagueController">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -27,14 +33,14 @@
             </button>
                 <a class="navbar-brand" href="#">FIF APP</a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar" ng-controller="LeagueController">
+            <div class="collapse navbar-collapse" id="myNavbar">
 
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Strona główna</a></li>
+                    <li><a href="#">Strona główna</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sezony<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="getAllLeagues()" href="#">Sezony<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Utwórz nowy+</a></li>
+                            <li><a href="" data-toggle="modal" data-target="#exampleModal">Utwórz nowy+</a></li>
                             <li ng-repeat="league in leagues"><a href="#">{{league.name}}</a></li>
                             <!-- <li ng-repeat="leagues in allLeagues">{{leagues.name}} -->
                         </ul>
@@ -50,7 +56,103 @@
         </div>
     </nav>
 
+    <!--main content-->
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="content col-md-8 col-sm-12 col-xs-12">
+                    <div class="section-block">
+                        jakiś wpis
+                    </div>
+                </div>
+                <!--/tabs-->
+                <!--/main content-->
+                <!--sidebar-->
+                <div class="content col-md-4 col-sm-12 col-xs-12">
+                    <div class="section-block summary">
+                        <h1 class="section-title">FIF APP</h1>
+                        <div class="profile-contents">
+                            <h2 class="position">Znajdź nas</h2>
+                            <img src="../img/logo1.png" style="height:100px;" class="img responsive" alt="logo">
+                            <!--social links-->
+                            <ul class="list-inline">
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-git"></i></a></li>
+                            </ul>
+                            <!--/social links-->
+                            <a href="#" class="btn btn-contact"><i class="fa fa-envelope"></i>CONTACT US</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/sidebar-->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <span class="copyright">Created by <a href="https://www.linkedin.com/in/patryk-wieteska/" target="_blank">Patryk Wieteska</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Utwórz ligę</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- Create league form -->
+                    <form name="createForm">
+                        <div class=form-row>
+                            <div class="form-group col-md-6">
+                                <label for="leagueName">Nazwa Ligi</label>
+                                <input type="text" class="form-control" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="startDate">Data rozpoczęcia</label>
+                                <input type="date" class="form-control" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="endDate">Data zakończenia</label>
+                                <input type="date" class="form-control" ng-model="league.endDate" id="endDate" placeholder="Zakończenie">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="location">Lokalizacja</label>
+                                <input type="text" class="form-control" ng-model="league.location" id="location" placeholder="Lokalizacja">
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-form-label">Opis</label>
+                                <textarea class="form-control" ng-model="league.description" id="desc" placeholder="Opis"></textarea>
+                            </div>
+                        </div>
+
+                        <input type="submit" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                        league.description, league.location)">DODAJ LIGĘ</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-primary" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                    league.description, league.location)">Zapisz</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
+
 
 </html>

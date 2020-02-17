@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping(path = "/leagues")
 public class LeagueController {
 
-    @Autowired //adnotacja powoduje, że nie trzeba tworzyć obiekty danej klasy, gdyż jest on tworzony automatycznie
+    @Autowired //adnotacja powoduje, że nie trzeba tworzyć obiektu danej klasy, gdyż jest on tworzony automatycznie
     LeagueService leagueService;
 
     @RequestMapping("/getLeague/{leagueId}")
