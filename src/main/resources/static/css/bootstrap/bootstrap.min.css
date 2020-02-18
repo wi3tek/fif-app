@@ -4257,6 +4257,11 @@ tbody.collapse.in {
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175)
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
 .dropdown-menu.pull-right {
     right: 0;
     left: auto
@@ -7628,7 +7633,7 @@ button.close {
     margin: 1px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #000\9;
+    background-color: #000;
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid #fff;
     border-radius: 10px

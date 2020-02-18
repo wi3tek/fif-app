@@ -18,6 +18,10 @@
                                             overflow-x: hidden;
                                         }
                                         
+                                        .dropdown:hover .dropdown-menu {
+                                            display: block;
+                                        }
+                                        
                                         .error {
                                             color: rgb(151, 21, 21);
                                         }
