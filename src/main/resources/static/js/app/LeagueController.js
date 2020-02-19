@@ -23,6 +23,8 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
             $scope.errorMessage = 'Uzupełnij dane';
             $scope.message = '';
         }
+
+        getListOfLeagues();
     }
 
 
