@@ -1,21 +1,26 @@
 package pl.engineerproject.pw.fifapp.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LeagueDto {
 
-    Integer leagueId;
-    String name;
-    String description;
-    String startDate;
-    String endDate;
-    String location;
+    private Integer leagueId;
+    private String name;
+    private String description;
+    private String startDate;
+    private String endDate;
+    private String location;
+    private List<RoundDto> roundDtos = new ArrayList<>();
 
-    public LeagueDto(Integer leagueId, String name, String description, String startDate, String endDate, String location) {
+    public LeagueDto(Integer leagueId, String name, String description, String startDate, String endDate, String location, List<RoundDto> roundDtos) {
         this.leagueId=leagueId;
         this.name=name;
         this.description=description;
         this.startDate=startDate;
         this.endDate=endDate;
         this.location=location;
+        this.roundDtos=roundDtos;
     }
 
     public LeagueDto() {
@@ -70,5 +75,11 @@ public class LeagueDto {
         this.location = location;
     }
 
+    public List<RoundDto> getRoundDtos() {
+        return roundDtos;
+    }
 
+    public void setRoundDtos(List<RoundDto> roundDtos) {
+        this.roundDtos = roundDtos;
+    }
 }

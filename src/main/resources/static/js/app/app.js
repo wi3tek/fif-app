@@ -1,4 +1,4 @@
-//'use strict'
+'use strict'
 
 var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services']);
 
@@ -7,6 +7,7 @@ fifapp.config(function($routeProvider) {
 
         .when('/leagues', {
             templateUrl: '../../view/League/view.html',
+            url: '/leagues',
             controller: 'LeagueController'
         })
         .when('/leagues/:leagueId', {
@@ -16,11 +17,12 @@ fifapp.config(function($routeProvider) {
         })
 
     .otherwise({
-        redirectTo: '/'
+        redirectTo: '/',
     })
 
 
 });
+
 
 fifapp.constant("CONSTANTS", {
     getLeagueByIdUrl: "/leagues/getLeague",

@@ -1,6 +1,5 @@
-//'use strict'
+'use strict'
 
-//var module = angular.module('league.controllers', []);
 var fifapp = angular.module('league.controllers', []);
 
 fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scope, LeagueService) {
@@ -12,6 +11,7 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
                 .then(function success(response) {
                         $scope.message = 'Poprawnie dodano ligę';
                         $scope.errorMessage = '';
+                        $scope.getListOfLeagues();
                         $scope.reset();
                     },
                     function error(response) {
@@ -24,7 +24,7 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
             $scope.message = '';
         }
 
-        getListOfLeagues();
+
     }
 
 

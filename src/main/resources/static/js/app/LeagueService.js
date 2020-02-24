@@ -1,4 +1,4 @@
-//'use strict'
+'use strict'
 
 angular.module('league.services', []).service('LeagueService', ["$http", function($http) {
 

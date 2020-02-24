@@ -1,4 +1,4 @@
-//'use strict'
+'use strict'
 
 var fifapp = angular.module('round.controllers', []);
 
