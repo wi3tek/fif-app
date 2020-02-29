@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.dto;
 
+import pl.engineerproject.pw.fifapp.model.League;
 import pl.engineerproject.pw.fifapp.model.MatchData;
 
 import java.util.ArrayList;
@@ -13,18 +14,22 @@ public class RoundDto {
     private Integer whichLeagueRound;
     private String description;
     private List<MatchDto> matchDtos = new ArrayList<>();
-    private List<LeagueDto> leagueDto = new ArrayList<>();
     private List<TeamDto> teamDtos = new ArrayList<>();
 
+    private Integer leagueId;
+    private String leagueName;
+    private String leagueDescription;
+    private String leagueStartDate;
+    private String leagueEndDate;
+    private String leagueLocation;
 
     public RoundDto(Integer roundId, Date roundDate, Integer whichLeagueRound, String description,
-                    List<MatchDto> matchDtos, List<LeagueDto> leagueDto, List<TeamDto> teamDtos) {
+                    List<MatchDto> matchDtos, List<TeamDto> teamDtos) {
         this.roundId = roundId;
         this.roundDate = roundDate;
         this.whichLeagueRound = whichLeagueRound;
         this.description = description;
         this.matchDtos = matchDtos;
-        this.leagueDto = leagueDto;
         this.teamDtos= teamDtos;
     }
 
@@ -73,20 +78,60 @@ public class RoundDto {
         this.matchDtos = matchDtos;
     }
 
-    public List<LeagueDto> getLeagueDto() {
-        return leagueDto;
-    }
-
-    public void setLeagueDto(List<LeagueDto> leagueDto) {
-        this.leagueDto = leagueDto;
-    }
-
     public List<TeamDto> getTeamDtos() {
         return teamDtos;
     }
 
     public void setTeamDtos(List<TeamDto> teamDtos) {
         this.teamDtos = teamDtos;
+    }
+
+    public Integer getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(Integer leagueId) {
+        this.leagueId = leagueId;
+    }
+
+    public String getLeagueName() {
+        return leagueName;
+    }
+
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
+    }
+
+    public String getLeagueDescription() {
+        return leagueDescription;
+    }
+
+    public void setLeagueDescription(String leagueDescription) {
+        this.leagueDescription = leagueDescription;
+    }
+
+    public String getLeagueStartDate() {
+        return leagueStartDate;
+    }
+
+    public void setLeagueStartDate(String leagueStartDate) {
+        this.leagueStartDate = leagueStartDate;
+    }
+
+    public String getLeagueEndDate() {
+        return leagueEndDate;
+    }
+
+    public void setLeagueEndDate(String leagueEndDate) {
+        this.leagueEndDate = leagueEndDate;
+    }
+
+    public String getLeagueLocation() {
+        return leagueLocation;
+    }
+
+    public void setLeagueLocation(String leagueLocation) {
+        this.leagueLocation = leagueLocation;
     }
 }
 

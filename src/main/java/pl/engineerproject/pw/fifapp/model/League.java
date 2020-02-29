@@ -20,9 +20,6 @@ public class League implements Serializable {
     private String endDate;
     private String location;
 
-    @OneToMany
-    private List<Round> rounds = new LinkedList<>();
-
     public Integer getLeagueId() {
         return leagueId;
     }
@@ -71,29 +68,15 @@ public class League implements Serializable {
         this.location = location;
     }
 
-    public List<Round> getRounds() {
-        return rounds;
-    }
-
-    public void setRounds(List<Round> rounds) {
-        this.rounds = rounds;
-    }
-
-    public League(String name, String description, String startDate, String endDate, String location, List<Round> rounds) {
+    public League(String name, String description, String startDate, String endDate, String location) {
         this.name=name;
         this.description=description;
         this.startDate=startDate;
         this.endDate=endDate;
         this.location=location;
-        this.rounds=rounds;
     }
 
     public League() {
 
     }
-
-//    @Override
-//    public String toString() {
-//        return "League{" + "leagueId='" +leagueId+ '\'' + ", name='" + name + '\'' + ", description='" +description+ '\'' + ", startDate='" + '\'' + ", endDate='" + endDate + '\'' + ",location='" + '\'' + "HEHEHEHEHEHE"+'}';
-//    }
 }

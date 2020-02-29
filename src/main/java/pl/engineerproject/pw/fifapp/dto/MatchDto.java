@@ -1,51 +1,46 @@
 package pl.engineerproject.pw.fifapp.dto;
 
-import pl.engineerproject.pw.fifapp.model.Player;
-import pl.engineerproject.pw.fifapp.model.Round;
-import pl.engineerproject.pw.fifapp.model.Team;
-
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 public class MatchDto {
 
     private Integer matchId;
     private Date matchDate;
-    private List<PlayerDto> homeFirstPlayer;
-    private List<PlayerDto> homeSecondPlayer;
-    private List<PlayerDto> awayFirstPlayer;
-    private List<PlayerDto> awaySecondPlayer;
+    private Integer homeFirstPlayerId;
+    private String homeFirstPlayerName;
+
+    private Integer homeSecondPlayerId;
+    private String homeSecondPlayerName;
+
+    private Integer awayFirstPlayerId;
+    private String awayFirstPlayerName;
+
+    private Integer awaySecondPlayerId;
+    private String awaySecondPlayerName;
+
     private Integer homeGoals;
     private Integer awayGoals;
-    private List<TeamDto> homeTeam;
-    private List<TeamDto> awayTeam;
+
+    private Integer homeTeamId;
+    private String homeTeamName;
+
+    private Integer awayTeamId;
+    private String awayTeamName;
+
     private String comment;
     private Date updateDate;
     private Character matchType;
-    private List<RoundDto> roundDtos;
+    private Integer roundId;
+    private Integer leagueId;
 
-
-    public MatchDto(Integer matchId, Date matchDate, List<PlayerDto> homeFirstPlayer, List<PlayerDto> homeSecondPlayer,
-                    List<PlayerDto> awayFirstPlayer, List<PlayerDto> awaySecondPlayer, Integer homeGoals, Integer awayGoals,
-                    List<TeamDto> homeTeam, List<TeamDto> awayTeam, String comment, Date updateDate, Character matchType, List<RoundDto> roundDtos) {
+    public MatchDto(Integer matchId, Date matchDate,Integer homeGoals, Integer awayGoals,String comment, Date updateDate, Character matchType) {
         this.matchId = matchId;
         this.matchDate = matchDate;
-        this.homeFirstPlayer = homeFirstPlayer;
-        this.homeSecondPlayer = homeSecondPlayer;
-        this.awayFirstPlayer = awayFirstPlayer;
-        this.awaySecondPlayer = awaySecondPlayer;
         this.homeGoals = homeGoals;
         this.awayGoals = awayGoals;
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
         this.comment = comment;
         this.updateDate = updateDate;
         this.matchType = matchType;
-        this.roundDtos=roundDtos;
     }
 
     public Integer getMatchId() {
@@ -64,38 +59,6 @@ public class MatchDto {
         this.matchDate = matchDate;
     }
 
-    public List<PlayerDto> getHomeFirstPlayer() {
-        return homeFirstPlayer;
-    }
-
-    public void setHomeFirstPlayer(List<PlayerDto> homeFirstPlayer) {
-        this.homeFirstPlayer = homeFirstPlayer;
-    }
-
-    public List<PlayerDto> getHomeSecondPlayer() {
-        return homeSecondPlayer;
-    }
-
-    public void setHomeSecondPlayer(List<PlayerDto> homeSecondPlayer) {
-        this.homeSecondPlayer = homeSecondPlayer;
-    }
-
-    public List<PlayerDto> getAwayFirstPlayer() {
-        return awayFirstPlayer;
-    }
-
-    public void setAwayFirstPlayer(List<PlayerDto> awayFirstPlayer) {
-        this.awayFirstPlayer = awayFirstPlayer;
-    }
-
-    public List<PlayerDto> getAwaySecondPlayer() {
-        return awaySecondPlayer;
-    }
-
-    public void setAwaySecondPlayer(List<PlayerDto> awaySecondPlayer) {
-        this.awaySecondPlayer = awaySecondPlayer;
-    }
-
     public Integer getHomeGoals() {
         return homeGoals;
     }
@@ -110,22 +73,6 @@ public class MatchDto {
 
     public void setAwayGoals(Integer awayGoals) {
         this.awayGoals = awayGoals;
-    }
-
-    public List<TeamDto> getHomeTeam() {
-        return homeTeam;
-    }
-
-    public void setHomeTeam(List<TeamDto> homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public List<TeamDto> getAwayTeam() {
-        return awayTeam;
-    }
-
-    public void setAwayTeam(List<TeamDto> awayTeam) {
-        this.awayTeam = awayTeam;
     }
 
     public String getComment() {
@@ -152,11 +99,118 @@ public class MatchDto {
         this.matchType = matchType;
     }
 
-    public List<RoundDto> getRounds() {
-        return roundDtos;
+    public Integer getHomeFirstPlayerId() {
+        return homeFirstPlayerId;
     }
 
-    public void setRounds(List<RoundDto> rounds) {
-        this.roundDtos = rounds;
+    public void setHomeFirstPlayerId(Integer homeFirstPlayerId) {
+        this.homeFirstPlayerId = homeFirstPlayerId;
     }
+
+    public String getHomeFirstPlayerName() {
+        return homeFirstPlayerName;
+    }
+
+    public void setHomeFirstPlayerName(String homeFirstPlayerName) {
+        this.homeFirstPlayerName = homeFirstPlayerName;
+    }
+
+    public Integer getHomeSecondPlayerId() {
+        return homeSecondPlayerId;
+    }
+
+    public void setHomeSecondPlayerId(Integer homeSecondPlayerId) {
+        this.homeSecondPlayerId = homeSecondPlayerId;
+    }
+
+    public String getHomeSecondPlayerName() {
+        return homeSecondPlayerName;
+    }
+
+    public void setHomeSecondPlayerName(String homeSecondPlayerName) {
+        this.homeSecondPlayerName = homeSecondPlayerName;
+    }
+
+    public Integer getAwayFirstPlayerId() {
+        return awayFirstPlayerId;
+    }
+
+    public void setAwayFirstPlayerId(Integer awayFirstPlayerId) {
+        this.awayFirstPlayerId = awayFirstPlayerId;
+    }
+
+    public String getAwayFirstPlayerName() {
+        return awayFirstPlayerName;
+    }
+
+    public void setAwayFirstPlayerName(String awayFirstPlayerName) {
+        this.awayFirstPlayerName = awayFirstPlayerName;
+    }
+
+    public Integer getAwaySecondPlayerId() {
+        return awaySecondPlayerId;
+    }
+
+    public void setAwaySecondPlayerId(Integer awaySecondPlayerId) {
+        this.awaySecondPlayerId = awaySecondPlayerId;
+    }
+
+    public String getAwaySecondPlayerName() {
+        return awaySecondPlayerName;
+    }
+
+    public void setAwaySecondPlayerName(String awaySecondPlayerName) {
+        this.awaySecondPlayerName = awaySecondPlayerName;
+    }
+
+    public Integer getHomeTeamId() {
+        return homeTeamId;
+    }
+
+    public void setHomeTeamId(Integer homeTeamId) {
+        this.homeTeamId = homeTeamId;
+    }
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
+
+    public Integer getAwayTeamId() {
+        return awayTeamId;
+    }
+
+    public void setAwayTeamId(Integer awayTeamId) {
+        this.awayTeamId = awayTeamId;
+    }
+
+    public String getAwayTeamName() {
+        return awayTeamName;
+    }
+
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName;
+    }
+
+    public Integer getRoundId() {
+        return roundId;
+    }
+
+    public void setRoundId(Integer roundId) {
+        this.roundId = roundId;
+    }
+
+    public Integer getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(Integer leagueId) {
+        this.leagueId = leagueId;
+    }
+
+
+
 }

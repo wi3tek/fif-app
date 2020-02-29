@@ -32,16 +32,15 @@ public class Player implements Serializable {
     private Date lastModificationDate;
 
     @OneToOne
-    private List<User> user = new LinkedList<>();
+    private User user;
 
 
-    public Player(String name, String alias, Date dateOfBirth, Date joinDate, Date lastModificationDate, List<User> user) {
+    public Player(String name, String alias, Date dateOfBirth, Date joinDate, Date lastModificationDate) {
         this.name=name;
         this.alias=alias;
         this.dateOfBirth=dateOfBirth;
         this.joinDate=joinDate;
         this.lastModificationDate=lastModificationDate;
-        this.user=user;
 
     }
 
@@ -97,11 +96,11 @@ public class Player implements Serializable {
         this.lastModificationDate = lastModificationDate;
     }
 
-    public List<User> getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(List<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

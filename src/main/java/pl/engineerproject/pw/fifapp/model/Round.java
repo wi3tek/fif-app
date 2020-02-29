@@ -1,5 +1,8 @@
 package pl.engineerproject.pw.fifapp.model;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,16 +26,16 @@ public class Round implements Serializable {
     @Column
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MatchData> matches = new LinkedList<>();
 
     @ManyToOne
-    private List<League> league = new LinkedList<>(); //oneElementList
+    private League league;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Team> teams = new LinkedList<>();
 
-    public Round(Date roundDate, Integer whichLeagueRound, String description, List<League> league, List<MatchData> matches, List<Team> teams) {
+    public Round(Date roundDate, Integer whichLeagueRound, String description, League league, List<MatchData> matches, List<Team> teams) {
         this.roundDate=roundDate;
         this.whichLeagueRound=whichLeagueRound;
         this.description=description;
@@ -94,11 +97,11 @@ public class Round implements Serializable {
         this.teams = teams;
     }
 
-    public List<League> getLeague() {
+    public League getLeague() {
         return league;
     }
 
-    public void setLeague(List<League> league) {
+    public void setLeague(League league) {
         this.league = league;
     }
 }

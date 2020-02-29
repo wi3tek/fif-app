@@ -20,19 +20,15 @@ public class Team implements Serializable {
     private String name;
 
     @Column(nullable = false)
-    private Integer overall;
+    private Integer overallRating;
 
     @Column
     private String logoUrl;
 
-    @OneToMany
-    private List<MatchData> matches = new LinkedList<>();
-
-    public Team(String name, Integer overall, String logoUrl, List<MatchData> matches) {
+    public Team(String name, Integer overallRating, String logoUrl) {
         this.name = name;
-        this.overall = overall;
+        this.overallRating = overallRating;
         this.logoUrl = logoUrl;
-        this.matches = matches;
     }
 
     public Team() {
@@ -55,12 +51,12 @@ public class Team implements Serializable {
         this.name = name;
     }
 
-    public Integer getOverall() {
-        return overall;
+    public Integer getOverallRating() {
+        return overallRating;
     }
 
-    public void setOverall(Integer overall) {
-        this.overall = overall;
+    public void setOverallRating(Integer overallRating) {
+        this.overallRating = overallRating;
     }
 
     public String getLogoUrl() {
@@ -69,13 +65,5 @@ public class Team implements Serializable {
 
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
-    }
-
-    public List<MatchData> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(List<MatchData> matches) {
-        this.matches = matches;
     }
 }

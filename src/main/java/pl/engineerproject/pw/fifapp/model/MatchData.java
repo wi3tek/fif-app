@@ -19,16 +19,16 @@ public class MatchData implements Serializable {
     private Date matchDate;
 
     @OneToOne
-    private List<Player> homeFirstPlayer = new LinkedList<>();
+    private Player homeFirstPlayer;
 
     @OneToOne
-    private List<Player> homeSecondPlayer = new LinkedList<>();
+    private Player homeSecondPlayer;
 
     @OneToOne
-    private List<Player> awayFirstPlayer = new LinkedList<>();
+    private Player awayFirstPlayer;
 
     @OneToOne
-    private List<Player> awaySecondPlayer = new LinkedList<>();
+    private Player awaySecondPlayer;
 
     @Column
     private Integer homeGoals;
@@ -37,10 +37,10 @@ public class MatchData implements Serializable {
     private Integer awayGoals;
 
     @OneToOne
-    private List<Team> homeTeam = new LinkedList<>();
+    private Team homeTeam;
 
     @OneToOne
-    private List<Team> awayTeam = new LinkedList<>();
+    private Team awayTeam;
 
     @Column
     private String comment;
@@ -52,10 +52,13 @@ public class MatchData implements Serializable {
     private Character matchType;
 
     @ManyToOne
-    private List<Round> round = new LinkedList<>();
+    private Round round; //eventually one element List
+
+    @ManyToOne
+    private League league;
 
 
-    public MatchData(Date matchDate, List<Player> homeFirstPlayer, List<Player> homeSecondPlayer, List<Player> awayFirstPlayer, List<Player> awaySecondPlayer, Integer homeGoals, Integer awayGoals, List<Team> homeTeam, List<Team> awayTeam, String comment, Date updateDate, Character matchType, List<Round> round) {
+    public MatchData(Date matchDate, Player homeFirstPlayer, Player homeSecondPlayer, Player awayFirstPlayer, Player awaySecondPlayer, Integer homeGoals, Integer awayGoals, Team homeTeam, Team awayTeam, String comment, Date updateDate, Character matchType) {
 
         this.matchDate=matchDate;
         this.homeFirstPlayer=homeFirstPlayer;
@@ -69,7 +72,6 @@ public class MatchData implements Serializable {
         this.comment=comment;
         this.updateDate=updateDate;
         this.matchType=matchType;
-        this.round=round;
 
     }
 
@@ -94,37 +96,7 @@ public class MatchData implements Serializable {
         this.matchDate = matchDate;
     }
 
-    public List<Player> getHomeFirstPlayer() {
-        return homeFirstPlayer;
-    }
 
-    public void setHomeFirstPlayer(List<Player> homeFirstPlayer) {
-        this.homeFirstPlayer = homeFirstPlayer;
-    }
-
-    public List<Player> getHomeSecondPlayer() {
-        return homeSecondPlayer;
-    }
-
-    public void setHomeSecondPlayer(List<Player> homeSecondPlayer) {
-        this.homeSecondPlayer = homeSecondPlayer;
-    }
-
-    public List<Player> getAwayFirstPlayer() {
-        return awayFirstPlayer;
-    }
-
-    public void setAwayFirstPlayer(List<Player> awayFirstPlayer) {
-        this.awayFirstPlayer = awayFirstPlayer;
-    }
-
-    public List<Player> getAwaySecondPlayer() {
-        return awaySecondPlayer;
-    }
-
-    public void setAwaySecondPlayer(List<Player> awaySecondPlayer) {
-        this.awaySecondPlayer = awaySecondPlayer;
-    }
 
     public Integer getHomeGoals() {
         return homeGoals;
@@ -142,19 +114,19 @@ public class MatchData implements Serializable {
         this.awayGoals = awayGoals;
     }
 
-    public List<Team> getHomeTeam() {
+    public Team getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(List<Team> homeTeam) {
+    public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
     }
 
-    public List<Team> getAwayTeam() {
+    public Team getAwayTeam() {
         return awayTeam;
     }
 
-    public void setAwayTeam(List<Team> awayTeam) {
+    public void setAwayTeam(Team awayTeam) {
         this.awayTeam = awayTeam;
     }
 
@@ -182,11 +154,52 @@ public class MatchData implements Serializable {
         this.matchType = matchType;
     }
 
-    public List<Round> getRound() {
+
+    public Player getHomeFirstPlayer() {
+        return homeFirstPlayer;
+    }
+
+    public void setHomeFirstPlayer(Player homeFirstPlayer) {
+        this.homeFirstPlayer = homeFirstPlayer;
+    }
+
+    public Player getHomeSecondPlayer() {
+        return homeSecondPlayer;
+    }
+
+    public void setHomeSecondPlayer(Player homeSecondPlayer) {
+        this.homeSecondPlayer = homeSecondPlayer;
+    }
+
+    public Player getAwayFirstPlayer() {
+        return awayFirstPlayer;
+    }
+
+    public void setAwayFirstPlayer(Player awayFirstPlayer) {
+        this.awayFirstPlayer = awayFirstPlayer;
+    }
+
+    public Player getAwaySecondPlayer() {
+        return awaySecondPlayer;
+    }
+
+    public void setAwaySecondPlayer(Player awaySecondPlayer) {
+        this.awaySecondPlayer = awaySecondPlayer;
+    }
+
+    public Round getRound() {
         return round;
     }
 
-    public void setRound(List<Round> round) {
+    public void setRound(Round round) {
         this.round = round;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
     }
 }

@@ -8,5 +8,7 @@ import pl.engineerproject.pw.fifapp.model.User;
 
 @RestResource(exported = false)
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findByUsername(String username);
 }

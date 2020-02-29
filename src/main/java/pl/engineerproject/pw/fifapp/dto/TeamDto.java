@@ -1,8 +1,10 @@
 package pl.engineerproject.pw.fifapp.dto;
 
 import pl.engineerproject.pw.fifapp.model.MatchData;
+import pl.engineerproject.pw.fifapp.model.Round;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TeamDto {
@@ -11,15 +13,13 @@ public class TeamDto {
     private String name;
     private Integer overall;
     private String logoUrl;
-    private List<MatchDto> matchDtos = new ArrayList<>();
 
 
-    public TeamDto(Integer teamId, String name, Integer overall, String logoUrl, List<MatchDto> matchDtos) {
+    public TeamDto(Integer teamId, String name, Integer overall, String logoUrl) {
         this.teamId = teamId;
         this.name = name;
         this.overall = overall;
         this.logoUrl = logoUrl;
-        this.matchDtos = matchDtos;
     }
 
     public TeamDto() {
@@ -56,13 +56,5 @@ public class TeamDto {
 
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
-    }
-
-    public List<MatchDto> getMatchDtos() {
-        return matchDtos;
-    }
-
-    public void setMatchDtos(List<MatchDto> matchDtos) {
-        this.matchDtos = matchDtos;
     }
 }
