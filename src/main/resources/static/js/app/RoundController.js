@@ -6,6 +6,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.oneAtATime = true;
     $scope.matchEdited;
     $scope.activeRound;
+    $scope.newMatch;
 
     $scope.getLeague = function() {
         $scope.leagueId = $routeParams.leagueId;
@@ -100,6 +101,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
 
     $scope.setNewMatchSettings = function(data) {
         $scope.activeRound = data;
+        $scope.newMatch = {};
         $scope.getAllPlayers();
         $scope.getTeams();
 
@@ -157,4 +159,32 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.$watch(function() {
         $('.selectpicker').selectpicker('refresh');
     });
+
+    $scope.resetNewMatch = function() {
+        $scope.newMatch = {};
+        $scope.newMatchForm.$setPristine();
+    }
+
+    $scope.addNewMatch = function() {
+        if ($scope.newMatch != null) {
+            RoundService.addNewMatch($scope.newMatch.homeFirstPlayerId, $scope.newMatch.homeSecondPlayerId, $scope.newMatch.awayFirstPlayerId, $scope.newMatch.awaySecondPlayerId, $scope.newMatch.homeTeamId, $scope.newMatch.awayTeamId, $scope.newMatch.comments, $scope.activeRound.roundId, $scope.activeRound.leagueId)
+                .then(function success(response) {
+                        $scope.message = 'Poprawnie dodano mecz';
+                        $scope.errorMessage = '';
+                        $scope.getLeagueMatches;
+                        $scope.reset();
+                        $scope.init();
+                    },
+                    function error(response) {
+                        $scope.errorMessage = 'Błąd podczas dodawania meczu';
+                        $scope.message = '';
+
+                    });
+        } else {
+            $scope.errorMessage = 'Uzupełnij dane';
+            $scope.message = '';
+        }
+
+
+    }
 }])

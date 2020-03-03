@@ -18,56 +18,54 @@
             <div id="collapseOne{{round.roundId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne{{round.roundId}}">
                 <div class="panel-body ">
                     <!-- LISTA MECZÓW -->
-                    <table class="table" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">
-                        <tbody>
-                            <tr>
-                                <td style="text-align:center">
-                                    <label class="label label-default hidden-xs" data-toggle="tooltip" data-placement="top" title="Godzina meczu">{{claculateTime(match.matchDate) | date: 'HH:mm'}}</label>
-                                </td>
-                                <td style="text-align:center">
-                                    <div data-toggle="tooltip" style="background-color:gray; height:40px; width:40px; border-radius:10px;
-                                    " data-placement="top" ng-attr-title="{{match.homeTeamName}}">
-                                        <img ng-src="{{match.homeTeamLogoUrl}}" width="40px" height="40px" data-toggle="tooltip" data-placement="top" title="{{match.homeTeamName}}">
-                                    </div>
-                                </td>
-                                <td style="text-align:center">
-                                    <div style="color: black;">
-                                        <div class="row"><label>{{match.homeFirstPlayerAlias}}</label></div>
-                                        <div class="row"><label>{{match.homeSecondPlayerAlias}}</label></div>
-                                    </div>
-                                </td>
-                                <!-- <td>
+                    <!--<table class="table" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">-->
+                    <div class="container-fluid">
+                        <div class="row" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">
+                            <div class="col-sm-2 col-xs-1 col-xs-2" style="text-align:center">
+                                <label class="label label-default hidden-xs" data-toggle="tooltip" data-placement="top" title="Godzina meczu">23:09</label>
+                            </div>
+                            <div class="col-sm-2 col-xs-1 col-xs-2" style="text-align:center">
+                                <div data-toggle="tooltip" class="teamBackground" data-placement="top" ng-attr-title="{{match.homeTeamName}}">
+                                    <img ng-src="{{match.homeTeamLogoUrl}}" width="30px" height="30px" data-toggle="tooltip" data-placement="top" title="{{match.homeTeamName}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-xs-1 col-xs-2" style="text-align:center">
+                                <div style="color: black;">
+                                    <div class="row"><label class="label-xs">{{match.homeFirstPlayerAlias}}</label></div>
+                                    <div class="row"><label>{{match.homeSecondPlayerAlias}}</label></div>
+                                </div>
+                            </div>
+                            <!-- <td>
                                     <button class="hidden-xs btn btn-default">{{match.homeTeamName}}</button>
                                 </td> -->
-                                <td style="text-align:center">
-                                    <button type="button" style="width:60px; height:45px; font-size:20px; text-align:center" class="btn btn-warning" data-toggle="modal" data-target="#myModal" ng-click="setEditContext(match)" data-toggle="tooltip" data-placement="top" title="Edytuj wynik">{{match.homeGoals}}:{{match.awayGoals}}</button>
-                                </td>
-                                <!-- <td>
+                            <div class="col-sm-2 col-sm-2 col-xs-2" style="text-align:center">
+                                <button type="button" style="width:60px; height:45px; font-size:20px; text-align:center" class="btn btn-warning" data-toggle="modal" data-target="#myModal" ng-click="setEditContext(match)" data-placement="top" title="Edytuj wynik">{{match.homeGoals}}:{{match.awayGoals}}</button>
+                            </div>
+                            <!-- <td>
                                     <button class="hidden-xs btn btn-default">{{match.awayTeamName}}</button>
                                 </td> -->
-                                <td style="text-align:center">
-                                    <div style="color: black;">
-                                        <div class="row"><label>{{match.awayFirstPlayerAlias}}</label></div>
-                                        <div class="row"><label>{{match.awaySecondPlayerAlias}}</label></div>
-                                    </div>
-                                </td>
-                                <td style="text-align:center">
-                                    <div data-toggle="tooltip" style="background-color:gray; height:40px; width:40px; border-radius:10px;
-                                    " data-placement="top" ng-attr-title="{{match.awayTeamName}}">
-                                        <img ng-src="{{match.awayTeamLogoUrl}}" width="40px" height="40px" data-toggle="tooltip" data-placement="top" title="{{match.awayTeamName}}">
-                                    </div>
-                                </td>
-                                <td style="text-align:right">
-                                    <div>
-                                        <div class="row"><button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                            <div class="col-sm-2 col-sm-2 col-xs-2" style="text-align:center">
+                                <div style="color: black;">
+                                    <div class="row"><label>{{match.awayFirstPlayerAlias}}</label></div>
+                                    <div class="row"><label>{{match.awaySecondPlayerAlias}}</label></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-sm-2 col-xs-2" style="text-align:center">
+                                <div data-toggle="tooltip" class="teamBackground" data-placement="top" ng-attr-title="{{match.awayTeamName}}">
+                                    <img ng-src="{{match.awayTeamLogoUrl}}" width="30px" height="30px" data-toggle="tooltip" data-placement="top" title="{{match.awayTeamName}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-sm-2 col-xs-2" style="text-align:right">
+                                <div>
+                                    <div class="row"><button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
   <span class="glyphicon glyphicon-edit glyphicon-align-left" aria-hidden="true"></span></button></div>
-                                        <div class="row"><button type="button" class="btn btn-danger btn-xs" aria-label="Left Align">
+                                    <div class="row"><button type="button" class="btn btn-danger btn-xs" aria-label="Left Align">
   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,61 +144,66 @@
                 <div class="modal-body">
 
                     <!-- Create Match form -->
-                    <form novalidate name="newMatchForm">
+                    <form name="newMatchForm" novalidate>
                         <div class=form-row>
-                            <div class="form-group col-md-6" ng-class="{'has-error': newMatchForm.leagueName.$invalid}">
-                                <label for="leagueName">Nazwa Ligi</label>
-                                <input type="text" class="form-control" name="leagueName" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
-                                <small class="error" ng-show="newMatchForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
-                                <small class="error" ng-show="newMatchForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
-                                <small class="error" ng-show="newMatchForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                            <div class="form-group col-md-6" ng-class="{'has-error': newMatchForm.homeData.$invalid}">
+                                <label for="homeData">GOSPODARZE</label>
+                                <div class="well">
+                                    <div class="form-group">
+                                        <select class="selectpicker form-control" id="homeFirstPlayer" name="homeFirstPlayer" data-live-search="true" ng-model="newMatch.homeFirstPlayerId" ng-options="player.playerId as player.alias for player in players">
+                                            <option value="" disabled>--Wybierz gracza--</option>
+                                                    </select>
+                                        <small class="error" ng-show="newMatchForm.homeFirstPlayer.$error.required">Gracze są wymagani</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="selectpicker form-control" id="homeSecondPlayer" name="homeSecondPlayer" data-live-search="true" ng-model="newMatch.homeSecondPlayerId" ng-options="player.playerId as player.alias for player in players">
+                                            <option value="" disabled>--Wybierz gracza--</option>
+                                        </select>
+                                        <small class="error" ng-show="newMatchForm.homeSecondPlayer.$error.required">Gracze są wymagani</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="selectpicker form-control" id="homeTeam" name="homeTeam" data-live-search="true" data-live-search="true" ng-model="newMatch.homeTeamId" ng-options="team.teamId as team.name for team in teams ">
+                                            <option value="" disabled>--Wybierz drużynę--</option>
+                                        </select>
+                                        <small class="error" ng-show="newMatchForm.homeTeam.$error.required">Drużyny są wymagane</small>
+                                    </div>
+                                </div>
                             </div>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                        </td>
-                                        <td style="text-align:center">
-                                            <div class="col"><label>GOSPODARZE</label></div>
-                                            <div class="col">
-                                                <select class="selectpicker form-control" data-live-search="true" data-live-search="true" ng-model="newMatch.homeFirstPlayerId" ng-options="player.playerId as player.alias for player in players"></select>                                                {{newMatch.homeFirstPlayerId}}
+                            <div class="form-group col-md-6">
+                                <label for="awayData">GOŚCIE</label>
+                                <div class="well">
+                                    <div class="form-group" ng-class="{'has-error': newMatchForm.awayFirstPlayer.$invalid}">
+                                        <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players">
+                                            <option value="" disabled>--Wybierz gracza--</option>
+                                        </select>
+                                        <small class="error" ng-show="newMatchForm.awayFirstPlayer.$error.required">Gracze są wymagani</small>
+                                    </div>
 
-                                                <select class="selectpicker form-control" data-live-search="true" data-live-search="true" ng-model="newMatch.homeSecondPlayerId" ng-options="player.playerId as player.alias for player in players"></select>                                                {{newMatch.homeSecondPlayerId}}
+                                    <div class="form-group" ng-class="{'has-error': newMatchForm.awaySecondPlayer.$invalid}">
+                                        <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players">
+                                            <option value="" disabled>--Wybierz gracza--</option>
+                                        </select>
+                                        <small class="error" ng-show="newMatchForm.awaySecondPlayer.$error.required">Gracze są wymagani</small>
+                                    </div>
 
-                                                <select class="selectpicker form-control" data-live-search="true" data-live-search="true" ng-model="newMatch.homeTeamId" ng-options="team.teamId as team.name for team in teams"></select> {{newMatch.homeTeamId}}
-
-                                            </div>
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td style="text-align:center">
-                                            <div class="col"><label>GOŚCIE</label></div>
-                                            <div class="col">
-                                                <select class="selectpicker form-control" data-live-search="true" data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players"></select>                                                {{newMatch.awayFirstPlayerId}}
-
-                                                <select class="selectpicker form-control" data-live-search="true" data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players"></select>                                                {{newMatch.awaySecondPlayerId}}
-
-                                                <select class="selectpicker form-control" data-live-search="true" data-live-search="true" ng-model="newMatch.awayTeamId" ng-options="team.teamId as team.name for team in teams">
-                                                    <option value="">--WYBIERZ DRUŻYNĘ--</option>
-                                                </select> {{newMatch.awayTeamId}}
-
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    <div class="form-group" ng-class="{'has-error': newMatchForm.awayTeam.$invalid}">
+                                        <select class="selectpicker form-control" id="awayTeam" name="awayTeam" data-live-search="true" ng-model="newMatch.awayTeamId" ng-options="team.teamId as team.name for team in teams">
+                                            <option value="" disabled>--Wybierz drużynę--</option>
+                                                </select>
+                                        <small class="error" ng-show="newMatchForm.awayTeam.$error.required">Gracze są wymagani</small>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group col-md-12">
                                 <label for="comment" class="col-form-label">Komentarz meczowy</label>
-                                <textarea class="form-control" ng-model="newMatch.comment" id="comment" placeholder="Dodaj komentarz"></textarea>
+                                <textarea class="form-control" ng-model="newMatch.comments" id="comment" placeholder="Dodaj komentarz"></textarea>
                             </div>
                         </div>
                         <div class="form-group text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                            <button type="reset" class="btn btn-info" id="reset-btn" ng-click="reset()">Wyczyść</button>
-                            <button type="submit" class="btn btn-primary" ng-click="addMatch(newMatch.homeFirstPlayerId,newMatch.homeSecondPlayerId,newMatch.awayFirstPlayerId,newMatch.awaySecondPlayerId,newMatch.homeGoals,newMatch.awayGoals,newMatch.homeTeamId,newMatch.awayTeamId,newMatch.comment,activeRound.roundId,activeRound.leagueId)"
+                            <button type="reset" class="btn btn-info" id="match-reset-btn" ng-click="resetNewMatch()">Wyczyść</button>
+                            <button type="submit" class="btn btn-primary" ng-click="addNewMatch(newMatch.homeFirstPlayerId,newMatch.homeSecondPlayerId,newMatch.awayFirstPlayerId,newMatch.awaySecondPlayerId,newMatch.homeTeamId,newMatch.awayTeamId,newMatch.comments,activeRound.roundId,activeRound.leagueId)"
                                 data-dismiss="modal" ng-disabled="newMatchForm.$invalid">Dodaj mecz</button>
                         </div>
                     </form>

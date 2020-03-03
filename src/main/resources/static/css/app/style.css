@@ -12,6 +12,13 @@
                                             font-family: 'Open Sans', sans-serif;
                                         }
                                         
+                                        #teamBackground {
+                                            background-color: gray;
+                                            height: 30px;
+                                            width: 30px;
+                                            border-radius: 5px
+                                        }
+                                        
                                         .panel {
                                             cursor: pointer;
                                         }

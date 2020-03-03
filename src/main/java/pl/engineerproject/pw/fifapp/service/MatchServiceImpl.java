@@ -1,6 +1,7 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.MatchConverter;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
@@ -34,13 +35,13 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public List<MatchDto> getAllMatches() {
 
-        return matchRepository.findAll().stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+        return matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
     }
 
 
     @Override
     public List<MatchDto> getRoundMatches(Integer roundId) {
-        List<MatchDto> roundMatches = matchRepository.findAll().stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+        List<MatchDto> roundMatches = matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
         List<MatchDto> result = new ArrayList<>();
 
         for (MatchDto roundMatch : roundMatches) {
@@ -64,7 +65,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public List<MatchDto> getLeagueMatches(Integer leagueId) {
-        List<MatchDto> leagueMatches = matchRepository.findAll().stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+        List<MatchDto> leagueMatches = matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
         List<MatchDto> result = new ArrayList<>();
 
         for (MatchDto match : leagueMatches) {

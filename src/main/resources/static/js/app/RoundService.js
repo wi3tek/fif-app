@@ -73,5 +73,28 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
     }
 
 
+    this.addNewMatch = function addLeague(homeFirstPlayerId, homeSecondPlayerId, awayFirstPlayerId, awaySecondPlayerId, homeTeamId, awayTeamId, comment, roundId, leagueId) {
+        return $http({
+            method: 'POST',
+            url: 'matches/addMatch',
+            data: {
+                matchDate: new Date().toISOString(),
+                homeFirstPlayerId: homeFirstPlayerId,
+                homeSecondPlayerId: homeSecondPlayerId,
+                awayFirstPlayerId: awayFirstPlayerId,
+                awaySecondPlayerId: awaySecondPlayerId,
+                homeGoals: 0,
+                awayGoals: 0,
+                homeTeamId: homeTeamId,
+                awayTeamId: awayTeamId,
+                comment: comment,
+                updateDate: new Date().toISOString(),
+                roundId: roundId,
+                leagueId: leagueId
+            }
+        });
+    }
+
+
 
 }])

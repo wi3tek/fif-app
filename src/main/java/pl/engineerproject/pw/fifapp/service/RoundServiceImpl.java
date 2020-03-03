@@ -1,6 +1,7 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.RoundConverter;
 import pl.engineerproject.pw.fifapp.dto.RoundDto;
@@ -28,13 +29,15 @@ public class RoundServiceImpl implements RoundService {
 
     @Override
     public List<RoundDto> getAllRounds() {
-        return roundRepository.findAll().stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
+        return roundRepository.findAll(Sort.by(Sort.Direction.DESC,"roundDate")).stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
     }
 
     @Override
     public List<RoundDto> getLeagueRounds(Integer leagueId) {
         List<RoundDto> leagueRounds = roundRepository.findAll().stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
         List<RoundDto> result = new ArrayList<>();
+
+        List<RoundDto> dasdasda = roundRepository.findAll(Sort.by(Sort.Direction.DESC,"roundDate")).stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
 
         for (RoundDto leagueRound : leagueRounds) {
 
