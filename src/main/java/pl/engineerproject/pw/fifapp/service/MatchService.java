@@ -12,6 +12,7 @@ public interface MatchService {
     List<MatchDto> getAllMatches();
     List<MatchDto> getRoundMatches(Integer roundId);
     void deleteMatch(MatchDto matchDto);
+    List<MatchDto> getLeagueMatches(Integer leagueId);
 
 
 }

@@ -12,6 +12,20 @@
                                             font-family: 'Open Sans', sans-serif;
                                         }
                                         
+                                        .panel {
+                                            cursor: pointer;
+                                        }
+                                        
+                                        .matchRow {
+                                            background-color: rgb(70, 130, 194);
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                        }
+                                        
+                                        .roundRow {
+                                            background-color: mediumseagreen;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                        }
+                                        
                                         .scrollable-menu {
                                             height: auto;
                                             max-height: 300px;

@@ -2,6 +2,7 @@ package pl.engineerproject.pw.fifapp.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class MatchData implements Serializable {
     private Integer matchId;
 
     @Column
-    private Date matchDate;
+    private LocalDateTime matchDate;
 
     @OneToOne
     private Player homeFirstPlayer;
@@ -46,7 +47,7 @@ public class MatchData implements Serializable {
     private String comment;
 
     @Column
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @Column
     private Character matchType;
@@ -58,7 +59,7 @@ public class MatchData implements Serializable {
     private League league;
 
 
-    public MatchData(Date matchDate, Player homeFirstPlayer, Player homeSecondPlayer, Player awayFirstPlayer, Player awaySecondPlayer, Integer homeGoals, Integer awayGoals, Team homeTeam, Team awayTeam, String comment, Date updateDate, Character matchType) {
+    public MatchData(LocalDateTime matchDate, Player homeFirstPlayer, Player homeSecondPlayer, Player awayFirstPlayer, Player awaySecondPlayer, Integer homeGoals, Integer awayGoals, Team homeTeam, Team awayTeam, String comment, LocalDateTime updateDate, Character matchType) {
 
         this.matchDate=matchDate;
         this.homeFirstPlayer=homeFirstPlayer;
@@ -88,11 +89,11 @@ public class MatchData implements Serializable {
         this.matchId = matchId;
     }
 
-    public Date getMatchDate() {
+    public LocalDateTime getMatchDate() {
         return matchDate;
     }
 
-    public void setMatchDate(Date matchDate) {
+    public void setMatchDate(LocalDateTime matchDate) {
         this.matchDate = matchDate;
     }
 
@@ -138,11 +139,11 @@ public class MatchData implements Serializable {
         this.comment = comment;
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 

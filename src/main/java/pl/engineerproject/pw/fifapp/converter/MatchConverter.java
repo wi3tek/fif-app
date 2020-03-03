@@ -13,19 +13,19 @@ public class MatchConverter {
 
         Player homeFirstPlayer = new Player();
         homeFirstPlayer.setPlayerId(matchDto.getHomeFirstPlayerId());
-        homeFirstPlayer.setName(matchDto.getHomeFirstPlayerName());
+        homeFirstPlayer.setName(matchDto.getHomeFirstPlayerAlias());
 
         Player homeSecondPlayer = new Player();
         homeSecondPlayer.setPlayerId(matchDto.getHomeSecondPlayerId());
-        homeSecondPlayer.setName(matchDto.getHomeSecondPlayerName());
+        homeSecondPlayer.setName(matchDto.getHomeSecondPlayerAlias());
 
         Player awayFirstPlayer = new Player();
         awayFirstPlayer.setPlayerId(matchDto.getAwayFirstPlayerId());
-        awayFirstPlayer.setName(matchDto.getAwayFirstPlayerName());
+        awayFirstPlayer.setName(matchDto.getAwayFirstPlayerAlias());
 
         Player awaySecondPlayer = new Player();
         awaySecondPlayer.setPlayerId(matchDto.getAwaySecondPlayerId());
-        awaySecondPlayer.setName(matchDto.getAwaySecondPlayerName());
+        awaySecondPlayer.setName(matchDto.getAwaySecondPlayerAlias());
 
         Team homeTeam = new Team();
         homeTeam.setTeamId(matchDto.getHomeTeamId());
@@ -55,25 +55,28 @@ public class MatchConverter {
         MatchDto matchDto = new MatchDto(match.getMatchId(),match.getMatchDate(),match.getHomeGoals(),match.getAwayGoals(),match.getComment(),match.getUpdateDate(),match.getMatchType());
 
         matchDto.setHomeFirstPlayerId(match.getHomeFirstPlayer().getPlayerId());
-        matchDto.setHomeFirstPlayerName(match.getHomeFirstPlayer().getName());
+        matchDto.setHomeFirstPlayerAlias(match.getHomeFirstPlayer().getAlias());
 
         matchDto.setHomeSecondPlayerId(match.getHomeSecondPlayer().getPlayerId());
-        matchDto.setHomeSecondPlayerName(match.getHomeSecondPlayer().getName());
+        matchDto.setHomeSecondPlayerAlias(match.getHomeSecondPlayer().getAlias());
 
         matchDto.setAwayFirstPlayerId(match.getAwayFirstPlayer().getPlayerId());
-        matchDto.setAwayFirstPlayerName(match.getAwayFirstPlayer().getName());
+        matchDto.setAwayFirstPlayerAlias(match.getAwayFirstPlayer().getAlias());
 
         matchDto.setAwaySecondPlayerId(match.getAwaySecondPlayer().getPlayerId());
-        matchDto.setAwaySecondPlayerName(match.getAwaySecondPlayer().getName());
+        matchDto.setAwaySecondPlayerAlias(match.getAwaySecondPlayer().getAlias());
 
         matchDto.setHomeTeamId(match.getHomeTeam().getTeamId());
         matchDto.setHomeTeamName(match.getHomeTeam().getName());
+        matchDto.setHomeTeamLogoUrl(match.getHomeTeam().getLogoUrl());
 
         matchDto.setAwayTeamId(match.getAwayTeam().getTeamId());
         matchDto.setAwayTeamName(match.getAwayTeam().getName());
+        matchDto.setAwayTeamLogoUrl(match.getAwayTeam().getLogoUrl());
 
         matchDto.setRoundId(match.getRound().getRoundId());
         matchDto.setLeagueId(match.getLeague().getLeagueId());
+
 
         return matchDto;
     }

@@ -44,4 +44,10 @@ public class MatchController {
     public void deleteMatch(@RequestBody MatchDto matchDto) {
         matchService.deleteMatch(matchDto);
     }
+
+
+    @RequestMapping("/getLeagueMatches/{leagueId}")
+    public List<MatchDto> getLeagueMatches(@PathVariable Integer leagueId) {
+        return matchService.getLeagueMatches(leagueId);
+    }
 }

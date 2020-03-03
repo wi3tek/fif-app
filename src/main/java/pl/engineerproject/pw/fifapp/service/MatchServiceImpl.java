@@ -61,4 +61,22 @@ public class MatchServiceImpl implements MatchService {
     public void deleteMatch(MatchDto matchDto) {
         matchRepository.delete(MatchConverter.dtoToEntity(matchDto));
     }
+
+    @Override
+    public List<MatchDto> getLeagueMatches(Integer leagueId) {
+        List<MatchDto> leagueMatches = matchRepository.findAll().stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+        List<MatchDto> result = new ArrayList<>();
+
+        for (MatchDto match : leagueMatches) {
+
+            try {
+                if (match.getLeagueId().equals(leagueId)) {
+                    result.add(match);
+                }
+            } catch (NullPointerException e) {
+                System.out.println(e);
+            }
+        }
+        return result;
+    }
 }
