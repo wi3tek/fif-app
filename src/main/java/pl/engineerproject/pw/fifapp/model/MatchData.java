@@ -8,11 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name="match_seq", allocationSize=10000)
 public class MatchData implements Serializable {
     private static final long serialVersionUID = 6477919665194573452L;
 
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "match_seq")
     @Id
     private Integer matchId;
 

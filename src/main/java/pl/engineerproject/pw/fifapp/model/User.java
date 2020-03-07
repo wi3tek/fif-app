@@ -8,10 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name="user_seq", allocationSize=10000)
 public class User implements Serializable {
     private static final long serialVersionUID = 5626055063095835491L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
     private Integer id;
 
     @Column(nullable = false)

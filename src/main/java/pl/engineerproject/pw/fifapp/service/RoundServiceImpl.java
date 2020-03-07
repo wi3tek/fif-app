@@ -34,10 +34,8 @@ public class RoundServiceImpl implements RoundService {
 
     @Override
     public List<RoundDto> getLeagueRounds(Integer leagueId) {
-        List<RoundDto> leagueRounds = roundRepository.findAll().stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
+        List<RoundDto> leagueRounds = roundRepository.findAll(Sort.by(Sort.Direction.DESC,"roundDate")).stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
         List<RoundDto> result = new ArrayList<>();
-
-        List<RoundDto> dasdasda = roundRepository.findAll(Sort.by(Sort.Direction.DESC,"roundDate")).stream().map(RoundConverter::entityToDto).collect(Collectors.toList());
 
         for (RoundDto leagueRound : leagueRounds) {
 
@@ -49,6 +47,13 @@ public class RoundServiceImpl implements RoundService {
                 System.out.println(e);
             }
         }
+
+
         return result;
+    }
+
+    @Override
+    public void deleteRoundById(Integer roundId) {
+        roundRepository.deleteById(roundId);
     }
 }

@@ -34,7 +34,11 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
 
 
     this.editMatch = function editMatch(matchId, matchDate, homeFirstPlayerId, homeSecondPlayerId, awayFirstPlayerId, awaySecondPlayerId,
-        homeGoals, awayGoals, homeTeamId, awayTeamId, comment, updateDate, roundId, leagueId) {
+        homeGoals, awayGoals, homeTeamId, awayTeamId, comment, roundId, leagueId) {
+
+        const myDate = new Date();
+        const currentDate = new Date(myDate);
+        currentDate.setHours(currentDate.getHours() + 1);
         return $http({
             method: 'PUT',
             url: 'matches/updateMatch',
@@ -50,7 +54,7 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
                 homeTeamId: homeTeamId,
                 awayTeamId: awayTeamId,
                 comment: comment,
-                updateDate: updateDate,
+                updateDate: currentDate.toISOString(),
                 roundId: roundId,
                 leagueId: leagueId
             }
@@ -74,11 +78,15 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
 
 
     this.addNewMatch = function addLeague(homeFirstPlayerId, homeSecondPlayerId, awayFirstPlayerId, awaySecondPlayerId, homeTeamId, awayTeamId, comment, roundId, leagueId) {
+        const myDate = new Date();
+        const currentDate = new Date(myDate);
+        currentDate.setHours(currentDate.getHours() + 1);
+
         return $http({
             method: 'POST',
             url: 'matches/addMatch',
             data: {
-                matchDate: new Date().toISOString(),
+                matchDate: currentDate.toISOString(),
                 homeFirstPlayerId: homeFirstPlayerId,
                 homeSecondPlayerId: homeSecondPlayerId,
                 awayFirstPlayerId: awayFirstPlayerId,
@@ -88,11 +96,51 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
                 homeTeamId: homeTeamId,
                 awayTeamId: awayTeamId,
                 comment: comment,
-                updateDate: new Date().toISOString(),
+                updateDate: currentDate.toISOString(),
                 roundId: roundId,
                 leagueId: leagueId
             }
         });
+    }
+
+    this.deleteMatch = function deleteMatch(matchId) {
+        return $http({
+            method: 'DELETE',
+            url: 'matches/deleteMatch/' + matchId,
+        });
+    }
+
+    this.deleteRound = function deleteRound(roundId) {
+        return $http({
+            method: 'DELETE',
+            url: 'rounds/deleteRound/' + roundId,
+        });
+    }
+
+    this.addRound = function addRound(whichLeagueRound, leagueId, description) {
+        const myDate = new Date();
+        const currentDate = new Date(myDate);
+        currentDate.setHours(currentDate.getHours() + 1);
+
+        return $http({
+            method: 'POST',
+            url: 'rounds/addRound',
+            data: {
+                roundDate: currentDate.toISOString(),
+                whichLeagueRound: whichLeagueRound + 1,
+                description: description,
+                matchDtos: [],
+                teamDtos: [],
+                leagueId: leagueId
+            }
+        });
+    }
+
+    this.getLeagueTable = function getLeagueTable(leagueId) {
+        return $http({
+            method: 'GET',
+            url: 'leagues/getLeagueTable/' + leagueId
+        })
     }
 
 

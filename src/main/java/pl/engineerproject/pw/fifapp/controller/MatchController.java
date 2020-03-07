@@ -1,10 +1,14 @@
 package pl.engineerproject.pw.fifapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.engineerproject.pw.fifapp.converter.MatchConverter;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.service.MatchService;
+import pl.engineerproject.pw.fifapp.service.helper.MatchPlayerRelService;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -14,6 +18,9 @@ public class MatchController {
 
     @Autowired
     MatchService matchService;
+
+    @Autowired
+    MatchPlayerRelService matchPlayerRelService;
 
     @RequestMapping("/getMatch/{matchId}")
     public MatchDto getMatchById(@PathVariable Integer matchId) {
@@ -31,18 +38,21 @@ public class MatchController {
     }
 
     @RequestMapping(value="/addMatch", method = RequestMethod.POST)
-    public void addMatch(@RequestBody MatchDto matchDto) {
-        matchService.addMatch(matchDto);
+    public ResponseEntity addMatch(@RequestBody MatchDto matchDto) {
+
+        return matchService.createMatch(matchDto);
+
     }
 
     @RequestMapping(value = "/updateMatch", method = RequestMethod.PUT)
     public void updateMatch(@RequestBody MatchDto matchDto) {
         matchService.editMatch(matchDto);
+        matchPlayerRelService.updateMatchPlayerRel(MatchConverter.dtoToEntity(matchDto));
     }
 
-    @RequestMapping(value = "/deleteMatch", method = RequestMethod.DELETE)
-    public void deleteMatch(@RequestBody MatchDto matchDto) {
-        matchService.deleteMatch(matchDto);
+    @RequestMapping(value = "/deleteMatch/{matchId}", method = RequestMethod.DELETE)
+    public void deleteMatch(@PathVariable Integer matchId) {
+        matchService.deleteMatch(matchId);
     }
 
 

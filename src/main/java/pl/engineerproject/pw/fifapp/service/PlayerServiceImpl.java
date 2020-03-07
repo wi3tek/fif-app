@@ -1,9 +1,11 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.PlayerConverter;
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
+import pl.engineerproject.pw.fifapp.model.Player;
 import pl.engineerproject.pw.fifapp.repository.MatchRepository;
 import pl.engineerproject.pw.fifapp.repository.PlayerRepository;
 
@@ -27,8 +29,15 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public void createPlayer(PlayerDto playerDto) {
+    public ResponseEntity createPlayer(PlayerDto playerDto) {
+
+        Player player = PlayerConverter.dtoToEntity(playerDto);
         playerRepository.save(PlayerConverter.dtoToEntity(playerDto));
+
+        player.setPlayerId(player.getPlayerId());
+
+
+        return ResponseEntity.ok("Player created: {"+player.getPlayerId()+"}");
     }
 
     @Override
@@ -37,8 +46,8 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public void deletePlayer(PlayerDto playerDto) {
-        playerRepository.delete(PlayerConverter.dtoToEntity(playerDto));
+    public void deletePlayer(Integer playerId) {
+        playerRepository.deleteById(playerId);
     }
 
 

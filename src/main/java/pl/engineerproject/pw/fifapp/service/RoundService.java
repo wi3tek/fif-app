@@ -10,4 +10,5 @@ public interface RoundService {
     void saveRound(RoundDto roundDto);
     List<RoundDto> getAllRounds();
     List<RoundDto> getLeagueRounds(Integer leagueId);
+    void deleteRoundById(Integer roundId);
 }

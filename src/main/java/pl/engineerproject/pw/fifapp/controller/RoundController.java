@@ -34,4 +34,8 @@ public class RoundController {
         roundService.saveRound(roundDto);
     }
 
+    @RequestMapping(value = "/deleteRound/{roundId}", method = RequestMethod.DELETE)
+    public void deleteMatch(@PathVariable Integer roundId) {
+        roundService.deleteRoundById(roundId);
+    }
 }

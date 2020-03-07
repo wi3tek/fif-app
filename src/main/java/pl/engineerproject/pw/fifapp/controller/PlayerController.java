@@ -1,6 +1,7 @@
 package pl.engineerproject.pw.fifapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
 import pl.engineerproject.pw.fifapp.service.PlayerService;
@@ -27,8 +28,10 @@ public class PlayerController {
     }
 
     @RequestMapping(value ="/create", method = RequestMethod.POST)
-    public void createPlayer(@RequestBody PlayerDto playerDto) {
-        playerService.createPlayer(playerDto);
+    public ResponseEntity createPlayer(@RequestBody PlayerDto playerDto) {
+        return playerService.createPlayer(playerDto);
+
+
     }
 
     @RequestMapping(value ="/update", method = RequestMethod.PUT)
@@ -36,9 +39,9 @@ public class PlayerController {
         playerService.updatePlayer(playerDto);
     }
 
-    @RequestMapping(value ="/delete", method = RequestMethod.DELETE)
-    public void deletePlayer(@RequestBody PlayerDto playerDto) {
-        playerService.deletePlayer(playerDto);
+    @RequestMapping(value ="/delete/{playerId}", method = RequestMethod.DELETE)
+    public void deletePlayer(@PathVariable Integer playerId) {
+        playerService.deletePlayer(playerId);
     }
 
 

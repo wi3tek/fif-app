@@ -6,13 +6,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name="team_seq", initialValue = 800,allocationSize=1000)
 public class Team implements Serializable {
 
 
     private static final long serialVersionUID = 8221849130562357797L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="team_seq")
     @Column
     private Integer teamId;
 

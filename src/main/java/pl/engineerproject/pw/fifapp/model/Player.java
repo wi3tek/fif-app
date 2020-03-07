@@ -7,12 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name="player_seq",initialValue = 30, allocationSize=1000)
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 8066347468898311564L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="player_seq" )
     @Column
     private Integer playerId;
 

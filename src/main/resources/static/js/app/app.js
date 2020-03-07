@@ -1,6 +1,6 @@
 'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services']);
 
 fifapp.config(function($routeProvider) {
     $routeProvider
@@ -15,9 +15,15 @@ fifapp.config(function($routeProvider) {
             templateUrl: '../../view/Round/view.html',
             controller: 'RoundController',
         })
+        .when('/players', {
+            templateUrl: '../view/Players/view.html',
+            url: '/players',
+            controller: 'PlayerController'
+        })
 
     .otherwise({
-        redirectTo: '/',
+        templateUrl: '../../view/Home/view.html',
+        url: '/home',
     })
 
 

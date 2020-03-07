@@ -16,7 +16,7 @@
                                             background-color: gray;
                                             height: 30px;
                                             width: 30px;
-                                            border-radius: 5px
+                                            border-radius: 5px;
                                         }
                                         
                                         .panel {
@@ -24,7 +24,7 @@
                                         }
                                         
                                         .matchRow {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                                         }
                                         
@@ -57,7 +57,7 @@
                                         /*-Header-*/
                                         
                                         .header {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             border-bottom: 5px solid rgb(211, 193, 115);
                                             padding: 30px 0px;
                                         }
@@ -134,7 +134,7 @@
                                         }
                                         
                                         .section-block.summary {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                         }
                                         
                                         .section-block.summary h1 {
@@ -214,14 +214,14 @@
                                         }
                                         
                                         .profile-contents ul li a:hover {
-                                            background-color: rgb(70, 130, 194)
+                                            background-color: #007272
                                         }
                                         /*-Funding Meta-*/
                                         
                                         .funding-meta {}
                                         
                                         .funding-meta h1 {
-                                            background: rgb(70, 130, 194);
+                                            background: #007272;
                                             color: #fff;
                                             border-radius: 4px;
                                             display: table;
@@ -238,7 +238,7 @@
                                         }
                                         
                                         .type-meta i.fa {
-                                            color: rgb(70, 130, 194);
+                                            color: #007272;
                                             margin-right: 5px;
                                         }
                                         
@@ -296,7 +296,7 @@
                                         }
                                         
                                         .progress-bar {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             box-shadow: none;
                                         }
                                         
@@ -325,7 +325,7 @@
                                         }
                                         
                                         .reward-block h3 {
-                                            background: rgb(70, 130, 194);
+                                            background: #007272;
                                             color: #fff;
                                             font-size: 15px;
                                             font-weight: 700;
@@ -338,12 +338,12 @@
                                         .reward-block h2 {
                                             font-size: 20px;
                                             font-weight: 300;
-                                            color: rgb(70, 130, 194);
+                                            color: #007272;
                                             margin: 15px 0px;
                                         }
                                         
                                         .reward-block i.fa {
-                                            color: rgb(70, 130, 194);
+                                            color: #007272;
                                         }
                                         
                                         .reward-block span {
@@ -411,7 +411,7 @@
                                         .nav-tabs>li.active>a:focus,
                                         .nav-tabs>li.active>a:hover {
                                             color: #FFF;
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             border: 0;
                                             border-radius: 4px;
                                             font-weight: 700;
@@ -456,7 +456,7 @@
                                         }
                                         
                                         .btn.btn-launch {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             color: #FFF;
                                             font-size: 17px;
                                             font-weight: 600;
@@ -473,7 +473,7 @@
                                         }
                                         
                                         .btn.btn-reward {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             color: #FFF;
                                             font-size: 14px;
                                             font-weight: 600;
@@ -481,7 +481,7 @@
                                         }
                                         
                                         .btn.btn-signup {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             color: #fff;
                                             height: 40px;
                                             width: 43px;
@@ -498,7 +498,7 @@
                                         
                                         .btn.btn-contact:hover,
                                         .btn.btn-contact:focus {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                         }
                                         
                                         .btn.btn-contact i.fa {
@@ -539,7 +539,7 @@
                                         /*-Footer-*/
                                         
                                         .footer {
-                                            background-color: rgb(70, 130, 194);
+                                            background-color: #007272;
                                             padding: 10px;
                                             text-align: center;
                                         }
@@ -551,7 +551,7 @@
                                         
                                         .copyright a {
                                             background: #fff;
-                                            color: rgb(70, 130, 194);
+                                            color: #007272;
                                             padding: 0px 5px;
                                             margin-left: 4px;
                                             border-radius: 4px;

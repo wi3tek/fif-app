@@ -42,8 +42,8 @@ public class MatchConverter {
         league.setLeagueId(matchDto.getLeagueId());
 
         MatchData matchData = new MatchData(matchDto.getMatchDate(),homeFirstPlayer,homeSecondPlayer,awayFirstPlayer,awaySecondPlayer,matchDto.getHomeGoals(),matchDto.getAwayGoals(),homeTeam,awayTeam,matchDto.getComment(),matchDto.getUpdateDate(),matchDto.getMatchType());
-        matchData.setMatchId(matchDto.getMatchId());
 
+        matchData.setMatchId(matchDto.getMatchId());
         matchData.setRound(round);
         matchData.setLeague(league);
 

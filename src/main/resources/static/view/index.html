@@ -23,6 +23,9 @@
     <script src="/js/app/LeagueService.js"></script>
     <script src="/js/app/RoundController.js"></script>
     <script src="/js/app/RoundService.js"></script>
+    <script src="/js/app/PlayerController.js"></script>
+    <script src="/js/app/PlayerService.js"></script>
+
 
     <title>Fifapp</title>
 </head>
@@ -49,6 +52,7 @@
                             <li ng-repeat="league in leagues"><a ng-href="{{'#!leagues/' + league.leagueId}}">{{league.name}}</a></li>
                         </ul>
                     </li>
+                    <li><a ng-href="#!players">Zawodnicy</a></li>
                     <li><a href="#">Statystyki</a></li>
                     <li><a href="#">O nas</a></li>
                 </ul>
@@ -64,36 +68,7 @@
     <div class="main-content">
         <div class="container">
             <div class="row">
-                <div class="content col-md-8 col-sm-12 col-xs-12">
-                    <div class="section-block">
-                        <!-- MAIN CONTENT -->
-                        <div ng-view></div>
-                    </div>
-                </div>
-                <!--/tabs-->
-                <!--/main content-->
-                <!--sidebar-->
-                <div class="content col-md-4 col-sm-12 col-xs-12">
-                    <div class="section-block summary">
-                        <h1 class="section-title">FIF APP</h1>
-                        <div class="profile-contents">
-                            <h2 class="position">Znajdź nas</h2>
-                            <img src="../img/logo_v1.png" style="height:100px;" class="img responsive" alt="logo">
-                            <!--social links-->
-                            <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-git"></i></a></li>
-                            </ul>
-                            <!--/social links-->
-                            <a href="#" class="btn btn-contact"><i class="fa fa-envelope"></i>CONTACT US</a>
-                        </div>
-                    </div>
-
-                </div>
-                <!--/sidebar-->
+                <div ng-view></div>
             </div>
         </div>
     </div>
