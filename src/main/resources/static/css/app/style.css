@@ -19,12 +19,21 @@
                                             border-radius: 5px;
                                         }
                                         
+                                        .table-hover tbody tr:hover td,
+                                        .table-hover tbody tr:hover th {
+                                            background-color: rgb(211, 193, 115);
+                                        }
+                                        
                                         .panel {
                                             cursor: pointer;
                                         }
                                         
                                         .matchRow {
                                             background-color: #007272;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                        }
+                                        
+                                        .fontFamily {
                                             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                                         }
                                         

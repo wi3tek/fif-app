@@ -4260,6 +4260,7 @@ tbody.collapse.in {
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
+    background-color: aliceblue;
 }
 
 .dropdown-menu.pull-right {

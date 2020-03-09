@@ -44,11 +44,11 @@
             <div class="collapse navbar-collapse" id="myNavbar">
 
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Strona główna</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="#!leagues">Sezony<span class="caret"></span></a>
                         <ul class="dropdown-menu scrollable-menu" role="menu">
-                            <li><a href="" data-toggle="modal" data-target="#exampleModal">Utwórz nowy+</a></li>
+                            <li><a href="" data-toggle="modal" data-target="#leagueModal">Utwórz nowy+</a></li>
                             <li ng-repeat="league in leagues"><a ng-href="{{'#!leagues/' + league.leagueId}}">{{league.name}}</a></li>
                         </ul>
                     </li>
@@ -82,11 +82,11 @@
     </footer>
 
     <!-- OKNO MODALNE TWORZENIA LIGI -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="leagueModal" tabindex="-1" role="dialog" aria-labelledby="leagueModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Utwórz ligę</h5>
+                    <h5 class="modal-title" id="leagueModalLabel">Utwórz ligę</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -126,9 +126,9 @@
                         </div>
                         <div class="form-group text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                            <button type="reset" class="btn btn-info" id="reset-btn" ng-click="reset()">Reset?</button>
-                            <button type="submit" class="btn btn-primary" ng-click="addLeague(league.name, league.startDate, league.endDate,
-                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid">Zapisz</button>
+                            <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
+                            <button type="submit" class="btn btn-success" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok">Zapisz</span></button>
                         </div>
                     </form>
                 </div>

@@ -147,6 +147,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                 .then(function success() {
                         $scope.message = 'Poprawna edycja meczu';
                         $scope.errorMessage = '';
+                        $scope.init();
                     },
                     function error() {
                         $scope.errorMessage = 'Błąd podczas edycji meczu';
@@ -210,11 +211,13 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.addNewMatch = function() {
         if ($scope.newMatch != null) {
             RoundService.addNewMatch($scope.newMatch.homeFirstPlayerId, $scope.newMatch.homeSecondPlayerId, $scope.newMatch.awayFirstPlayerId, $scope.newMatch.awaySecondPlayerId, $scope.newMatch.homeTeamId, $scope.newMatch.awayTeamId, $scope.newMatch.comments, $scope.activeRound.roundId, $scope.activeRound.leagueId)
-                .then(function success(response) {
+                .then(function success() {
+                        $scope.getLeague();
+                        $scope.getLeagueRounds();
+                        $scope.getLeagueMatches();
+                        $scope.getLeagueTable();
                         $scope.message = 'Poprawnie dodano mecz';
                         $scope.errorMessage = '';
-                        $scope.init();
-                        $scope.resetNewMatch();
                     },
                     function error(response) {
                         $scope.errorMessage = 'Błąd podczas dodawania meczu';
@@ -277,7 +280,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
 
 
     $scope.addRound = function() {
-        if ($scope.newRound != null) {
+        if ($scope.leagueId != null) {
             RoundService.addRound($scope.quantityOfRounds, $scope.leagueId, $scope.newRound.description)
                 .then(function success() {
                         $scope.message = 'Poprawnie dodano kolejkę';
@@ -287,10 +290,12 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                         $scope.init();
                     },
                     function error() {
+                        console.log('Błąd podczas dodawania ligi');
                         $scope.errorMessage = 'Błąd podczas dodawania kolejki';
                         $scope.message = '';
                     });
         } else {
+            console.log('Błąd danych');
             $scope.errorMessage = 'Błąd danych';
             $scope.message = '';
         }

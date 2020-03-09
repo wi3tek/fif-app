@@ -16,6 +16,7 @@ import pl.engineerproject.pw.fifapp.service.helper.MatchPlayerRelService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,9 +70,7 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public void deleteMatch(Integer matchId) {
-        matchRepository.deleteById(matchId);
-
+    public void deleteMatch(Integer matchId)  {
         MatchData matchData =  matchRepository.getOne(matchId);
 
         String homeFirstPlayerRelId = matchData.getMatchId() +"_"+matchData.getHomeFirstPlayer().getPlayerId();
@@ -79,11 +78,12 @@ public class MatchServiceImpl implements MatchService {
         String awayFirstPlayerRelId = matchData.getMatchId() +"_"+matchData.getAwayFirstPlayer().getPlayerId();
         String awaySecondPlayerRelId = matchData.getMatchId() +"_"+matchData.getAwaySecondPlayer().getPlayerId();
 
-
         matchPlayerRelService.deleteMatchPlayerRel(homeFirstPlayerRelId);
         matchPlayerRelService.deleteMatchPlayerRel(homeSecondPlayerRelId);
         matchPlayerRelService.deleteMatchPlayerRel(awayFirstPlayerRelId);
         matchPlayerRelService.deleteMatchPlayerRel(awaySecondPlayerRelId);
+
+        matchRepository.deleteById(matchId);
     }
 
     @Override

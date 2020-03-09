@@ -16,10 +16,16 @@ fifapp.config(function($routeProvider) {
             controller: 'RoundController',
         })
         .when('/players', {
-            templateUrl: '../view/Players/view.html',
+            templateUrl: '../../view/Player/view.html',
             url: '/players',
             controller: 'PlayerController'
         })
+        // .when('/players/stat/:id', {
+        //     template: " "
+        // })
+        // .when('/player-stat-:id', {
+        //     template: " "
+        // })
 
     .otherwise({
         templateUrl: '../../view/Home/view.html',
