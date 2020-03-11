@@ -1,0 +1,142 @@
+<div ng-init="init()">
+    <div class="content col-md-7 col-sm-12 col-xs-12">
+        <div class="section-block">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="row" style="margin:10px; background-color: darkcyan; color:whitesmoke">
+                        <div class="content col-md-6 col-sm-6 col-xs-6 text-left">
+                            <h3>LISTA ZAWODNIKÓW</h3>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>
+                        </div>
+                        <div class="content col-md-6 col-sm-6 col-xs-6 text-right">
+                            <button type="button" data-toggle="modal" style="margin:10px;" data-target="#createPlayerModal" class="btn btn-success" aria-label="Left Align" title="Dodaj zawodnika">DODAJ ZAWODNIKA</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body fontFamily">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row" style="background-color:darkcyan; color:white; padding:2px;">
+                                <div class="content col-xs-3"><strong>Imię</strong></div>
+                                <div class="content col-xs-3"><strong>Nazwisko</strong></div>
+                                <div class="content col-xs-3"><strong>Data urodzenia</strong></div>
+                                <div class="content col-xs-3"><strong>Dołączył</strong></div>
+                                <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                            </div>
+                            <div ng-repeat="player in players" class="list-group-item" ng-click=setActivePlayer(player)>
+                                <div class="row" style="background-color:aliceblue; cursor: pointer;">
+                                    <div class="content col-xs-3">{{player.name}}</div>
+                                    <div class="content col-xs-3">{{player.alias}}</div>
+                                    <div class="content col-xs-3">{{claculateTime(player.dateOfBirth) | date: 'yyyy-MM-dd'}}</div>
+                                    <div class="content col-xs-3">{{claculateTime(player.joinDate) | date: 'yyyy-MM-dd'}}</div>
+                                    <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                    <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/tabs-->
+    <!--/main content-->
+    <!--sidebar-->
+    <div class="content col-md-5 col-sm-12 col-xs-12" style="color:whitesmoke">
+        <div class="section-block summary ">
+            <div class="row ">
+                <div class="col-xs-12 text-center"><label class="label label-default">STATYSTYKI</label></div>
+                <div class="col-xs-12 text-right">
+                    <button type="button " class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń zawodnika" data-target="#deletePlayerModal" ng-click="setPlayerEdited(activePlayer)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <button type="button " class="btn btn-default btn-xs" title="Edytuj zawodnika"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-xs-12 " style="color:whitesmoke text-left ">
+                    <div class="col-xs-12" ng-if="activePlayer">
+                        <h3>{{activePlayer.alias}}</h3><br>Wiek: {{calculateAge()}}
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--/sidebar-->
+</div>
+
+
+<!-- OKNO MODALNE TWORZENIA ZAWODNIKA -->
+<div class="modal fade" id="createPlayerModal" tabindex="-1" role="dialog" aria-labelledby="createPlayerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createPlayerModalLabel">Nowy zawodnik</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Create player form -->
+                <form novalidate name="playerForm ">
+                    <div class=form-row>
+                        <div class="form-group col-md-12 " ng-class="{ 'has-error': playerForm.playerName.$invalid} ">
+                            <label for="playerName ">Imię</label>
+                            <input type="text " class="form-control " name="playerName " ng-model="player.name " id="playerName " placeholder="Imię " required ng-minlength="4 " ng-maxlength="25 ">
+                            <small class="error " ng-show="playerForm.playerName.$error.required ">Imię jest wymagane</small>
+                            <small class="error " ng-show="playerForm.playerName.$error.minlength ">Zbyt krótkie imię - min. 3 znaki</small>
+                            <small class="error " ng-show="playerForm.playerName.$error.maxlength ">Zbyt długie imię</small>
+                        </div>
+                        <div class="form-group col-md-12 " ng-class="{ 'has-error': playerForm.playerAlias.$invalid} ">
+                            <label for="playerAlias ">Pseudonim</label>
+                            <input type="text " class="form-control " name="playerAlias " ng-model="player.alias " id="playerAlias " placeholder="Pseudonim " required ng-minlength="4 " ng-maxlength="25 ">
+                            <small class="error " ng-show="playerForm.playerAlias.$error.required ">Pseudonim jest wymagany</small>
+                            <small class="error " ng-show="playerForm.playerAlias.$error.minlength ">Zbyt krótki pseudonim - min. 3 znaki</small>
+                            <small class="error " ng-show="playerForm.playerAlias.$error.maxlength ">Zbyt długi pseudonim</small>
+                        </div>
+                        <div class="form-group col-md-12 " ng-class="{ 'has-error': playerForm.dateOfBirth.$invalid} ">
+                            <label for="dateOfBirth ">Data urodzenia</label>
+                            <input type="date" class="form-control " name="dateOfBirth" ng-model="player.dateOfBirth " required id="dateOfBirth " placeholder="Data urodzenia " required>
+                            <small class="error " ng-show="playerForm.dateOfBirth.$error.required ">Data urodzenia jest wymagana</small>
+                        </div>
+                        <div class="form-group col-md-12 " ng-class="{ 'has-error': playerForm.playerUser.$invalid} ">
+                            <label for="playerUser ">Pseudonim</label>
+                            <input type="text " class="form-control " name="playerUser " ng-model="player.playerUser " id="playerUser " placeholder="Powiązany użytkownik ">
+                        </div>
+                        <div class="form-group text-right ">
+                            <button type="button " class="btn btn-secondary " data-dismiss="modal">Zamknij</button>
+                            <button type="reset " class="btn btn-info " id="reset-btn " ng-click="reset() ">Wyczyść</button>
+                            <button type="submit " class="btn btn-success " ng-click="addPlayer(player.name,player.alias, player.dateOfBirth, player.playerUser) " data-dismiss="modal" ng-disabled="playerForm.$invalid "><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Zapisz</button>
+                        </div>
+
+                </form>
+
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL - DELETE PLAYER -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This is a small modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    <button type="button" class="btn btn-danger" ng-click="deletePlayer()" data-dismiss="modal">Usuń</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

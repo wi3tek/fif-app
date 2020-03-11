@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="PL-pl">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <base href="/">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="../css/app/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/fontello/css/fontello.css" type="text/css" />
     <script src="../js/lib/angular.js"></script>
     <script src="../js/lib/angular.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script src="/js/app/app.js"></script>
     <script src="/js/app/LeagueController.js"></script>
     <script src="/js/app/LeagueService.js"></script>
     <script src="/js/app/RoundController.js"></script>
     <script src="/js/app/RoundService.js"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script src="/js/app/PlayerController.js"></script>
+    <script src="/js/app/PlayerService.js"></script>
+
+
     <title>Fifapp</title>
 </head>
 
@@ -38,15 +45,15 @@
             <div class="collapse navbar-collapse" id="myNavbar">
 
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Strona główna</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="#!leagues">Sezony<span class="caret"></span></a>
                         <ul class="dropdown-menu scrollable-menu" role="menu">
-                            <li><a href="" data-toggle="modal" data-target="#exampleModal">Utwórz nowy+</a></li>
+                            <li><a href="" data-toggle="modal" data-target="#leagueModal">Utwórz nowy+</a></li>
                             <li ng-repeat="league in leagues"><a ng-href="{{'#!leagues/' + league.leagueId}}">{{league.name}}</a></li>
-                            <!-- <li ng-repeat="leagues in allLeagues">{{leagues.name}} -->
                         </ul>
                     </li>
+                    <li><a ng-href="#!players">Zawodnicy</a></li>
                     <li><a href="#">Statystyki</a></li>
                     <li><a href="#">O nas</a></li>
                 </ul>
@@ -62,36 +69,7 @@
     <div class="main-content">
         <div class="container">
             <div class="row">
-                <div class="content col-md-8 col-sm-12 col-xs-12">
-                    <div class="section-block">
-                        <!-- MAIN CONTENT -->
-                        <div ng-view></div>
-                    </div>
-                </div>
-                <!--/tabs-->
-                <!--/main content-->
-                <!--sidebar-->
-                <div class="content col-md-4 col-sm-12 col-xs-12">
-                    <div class="section-block summary">
-                        <h1 class="section-title">FIF APP</h1>
-                        <div class="profile-contents">
-                            <h2 class="position">Znajdź nas</h2>
-                            <img src="../img/logo_v1.png" style="height:100px;" class="img responsive" alt="logo">
-                            <!--social links-->
-                            <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-git"></i></a></li>
-                            </ul>
-                            <!--/social links-->
-                            <a href="#" class="btn btn-contact"><i class="fa fa-envelope"></i>CONTACT US</a>
-                        </div>
-                    </div>
-
-                </div>
-                <!--/sidebar-->
+                <div ng-view></div>
             </div>
         </div>
     </div>
@@ -104,11 +82,12 @@
         </div>
     </footer>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- OKNO MODALNE TWORZENIA LIGI -->
+    <div class="modal fade" id="leagueModal" tabindex="-1" role="dialog" aria-labelledby="leagueModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Utwórz ligę</h5>
+                    <h5 class="modal-title" id="leagueModalLabel"><label class="label label-default">Utwórz ligę</label></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -148,9 +127,9 @@
                         </div>
                         <div class="form-group text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                            <button type="reset" class="btn btn-info" id="reset-btn" ng-click="reset()">Reset?</button>
-                            <button type="submit" class="btn btn-primary" ng-click="addLeague(league.name, league.startDate, league.endDate,
-                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid">Zapisz</button>
+                            <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
+                            <button type="submit" class="btn btn-success" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok"> Utwórz</span></button>
                         </div>
                     </form>
                 </div>

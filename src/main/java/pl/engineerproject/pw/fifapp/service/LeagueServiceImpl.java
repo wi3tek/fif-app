@@ -1,6 +1,7 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.LeagueConverter;
 import pl.engineerproject.pw.fifapp.dto.LeagueDto;
@@ -27,7 +28,7 @@ public class LeagueServiceImpl implements LeagueService{
 
     @Override
     public List<LeagueDto> getAllLeagues() {
-        return leagueRepository.findAll().stream().map(LeagueConverter::entityToDto).collect(Collectors.toList());
+        return leagueRepository.findAll(Sort.by(Sort.Direction.DESC,"startDate")).stream().map(LeagueConverter::entityToDto).collect(Collectors.toList());
     }
 
 }

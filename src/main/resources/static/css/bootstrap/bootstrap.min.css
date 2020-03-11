@@ -4260,6 +4260,7 @@ tbody.collapse.in {
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
+    background-color: aliceblue;
 }
 
 .dropdown-menu.pull-right {
@@ -5493,8 +5494,8 @@ fieldset[disabled] .navbar-default .btn-link:hover {
 }
 
 .navbar-inverse {
-    background-color: rgb(70, 130, 194);
-    border-color: rgb(70, 130, 194)
+    background-color: #007272;
+    border-color: #007272
 }
 
 .navbar-inverse .navbar-brand {

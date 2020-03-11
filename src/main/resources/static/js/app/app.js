@@ -1,12 +1,13 @@
-//'use strict'
+'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services']);
 
 fifapp.config(function($routeProvider) {
     $routeProvider
 
         .when('/leagues', {
             templateUrl: '../../view/League/view.html',
+            url: '/leagues',
             controller: 'LeagueController'
         })
         .when('/leagues/:leagueId', {
@@ -14,13 +15,26 @@ fifapp.config(function($routeProvider) {
             templateUrl: '../../view/Round/view.html',
             controller: 'RoundController',
         })
+        .when('/players', {
+            templateUrl: '../../view/Player/view.html',
+            url: '/players',
+            controller: 'PlayerController'
+        })
+        // .when('/players/stat/:id', {
+        //     template: " "
+        // })
+        // .when('/player-stat-:id', {
+        //     template: " "
+        // })
 
     .otherwise({
-        redirectTo: '/'
+        templateUrl: '../../view/Home/view.html',
+        url: '/home',
     })
 
 
 });
+
 
 fifapp.constant("CONSTANTS", {
     getLeagueByIdUrl: "/leagues/getLeague",

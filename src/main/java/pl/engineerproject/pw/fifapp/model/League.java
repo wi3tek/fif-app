@@ -1,19 +1,19 @@
 package pl.engineerproject.pw.fifapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
+@SequenceGenerator(name="league_seq", allocationSize=10000)
 public class League implements Serializable {
 
     private static final long serialVersionUID = 8871472796696693981L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "league_seq")
     private Integer leagueId;
     private String name;
     private String description;
@@ -79,10 +79,5 @@ public class League implements Serializable {
 
     public League() {
 
-    }
-
-    @Override
-    public String toString() {
-        return "League{" + "leagueId='" +leagueId+ '\'' + ", name='" + name + '\'' + ", description='" +description+ '\'' + ", startDate='" + '\'' + ", endDate='" + endDate + '\'' + ",location='" + '\'' + '}';
     }
 }

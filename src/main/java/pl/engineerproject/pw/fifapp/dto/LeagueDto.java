@@ -1,13 +1,16 @@
 package pl.engineerproject.pw.fifapp.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LeagueDto {
 
-    Integer leagueId;
-    String name;
-    String description;
-    String startDate;
-    String endDate;
-    String location;
+    private Integer leagueId;
+    private String name;
+    private String description;
+    private String startDate;
+    private String endDate;
+    private String location;
 
     public LeagueDto(Integer leagueId, String name, String description, String startDate, String endDate, String location) {
         this.leagueId=leagueId;
@@ -69,6 +72,4 @@ public class LeagueDto {
     public void setLocation(String location) {
         this.location = location;
     }
-
-
 }

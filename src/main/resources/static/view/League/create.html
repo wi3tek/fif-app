@@ -1,13 +1,58 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
+<div class="container" ng-init="">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Utwórz ligę</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
 
-<head>
-    <meta http-equiv="content-type" content="text/html" ; charset="UTF-8" />
-    <title>Title</title>
-</head>
+                <div class="modal-body">
 
-<body>
+                    <!-- Create league form -->
+                    <form novalidate name="leagueForm">
+                        <div class=form-row>
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.leagueName.$invalid}">
+                                <label for="leagueName">Nazwa Ligi</label>
+                                <input type="text" class="form-control" name="leagueName" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
+                                <small class="error" ng-show="leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                            </div>
 
-</body>
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.startDate.$invalid}">
+                                <label for="startDate">Data rozpoczęcia</label>
+                                <input type="date" class="form-control" name="startDate" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie" required>
+                                <small class="error" ng-show="leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
 
-</html>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="endDate">Data zakończenia</label>
+                                <input type="date" class="form-control" ng-model="league.endDate" id="endDate" placeholder="Zakończenie">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="location">Lokalizacja</label>
+                                <input type="text" class="form-control" ng-model="league.location" id="location" placeholder="Lokalizacja">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="description" class="col-form-label">Opis</label>
+                                <textarea class="form-control" ng-model="league.description" id="desc" placeholder="Opis"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                            <button type="reset" class="btn btn-info" id="reset-btn" ng-click="reset()">Reset?</button>
+                            <button type="submit" class="btn btn-primary" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid">Zapisz</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
