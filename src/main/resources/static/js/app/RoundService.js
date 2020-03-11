@@ -76,6 +76,12 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
         });
     }
 
+    this.getTeamsByRound = function getTeamsByRound(roundId) {
+        return $http({
+            method: 'GET',
+            url: 'teams/initTeamsList/' + roundId
+        })
+    }
 
     this.addNewMatch = function addLeague(homeFirstPlayerId, homeSecondPlayerId, awayFirstPlayerId, awaySecondPlayerId, homeTeamId, awayTeamId, comment, roundId, leagueId) {
         const myDate = new Date();

@@ -14,6 +14,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.roundEdited;
     $scope.matchesInDeletedRound;
 
+
     function countObjects(superObject) {
         var count = 0;
         for (var i = 0; i < superObject.length; ++i) {
@@ -131,7 +132,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
         $scope.activeRound = data;
         $scope.newMatch = {};
         $scope.getAllPlayers();
-        $scope.getTeams();
+        $scope.getTeamsByRound();
 
     }
 
@@ -185,7 +186,22 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                 },
                 function error(response) {
                     $scope.message = '';
-                    $scope.errorMessage = 'Błąd podczas pobierania graczy!';
+                    $scope.errorMessage = 'Błąd podczas pobierania drużyn!';
+                });
+    }
+
+
+    $scope.getTeamsByRound = function() {
+        RoundService.getTeamsByRound($scope.activeRound.roundId)
+            .then(function success(response) {
+                    $scope.teams = response.data;
+                    $scope.message = '';
+                    $scope.errorMessage = '';
+                },
+                function error(response) {
+                    $scope.message = '';
+                    $scope.errorMessage = 'Błąd podczas pobierania drużyn!';
+
                 });
     }
 

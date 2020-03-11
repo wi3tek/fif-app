@@ -8,14 +8,11 @@
                             <bold>LIGA: {{league.name}}</bold>
                         </h1>
                     </div>
-                    <div class="col-lg-9 text-left">
-                        <h4>
-                            <bold>LISTA KOLEJEK</bold>
-                        </h4>
+                    <div class="col-xs-6 text-left">
+                        <bold>LISTA KOLEJEK</bold>
                     </div>
-
-                    <div class="col-lg-3 text-right">
-                        <button type="button" class="btn btn-primary btn-sm" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#roundModal" title="DODAJ KOLEJKĘ"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWA KOLEJKA</span></button>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#roundModal" title="DODAJ KOLEJKĘ"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWA KOLEJKA</span></button>
                     </div>
                 </div>
             </div>
@@ -34,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-4 text-right">
-                                <button type="button" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#matchModal" class="btn btn-success" aria-label="Left Align">
+                                <button type="button" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#matchModal" class="btn btn-success btn-sm" aria-label="Left Align">
                     <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="top" title="Dodaj mecz" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteRoundModal" title="Usuń kolejkę" ng-click="setEditRoundContext(round)">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
@@ -235,7 +232,7 @@
                                         <label for="awayData">GOŚCIE</label>
                                         <div class="well">
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awayFirstPlayer.$invalid}">
-                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
+                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeSecondPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
                                             <option value="" disabled>1 GOŚĆ</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.awayFirstPlayer.$error.required">Wybierz gracza</small>
@@ -335,7 +332,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="roundModalLabel">
-                                <bold>Utwórz kolejkę</bold>
+                                <label class="label label-default">Utwórz kolejkę</label>
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -370,7 +367,7 @@
     <div class="content col-md-5 col-sm-12 col-xs-12">
         <div class="section-block summary">
             <div class="row">
-                <div class="col-xs-6 text-left">
+                <div class="col-xs-6 text-left text-center">
                     <label class="label label-default">TABELA LIGOWA</label>
                 </div>
                 <div class="col-xs-6 text-right">
@@ -383,19 +380,18 @@
                 <table class="table table-hover table-sm" style="color:whitesmoke">
                     <thead>
                         <tr style="font-weight: bold;">
-                            <th scope="col">#</th>
-                            <th class="text-center" scope="col"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                            <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
                             <th class="text-center" scope="col">M</th>
                             <th class="text-center" scope="col">Z</th>
                             <th class="text-center" scope="col">R</th>
                             <th class="text-center" scope="col">P</th>
-                            <th class="text-center" scope="colgroup" colspan="3">+/-</th>
-                            <th class="text-center" scope="col">PKT</th>
+                            <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                            <th class="text-center" scope="col">WSP. PKT</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="table in leagueTable">
-                            <td scope="row">{{ $index + 1 }}</td>
+                            <td scope="row"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
                             <td scope="col">{{table.alias}}</td>
                             <td class="text-center" scope="col">{{table.matches}}</td>
                             <td class="text-center" scope="col">{{table.wins}}</td>

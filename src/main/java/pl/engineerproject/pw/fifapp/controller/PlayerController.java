@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
+import pl.engineerproject.pw.fifapp.model.helper.PlayerMatch;
 import pl.engineerproject.pw.fifapp.service.PlayerService;
+import pl.engineerproject.pw.fifapp.service.helper.PlayerMatchService;
 
 import java.util.List;
 
@@ -16,6 +18,8 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
+    @Autowired
+    PlayerMatchService playerMatchService;
 
     @RequestMapping("/getPlayer/{playerId}")
     public PlayerDto getPlayerById(@PathVariable Integer playerId) {
@@ -42,6 +46,17 @@ public class PlayerController {
     @RequestMapping(value ="/delete/{playerId}", method = RequestMethod.DELETE)
     public void deletePlayer(@PathVariable Integer playerId) {
         playerService.deletePlayer(playerId);
+    }
+
+
+    @RequestMapping("/getMatches/{playerId}")
+    public List<PlayerMatch> getPlayerMatches(@PathVariable Integer playerId) {
+        return playerMatchService.getPlayerMatches(playerId);
+    }
+
+    @RequestMapping("/getAllMatches")
+    public List<PlayerMatch> getAllMatches() {
+        return playerMatchService.getAllMatches();
     }
 
 

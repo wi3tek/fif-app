@@ -6,6 +6,7 @@
                     <div class="row" style="margin:10px; background-color: darkcyan; color:whitesmoke">
                         <div class="content col-md-6 col-sm-6 col-xs-6 text-left">
                             <h3>LISTA ZAWODNIKÓW</h3>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>
                         </div>
                         <div class="content col-md-6 col-sm-6 col-xs-6 text-right">
                             <button type="button" data-toggle="modal" style="margin:10px;" data-target="#createPlayerModal" class="btn btn-success" aria-label="Left Align" title="Dodaj zawodnika">DODAJ ZAWODNIKA</button>
@@ -44,10 +45,10 @@
     <div class="content col-md-5 col-sm-12 col-xs-12" style="color:whitesmoke">
         <div class="section-block summary ">
             <div class="row ">
-                <div class="col-xs-12 text-center"><label class="label label-default ">STATYSTYKI</label></div>
+                <div class="col-xs-12 text-center"><label class="label label-default">STATYSTYKI</label></div>
                 <div class="col-xs-12 text-right">
-                    <button type="button " class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deletePlayerModal" ng-click="setPlayerEdited(activePlayer)"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                    <button type="button " class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                    <button type="button " class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń zawodnika" data-target="#deletePlayerModal" ng-click="setPlayerEdited(activePlayer)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <button type="button " class="btn btn-default btn-xs" title="Edytuj zawodnika"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
                 </div>
                 <div class="col-xs-12 " style="color:whitesmoke text-left ">
                     <div class="col-xs-12" ng-if="activePlayer">
@@ -119,25 +120,23 @@
         </div>
     </div>
 
-    <!-- MODAL - CONFIRM DELETE PLAYER -->
-    <div class="modal fade" id="deletePlayerModal" tabindex="-1" role="dialog" aria-labelledby="deletePlayerModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+
+    <!-- MODAL - DELETE PLAYER -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deletePlayerModalLabel">
-                        <bold>Usuwanie meczu</bold>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    Czy na pewno chcesz usunąć mecz?
+                    <p>This is a small modal.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-toggle="modal" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deletePlayer()">USUŃ</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    <button type="button" class="btn btn-danger" ng-click="deletePlayer()" data-dismiss="modal">Usuń</button>
                 </div>
             </div>
         </div>
     </div>
+</div>

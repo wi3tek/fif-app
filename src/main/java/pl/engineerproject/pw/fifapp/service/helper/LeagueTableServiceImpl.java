@@ -20,9 +20,9 @@ public class LeagueTableServiceImpl implements LeagueTableService {
     public List<LeagueTable> getLeagueTable(Integer leagueId) {
         List<LeagueTable> allLeagues = leagueTableRepository.findAll(Sort.by(Sort.Direction.DESC, "pointsRate"));
         List<LeagueTable> leagueTable = new ArrayList<>();
-        for (int i = 0; i <allLeagues.size() ; i++) {
-            if(allLeagues.get(i).getLeagueId().equals(leagueId)) {
-                leagueTable.add(allLeagues.get(i));
+        for (LeagueTable allLeague : allLeagues) {
+            if (allLeague.getLeagueId().equals(leagueId)) {
+                leagueTable.add(allLeague);
             }
         }
         return leagueTable;

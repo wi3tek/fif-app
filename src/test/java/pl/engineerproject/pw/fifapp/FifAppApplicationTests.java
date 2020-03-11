@@ -2,7 +2,9 @@ package pl.engineerproject.pw.fifapp;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.engineerproject.pw.fifapp.controller.TeamController;
 import pl.engineerproject.pw.fifapp.converter.RoundConverter;
 import pl.engineerproject.pw.fifapp.converter.UserConverter;
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
@@ -62,5 +64,7 @@ class FifAppApplicationTests {
 
 
 	}
+
+
 
 }

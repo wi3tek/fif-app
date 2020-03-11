@@ -12,6 +12,71 @@
                                             font-family: 'Open Sans', sans-serif;
                                         }
                                         
+                                        .position0 {
+                                            background-color: gold;
+                                            color: white;
+                                            border-radius: 50%;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-weight: bold;
+                                            width: 20px;
+                                            height: 20px;
+                                            display: block;
+                                            line-height: 20px;
+                                            text-align: center;
+                                        }
+                                        
+                                        .position1 {
+                                            background-color: rgb(73, 184, 73);
+                                            color: white;
+                                            border-radius: 50%;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-weight: bold;
+                                            width: 20px;
+                                            height: 20px;
+                                            display: block;
+                                            line-height: 20px;
+                                            text-align: center;
+                                        }
+                                        
+                                        .position2 {
+                                            background-color: rgb(73, 184, 73);
+                                            color: white;
+                                            border-radius: 50%;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-weight: bold;
+                                            width: 20px;
+                                            height: 20px;
+                                            display: block;
+                                            line-height: 20px;
+                                            text-align: center;
+                                        }
+                                        
+                                        .position-red {
+                                            background-color: rgb(202, 48, 48);
+                                            color: white;
+                                            border-radius: 50%;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-weight: bold;
+                                            width: 20px;
+                                            height: 20px;
+                                            display: block;
+                                            line-height: 20px;
+                                            text-align: center;
+                                        }
+                                        
+                                        .position-default {
+                                            background-color: lightgray;
+                                            color: white;
+                                            border-radius: 50%;
+                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-weight: bold;
+                                            width: 20px;
+                                            height: 20px;
+                                            display: block;
+                                            line-height: 20px;
+                                            text-align: center;
+                                        }
+                                        
                                         #teamBackground {
                                             background-color: gray;
                                             height: 30px;

@@ -15,8 +15,8 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
                 .then(function success(response) {
                         $scope.message = 'Poprawnie dodano ligę';
                         $scope.errorMessage = '';
-                        $scope.resetPlayerForm();
                         $scope.init();
+                        $scope.resetPlayerForm();
                     },
                     function error(response) {
                         $scope.errorMessage = 'Błąd podczas dodawania ligi';
@@ -110,5 +110,10 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
 
     $scope.setPlayerEdited = function(data) {
         $scope.playerEdited = data;
+    }
+
+
+    $scope.getPlayerMatches = {
+
     }
 }]);
