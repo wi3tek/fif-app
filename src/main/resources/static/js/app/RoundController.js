@@ -389,4 +389,8 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', 'PlayerService',
         });
     });
 
+
+    $(document).ready(function() {
+        $('span').tooltip();
+    })
 }])

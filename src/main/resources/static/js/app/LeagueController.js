@@ -50,6 +50,10 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
         }
     }
 
+    $scope.init = function() {
+        $scope.getListOfLeagues();
+    }
+
 
     $scope.deleteLeague = function() {
         if ($scope.leagueEdited != null) {
@@ -118,6 +122,8 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
         });
     });
 
+
+
     $scope.claculateTime = function(dt) {
         return new Date(dt).getTime();
 
@@ -126,8 +132,9 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', function($scop
     $scope.setLeagueEdited = function() {
         $scope.leagueEdited = $scope.activeLeague;
         $scope.leagueEdited.startDate = new Date($scope.leagueEdited.startDate);
+        // $scope.leagueEdited.endDate = new Date($scope.leagueEdited.endDate);
+        $scope.leagueEdited.endDate = null;
     }
-
 
     $scope.setActiveLeague = function(league) {
         $scope.activeLeague = league;

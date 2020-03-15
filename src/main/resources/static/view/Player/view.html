@@ -18,7 +18,7 @@
                         <label class="label label-default">LISTA ZAWODNIKÓW</label>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button type="button" data-toggle="modal" data-target="#createPlayerModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Dodaj zawodnika">DODAJ ZAWODNIKA</button>
+                        <button type="button" data-toggle="modal" data-target="#createPlayerModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Dodaj zawodnika"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWY ZAWODNIK</span></button>
                     </div>
                 </div>
             </div>
@@ -26,14 +26,14 @@
                 <div class="panel-body fontFamily">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <div class="row" style="background-color:darkcyan; color:white; padding:2px;">
+                            <div class="row" style="background-color:darkcyan; color:white; padding:10px; border-radius: 50px;">
                                 <div class="content col-xs-3"><strong>IMIĘ</strong></div>
                                 <div class="content col-xs-3"><strong>PSEUDONIM</strong></div>
                                 <div class="content col-xs-3"><strong>DATA UR.</strong></div>
                                 <div class="content col-xs-3"><strong>DOŁĄCZYŁ</strong></div>
                                 <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
                             </div>
-                            <div ng-repeat="player in players" class="list-group-item" ng-click=setActivePlayer(player)>
+                            <div ng-repeat="player in players" class="list-group-item list-group-item-action" ng-click=setActivePlayer(player)>
                                 <div class="row" style="background-color:aliceblue; cursor: pointer;">
                                     <div class="content col-xs-3">{{player.name}}</div>
                                     <div class="content col-xs-3">{{player.alias}}</div>

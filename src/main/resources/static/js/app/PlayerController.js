@@ -155,4 +155,6 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
         $scope.playerEdited.dateOfBirth = new Date($scope.playerEdited.dateOfBirth);
     }
 
+
+
 }]);

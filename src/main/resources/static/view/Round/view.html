@@ -460,7 +460,8 @@
                                 <td class="text-center" style="font-weight: bold" scope="col">{{table.pointsRate}}</td>
                                 <td>
                                     <div style="text-align:center">
-                                        <span ng-repeat="playerMatch in playerMatches | filter: {playerId: table.playerId} | limitTo :5" ng-class="playerMatch.resultFlag =='W' ? 'lastMatchWin' : (playerMatch.resultFlag =='R' ? 'lastMatchDraw' : (playerMatch.resultFlag == 'P' ? 'lastMatchLose' : 'noLastMatch'))">{{playerMatch.resultFlag}}</span>
+                                        <span data-toggle="tooltip" data-placement="top" title="{{playerMatch.goalsScored}}:{{playerMatch.goalsConceded}} przeciwko {{playerMatch.firstOpponentName}} i {{playerMatch.secondOpponentName}}" ng-repeat="playerMatch in playerMatches | filter: {playerId: table.playerId} | limitTo :5"
+                                            ng-class="playerMatch.resultFlag =='W' ? 'lastMatchWin' : (playerMatch.resultFlag =='R' ? 'lastMatchDraw' : (playerMatch.resultFlag == 'P' ? 'lastMatchLose' : 'noLastMatch'))">{{playerMatch.resultFlag}}</span>
                                     </div>
                                 </td>
                             </tr>

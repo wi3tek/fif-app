@@ -18,7 +18,7 @@
                         <label class="label label-default">LISTA LIG</label>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button type="button" data-toggle="modal" style="margin:10px;" data-target="#leagueModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Utwórz ligę">NOWA LIGA</button>
+                        <button type="button" data-toggle="modal" style="margin:10px;" data-target="#leagueModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Utwórz ligę"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWA LIGA</span></button>
                     </div>
                 </div>
             </div>
@@ -26,14 +26,14 @@
                 <div class="panel-body fontFamily">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <div class="row text-center" style="background-color:darkcyan; color:white; padding:2px;">
+                            <div class="row text-center" style="background-color:darkcyan; color:white; padding:10px; border-radius: 50px;">
                                 <div class="content col-xs-3"><strong>NAZWA</strong></div>
                                 <div class="content col-xs-3"><strong>LOKALIZACJA</strong></div>
                                 <div class="content col-xs-3"><strong>OPIS</strong></div>
                                 <div class="content col-xs-3"><strong>START</strong></div>
                                 <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
                             </div>
-                            <div ng-repeat="league in leagues" class="list-group-item text-center" ng-click=setActiveLeague(league)>
+                            <div ng-repeat="league in leagues" class="list-group-item list-group-item-action text-center" ng-click=setActiveLeague(league)>
                                 <div class="row" style="background-color:aliceblue; cursor: pointer;">
                                     <div class="content col-xs-3">{{league.name}}</div>
                                     <div class="content col-xs-3">{{league.location}}</div>
@@ -148,7 +148,7 @@
                         <div class="form-group text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                             <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
-                            <button type="submit" class="btn btn-success" ng-click="updateLeague(activeLeague.leagueId,leagueEdited.name, leagueEdited.startDate, leagueEdited.endDate,
+                            <button type="submit" class="btn btn-success alertAction" ng-click="updateLeague(activeLeague.leagueId,leagueEdited.name, leagueEdited.startDate, leagueEdited.endDate,
                             leagueEdited.description, leagueEdited.location)" data-dismiss="modal" ng-disabled="leagueEditedForm.$invalid"><span class="glyphicon glyphicon-ok"> Edytuj</span></button>
                         </div>
                     </form>
@@ -208,7 +208,7 @@
                     <div class="form-group text-right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                         <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
-                        <button type="submit" class="btn btn-success" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                        <button type="submit" class="btn btn-success alertAction" ng-click="addLeague(league.name, league.startDate, league.endDate,
                             league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok"> Utwórz</span></button>
                     </div>
                 </form>
