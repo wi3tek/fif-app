@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @EnableEncryptableProperties
 @SpringBootApplication
-public class FifAppApplication {
+public class 	FifAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FifAppApplication.class, args);

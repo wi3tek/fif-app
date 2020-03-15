@@ -6,21 +6,64 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
     $scope.playerEdited;
     $scope.newPlayer;
     $scope.activePlayer;
-    $scope.errorMessage;
-    $scope.message;
+
+    $scope.alertMessage;
+    $scope.alertStatus;
+    $scope.alertPrefix;
+
+    // $scope.closeAlert = function() {
+    //     $scope.show = false;
+
+    // };
+
+    // $(document).ready(function() {
+    //     if ($scope.show) {
+    //         $("#formAlert").show();
+    //     }
+    // });
+
+    // $scope.initAlert = function() {
+    //     $scope.show = true;
+    // }
+
+    $scope.setAlert = function(message, status) {
+        $scope.alertStatus = status;
+        if (status == 1) {
+            $scope.alertPrefix = 'SUKCES! '
+            $scope.alertMessage = message;
+        } else {
+            if (status == 0) {
+                $scope.alertPrefix = 'BŁĄD! '
+                $scope.alertMessage = message;
+            } else {
+                $scope.alertPrefix = ''
+                $scope.alertMessage = message;
+            }
+        }
+
+    }
+
+    $(document).ready(function() {
+        $("#eventAlert").hide();
+        $(".alertAction").click(function showAlert() {
+            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
+                $("#eventAlert").slideUp(500);
+            });
+        });
+    });
 
     $scope.addPlayer = function() {
         if ($scope.player != null && $scope.player.name && $scope.player.alias) {
             PlayerService.addPlayer($scope.player.name, $scope.player.alias, $scope.player.dateOfBirth, $scope.player.userId)
                 .then(function success(response) {
-                        $scope.message = 'Poprawnie dodano ligę';
-                        $scope.errorMessage = '';
+                        $scope.setAlert('Poprawnie dodano zawodnika "' + $scope.player.alias + '"', 1);
+                        console.log(response)
                         $scope.init();
                         $scope.resetPlayerForm();
                     },
                     function error(response) {
-                        $scope.errorMessage = 'Błąd podczas dodawania ligi';
-                        $scope.message = '';
+                        $scope.setAlert('Błąd podczas dodawania zawodnika "' + $scope.player.alias + '"', 0);
+                        console.log(response)
 
                     });
         } else {
@@ -29,19 +72,19 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
         }
     }
 
-    $scope.editPlayer = function() {
-        if ($scope.player != null && $scope.player.name && $scope.player.alias) {
-            PlayerService.editPlayer($scope.player.playerId, $scope.player.name, $scope.player.alias, $scope.player.dateOfBirth,
-                    $scope.player.joinDate, $scope.player.userId)
+    $scope.updatePlayer = function() {
+        if ($scope.playerEdited != null && $scope.playerEdited.name && $scope.playerEdited.alias) {
+            PlayerService.updatePlayer($scope.playerEdited.playerId, $scope.playerEdited.name, $scope.playerEdited.alias, $scope.playerEdited.dateOfBirth,
+                    $scope.playerEdited.joinDate, $scope.playerEdited.userId)
                 .then(function success(response) {
-                        $scope.message = 'Poprawnie dodano ligę';
-                        $scope.errorMessage = '';
+                        $scope.setAlert('Porpawnie zaktualizowano dane zawodnika "' + $scope.playerEdited.alias + '"', 1);
                         $scope.getPlayers();
                         $scope.resetPlayerForm();
+                        console.log($scope.alertMessage + '\n' + response)
                     },
                     function error(response) {
-                        $scope.errorMessage = 'Błąd podczas dodawania ligi';
-                        $scope.message = '';
+                        $scope.setAlert('Wystąpił błąd podczas aktualizacji zawodnika "' + $scope.playerEdited.alias + '"', 0);
+                        console.log($scope.alertMessage + '\n' + response)
 
                     });
         } else {
@@ -55,12 +98,10 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
         PlayerService.getPlayers()
             .then(function success(response) {
                     $scope.players = response.data;
-                    $scope.message = '';
-                    $scope.errorMessage = '';
+                    console.log('Pobrano graczy ' + response)
                 },
                 function error(response) {
-                    $scope.message = '';
-                    $scope.errorMessage = 'Błąd podczas dodawania gracza!';
+                    console.log('Błąd podczas pobierania graczy ' + response)
                 });
     }
 
@@ -75,20 +116,21 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
 
     $scope.deletePlayer = function() {
         if ($scope.playerEdited != null) {
-            PlayerService.deleteMatch($scope.playerEdited.playerId)
-                .then(function success() {
-                        $scope.message = 'Poprawnie usunięto gracza';
-                        $scope.errorMessage = '';
+            PlayerService.deletePlayer($scope.playerEdited.playerId)
+                .then(function success(response) {
+                        $scope.setAlert('Usunięto zawodnika "' + $scope.playerEdited.alias + '"!', 1)
                         $scope.init();
+                        console.log($scope.alertMessage + '\n' + response)
+
                     },
-                    function error() {
-                        $scope.errorMessage = 'Błąd podczas usuwania gracza';
-                        $scope.message = '';
+                    function error(response) {
+                        $scope.setAlert('Błąd podczas usuwania zawodnika "' + $scope.playerEdited.alias + '"!', 0)
+                        console.log($scope.alertMessage + '\n' + response)
                     });
 
         } else {
-            $scope.errorMessage = 'Błąd danych';
-            $scope.message = '';
+            $scope.setAlert('Nie można odnaleźć zawodnika do usunięcia', 2)
+            console.log($scope.alertMessage + ' ' + response)
         }
     }
 
@@ -108,12 +150,9 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
 
     }
 
-    $scope.setPlayerEdited = function(data) {
-        $scope.playerEdited = data;
+    $scope.setPlayerEdited = function() {
+        $scope.playerEdited = $scope.activePlayer;
+        $scope.playerEdited.dateOfBirth = new Date($scope.playerEdited.dateOfBirth);
     }
 
-
-    $scope.getPlayerMatches = {
-
-    }
 }]);

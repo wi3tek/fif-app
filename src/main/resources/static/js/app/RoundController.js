@@ -2,7 +2,7 @@
 
 var fifapp = angular.module('round.controllers', []);
 
-fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', function($scope, RoundService, $routeParams, MatchService) {
+fifapp.controller('RoundController', ["$scope", 'RoundService', 'PlayerService', '$routeParams', function($scope, RoundService, PlayerService, $routeParams, MatchService) {
     $scope.oneAtATime = true;
     $scope.matchEdited;
     $scope.activeRound;
@@ -14,6 +14,9 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.roundEdited;
     $scope.matchesInDeletedRound;
 
+    $scope.alertMessage;
+    $scope.alertStatus;
+    $scope.alertPrefix;
 
     function countObjects(superObject) {
         var count = 0;
@@ -30,15 +33,15 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
             .then(function success(response) {
                     $scope.league = response.data;
                     $scope.league.id = id;
-                    $scope.message = '';
-                    $scope.errorMessage = '';
+                    console.log('udało się pobrać ligę: ' + id)
                 },
                 function error(response) {
-                    $scope.message = '';
+                    console.log('wystąpił błą pobrania ligi - odśwież stronę!')
                     if (response.status === 404) {
-                        $scope.errorMessage = 'League not found';
+                        console.log('League not found');
                     } else {
                         $scope.errorMessage = "Error getting league";
+                        console.log('Error getting league');
                     }
                 })
     };
@@ -53,13 +56,17 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                     $scope.rounds = response.data;
                     $scope.message = ''
                     $scope.errorMessage = '';
+                    console.log('Udało się pobrać kolejki ligowe!')
                     $scope.quantityOfRounds = countObjects(response.data);
                 },
                 function error(response) {
+                    console.log('Błąd podczas pobrania rund ligowych')
                     if (response.status === 404) {
                         $scope.errorMessage = 'Rounds not found!';
+                        console.log('Rounds not found!');
                     } else {
                         $scope.errorMessage = "Error getting rounds!";
+                        console.log('Error getting rounds!');
                     }
                 })
     }
@@ -70,6 +77,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
             .then(function success(response) {
                     $scope.matches = response.data;
                     $scope.message = '';
+                    console.log('udało się pobrać mecze w kolejce')
                     $scope.errorMessage = '';
                     $scope.matchesInDeletedRound = countObjects(response.data);
 
@@ -77,8 +85,10 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                 function error(response) {
                     if (response.status === 404) {
                         $scope.errorMessage = 'Matches no found';
+                        console.log('Matches no found');
                     } else {
                         $scope.errorMessage = "Error getting Matches"
+                        console.log('Error getting Matches');
                     }
                 })
 
@@ -92,15 +102,19 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
             .then(function success(response) {
                     $scope.leagueMatches = response.data;
                     $scope.message = ''
+                    console.log('Poprawnie pobrano listę meczów ligowych')
                     $scope.errorMessage = ''
                     $scope.matchesInDeletedRound = countObjects(response.data);
 
                 },
                 function error(response) {
+                    console.log('Wystąpił błąd podczas pobierania meczów ligowych')
                     if (response.status === 404) {
                         $scope.errorMessage = 'Matches in league not found';
+                        console.log('Matches in league not found');
                     } else {
                         $scope.errorMessage = 'Error getting league matches'
+                        console.log('Error getting league matches');
                     }
                 })
     }
@@ -136,6 +150,8 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
 
     }
 
+
+
     $scope.setNewRoundSettings = function() {
         $scope.newRound = {};
 
@@ -145,18 +161,21 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.editMatch = function() {
         if ($scope.matchEdited.homeGoals != null && $scope.matchEdited.homeTeamId != null) {
             RoundService.editMatch($scope.matchEdited.matchId, $scope.matchEdited.matchDate, $scope.matchEdited.homeFirstPlayerId, $scope.matchEdited.homeSecondPlayerId, $scope.matchEdited.awayFirstPlayerId, $scope.matchEdited.awaySecondPlayerId, $scope.matchEdited.homeGoals, $scope.matchEdited.awayGoals, $scope.matchEdited.homeTeamId, $scope.matchEdited.awayTeamId, $scope.matchEdited.comment, $scope.matchEdited.roundId, $scope.matchEdited.leagueId)
-                .then(function success() {
-                        $scope.message = 'Poprawna edycja meczu';
-                        $scope.errorMessage = '';
+                .then(function success(response) {
+                        $scope.setAlert('Poprawna edycja wyniku', 1);
+                        console.log('Poprawna edycja wyniku');
                         $scope.init();
+                        console.log($scope.alertMessage + '\n' + response)
+
                     },
                     function error() {
-                        $scope.errorMessage = 'Błąd podczas edycji meczu';
+                        $scope.setAlert('Błąd podczas edycji wyniku', 0);
+                        console.log($scope.alertMessage + '\n' + response);
                         $scope.message = ''
                     });
         } else {
-            $scope.errorMessage = 'Uzupełnij dane';
-            $scope.message = '';
+            $scope.setAlert('Uzupełnij dane edytowanego meczu');
+            console.log($scope.alertMessage + '\n' + response);
         }
     }
 
@@ -174,6 +193,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                 function error(response) {
                     $scope.message = '';
                     $scope.errorMessage = 'Błąd podczas pobierania graczy!';
+                    console.log('Błąd podczas pobierania graczy!');
                 });
     }
 
@@ -187,6 +207,7 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
                 function error(response) {
                     $scope.message = '';
                     $scope.errorMessage = 'Błąd podczas pobierania drużyn!';
+                    console.log('Błąd podczas pobierania drużyn!');
                 });
     }
 
@@ -196,11 +217,13 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
             .then(function success(response) {
                     $scope.teams = response.data;
                     $scope.message = '';
+                    console.log('Poprawne pobranie drużyn')
                     $scope.errorMessage = '';
                 },
                 function error(response) {
                     $scope.message = '';
                     $scope.errorMessage = 'Błąd podczas pobierania drużyn!';
+                    console.log('Błąd podczas pobierania drużyn!');
 
                 });
     }
@@ -226,23 +249,21 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
 
     $scope.addNewMatch = function() {
         if ($scope.newMatch != null) {
-            RoundService.addNewMatch($scope.newMatch.homeFirstPlayerId, $scope.newMatch.homeSecondPlayerId, $scope.newMatch.awayFirstPlayerId, $scope.newMatch.awaySecondPlayerId, $scope.newMatch.homeTeamId, $scope.newMatch.awayTeamId, $scope.newMatch.comments, $scope.activeRound.roundId, $scope.activeRound.leagueId)
-                .then(function success() {
-                        $scope.getLeague();
-                        $scope.getLeagueRounds();
-                        $scope.getLeagueMatches();
-                        $scope.getLeagueTable();
-                        $scope.message = 'Poprawnie dodano mecz';
-                        $scope.errorMessage = '';
+            RoundService.addNewMatch($scope.newMatch.homeFirstPlayerId, $scope.newMatch.homeSecondPlayerId, $scope.newMatch.awayFirstPlayerId, $scope.newMatch.awaySecondPlayerId, $scope.newMatch.homeTeamId, $scope.newMatch.awayTeamId, $scope.activeRound.roundId, $scope.activeRound.leagueId)
+                .then(function success(response) {
+                        $scope.setAlert('Poprawnie dodano mecz', 1);
+                        console.log($scope.alertMessage + '\n' + response);
+                        $scope.init();
+
                     },
                     function error(response) {
-                        $scope.errorMessage = 'Błąd podczas dodawania meczu';
-                        $scope.message = '';
+                        $scope.setAlert('Błąd podczas dodawania meczu', 0);
+                        console.log($scope.alertMessage + '\n' + response);
 
                     });
         } else {
-            $scope.errorMessage = 'Uzupełnij dane';
-            $scope.message = '';
+            $scope.setAlert('Uzupełnij dane', 2);
+            console.log($scope.alertMessage + '\n' + response);
         }
 
 
@@ -251,18 +272,20 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.deleteMatch = function() {
         if ($scope.matchEdited != null) {
             RoundService.deleteMatch($scope.matchEdited.matchId)
-                .then(function success() {
-                        $scope.message = 'Poprawnie usunięto mecz';
-                        $scope.errorMessage = '';
+                .then(function success(response) {
+                        $scope.setAlert('Poprawnie usunięto mecz', 1);
+                        console.log($scope.alertMessage + '\n' + response);
                         $scope.init();
                     },
-                    function error() {
-                        $scope.errorMessage = 'Błąd podczas usuwania meczu';
+                    function error(response) {
+                        $scope.setAlert('Błąd podczas usuwania meczu', 0);
+                        console.log(alertMessage + '\n' + response);
                         $scope.message = '';
                     });
 
         } else {
-            $scope.errorMessage = 'Błąd danych';
+            $scope.setAlert('Błąd danych', 2);
+            console.log($scope.alertMessage + '\n' + response);
             $scope.message = '';
         }
     }
@@ -272,24 +295,21 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
         if ($scope.matchesInDeletedRound == 0) {
             if ($scope.roundEdited != null) {
                 RoundService.deleteRound($scope.roundEdited.roundId)
-                    .then(function success() {
-                            $scope.message = 'Poprawnie usunięto kolejkę';
-                            $scope.errorMessage = '';
+                    .then(function success(response) {
+                            $scope.setAlert('Poprawnie usunięto kolejkę', 1);
                             $scope.init();
                         },
-                        function error() {
-                            $scope.errorMessage = 'Wystąpił nieoczekiwany błąd';
-                            console.log('Wystąpił nieoczekiwany błąd')
-                            $scope.message = '';
+                        function error(response) {
+                            $scope.setAlert('Wystąpił błąd podczas usuwania kolejk', 0);
+                            console.log($scope.alertMessage + '\n' + response)
                         });
             } else {
-                $scope.errorMessage = 'Błąd danych - brak kolejki';
-                console.log('Błąd danych - brak kolejki')
-                $scope.message = '';
+                $scope.setAlert('Błąd danych - brak kolejki', 0);
+                console.log($scope.alertMessage)
             }
         } else {
-            $scope.errorMessage = 'NIE MOŻNA USUNĄĆ RUNDY Z PRZYPISANYMI MECZAMI';
-            console.log('NIE MOŻNA USUNĄĆ RUNDY Z PRZYPISANYMI MECZAMI');
+            $scope.setAlert('Nie można usunąć kolejki z przypisanymi meczami', 0);
+            console.log($scope.alertMessage);
 
         }
     }
@@ -298,22 +318,20 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
     $scope.addRound = function() {
         if ($scope.leagueId != null) {
             RoundService.addRound($scope.quantityOfRounds, $scope.leagueId, $scope.newRound.description)
-                .then(function success() {
-                        $scope.message = 'Poprawnie dodano kolejkę';
-                        $scope.errorMessage = '';
+                .then(function success(response) {
+                        $scope.setAlert('Poprawnie dodano kolejkę', 1);
+                        console.log($scope.alertMessage + '\n' + response);
                         $scope.setNewRoundSettings;
                         $scope.resetNewRound;
                         $scope.init();
                     },
-                    function error() {
-                        console.log('Błąd podczas dodawania ligi');
+                    function error(response) {
+                        $scope.setAlert('Błąd podczas dodawania ligi', 0);
                         $scope.errorMessage = 'Błąd podczas dodawania kolejki';
-                        $scope.message = '';
                     });
         } else {
-            console.log('Błąd danych');
+            $scope.setAlert('Błąd danych - nie udało się dodać kolejki', 0);
             $scope.errorMessage = 'Błąd danych';
-            $scope.message = '';
         }
     }
 
@@ -321,12 +339,54 @@ fifapp.controller('RoundController', ["$scope", 'RoundService', '$routeParams', 
         RoundService.getLeagueTable($scope.leagueId)
             .then(function success(response) {
                     $scope.leagueTable = response.data;
-                    $scope.message = '';
-                    $scope.errorMessage = '';
                 },
                 function error() {
-                    $scope.message = '';
-                    $scope.errorMessage = 'Błąd podczas pobierania tabeli ligowej'
+                    $scope.setAlert('Błąd podczas pobierania tabeli ligowej', 0)
+                    console.log($scope.alertMessage + '\n' + response);
                 })
     }
+
+
+    $scope.getPlayersMatchesInLeague = function(leagueId) {
+        if (leagueId != null) {
+            PlayerService.getPlayersMatchesInLeague(leagueId)
+                .then(function success(response) {
+                        $scope.playerMatches = response.data;
+                        $scope.setAlert('Pobrano listę meczów gracza', 1)
+                    },
+                    function error(response) {
+                        $scope.setAlert('Błąd podczas dodawania gracza!', 0);
+                        console.log($scope.alertMessage + '\n' + response);
+                    });
+        } else {
+            console.log('Błąd! Liga jest pusta')
+        }
+    }
+
+    $scope.setAlert = function(message, status) {
+        $scope.alertStatus = status;
+        if (status == 1) {
+            $scope.alertPrefix = 'SUKCES! '
+            $scope.alertMessage = message;
+        } else {
+            if (status == 0) {
+                $scope.alertPrefix = 'BŁĄD! '
+                $scope.alertMessage = message;
+            } else {
+                $scope.alertPrefix = ''
+                $scope.alertMessage = message;
+            }
+        }
+
+    }
+
+    $(document).ready(function() {
+        $("#eventAlert").hide();
+        $(".alertAction").click(function showAlert() {
+            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
+                $("#eventAlert").slideUp(500);
+            });
+        });
+    });
+
 }])

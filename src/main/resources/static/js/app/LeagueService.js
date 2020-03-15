@@ -22,4 +22,29 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
             }
         });
     }
+
+    this.updateLeague = function updateLeague(leagueId, name, startDate, endDate, description, location) {
+        return $http({
+            method: 'PUT',
+            url: 'leagues/update',
+            data: {
+                leagueId: leagueId,
+                name: name,
+                description: description,
+                startDate: startDate,
+                endDate: endDate,
+                location: location
+            }
+        })
+    }
+
+    this.deleteLeague = function deleteLeague(leagueId) {
+        return $http({
+            method: 'DELETE',
+            url: 'leagues/delete/' + leagueId
+        })
+    }
+
+
+
 }]);

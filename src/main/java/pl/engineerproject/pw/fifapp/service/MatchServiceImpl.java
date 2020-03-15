@@ -116,7 +116,7 @@ public class MatchServiceImpl implements MatchService {
             matchData.setMatchId(matchData.getMatchId());
             matchPlayerRelService.insertMatchPlayerRel(matchData);
 
-            return ResponseEntity.ok("Created match: {"+matchData.getMatchId()+"}");
+            return ResponseEntity.ok("{\"Created match\":"+matchData.getMatchId()+"}");
         }
     }
 }

@@ -37,7 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setPlayerId(player.getPlayerId());
 
 
-        return ResponseEntity.ok("Player created: {"+player.getPlayerId()+"}");
+        return ResponseEntity.ok("{\"Player created\":"+player.getPlayerId()+"}");
     }
 
     @Override

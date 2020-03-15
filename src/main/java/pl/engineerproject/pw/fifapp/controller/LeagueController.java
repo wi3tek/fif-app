@@ -29,8 +29,18 @@ public class LeagueController {
         return leagueService.getAllLeagues();
     }
 
-    @RequestMapping(value="saveLeague", method = RequestMethod.POST)
+    @RequestMapping(value="/saveLeague", method = RequestMethod.POST)
     public void saveLeague(@RequestBody LeagueDto leagueDto) {
         leagueService.saveLeague(leagueDto);
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.PUT)
+    public void updateLeague(@RequestBody LeagueDto leagueDto) {
+        leagueService.updateLeague(leagueDto);
+    }
+
+    @RequestMapping("/delete/{leagueId}")
+    public void deleteLeague(@PathVariable Integer leagueId) {
+        leagueService.deleteLeague(leagueId);
     }
 }

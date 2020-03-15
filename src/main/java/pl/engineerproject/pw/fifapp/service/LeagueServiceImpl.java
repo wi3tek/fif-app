@@ -31,4 +31,13 @@ public class LeagueServiceImpl implements LeagueService{
         return leagueRepository.findAll(Sort.by(Sort.Direction.DESC,"startDate")).stream().map(LeagueConverter::entityToDto).collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteLeague(Integer leagueId) {
+        leagueRepository.deleteById(leagueId);
+    }
+
+    public void updateLeague(LeagueDto leagueDto) {
+        leagueRepository.save(LeagueConverter.dtoToEntity(leagueDto));
+    }
+
 }

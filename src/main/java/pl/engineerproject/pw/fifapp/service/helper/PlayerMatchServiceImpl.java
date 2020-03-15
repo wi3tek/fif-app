@@ -35,4 +35,17 @@ public class PlayerMatchServiceImpl implements PlayerMatchService{
     public List<PlayerMatch> getAllMatches() {
         return playerMatchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate"));
     }
+
+    @Override
+    public List<PlayerMatch> getPlayersMatchesInLeague(Integer leagueId) {
+        List<PlayerMatch>  playerMatches = playerMatchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate"));
+        List<PlayerMatch>  playerMatchesResult = new ArrayList<>();
+
+        for (PlayerMatch playerMatch : playerMatches) {
+            if (playerMatch.getLeagueId().equals(leagueId)) {
+                playerMatchesResult.add(playerMatch);
+            }
+        }
+        return playerMatchesResult;
+    }
 }

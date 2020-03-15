@@ -1,7 +1,221 @@
-<div class="container" ng-init="">
-    <div class="page-header">
-        <h1>LISTA LIG</h1>
+<div ng-init="init()">
+
+    <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertPrefix}}</strong>{{alertMessage}}
     </div>
-    <p>This is some text.</p>
-    <p>This is another text.</p>
+
+    <div class="content col-md-8 col-sm-12 col-xs-12">
+        <div class="section-block">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h1>
+                            LIGI
+                        </h1>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                        <label class="label label-default">LISTA LIG</label>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" data-toggle="modal" style="margin:10px;" data-target="#leagueModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Utwórz ligę">NOWA LIGA</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel-body fontFamily">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row text-center" style="background-color:darkcyan; color:white; padding:2px;">
+                                <div class="content col-xs-3"><strong>NAZWA</strong></div>
+                                <div class="content col-xs-3"><strong>LOKALIZACJA</strong></div>
+                                <div class="content col-xs-3"><strong>OPIS</strong></div>
+                                <div class="content col-xs-3"><strong>START</strong></div>
+                                <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                            </div>
+                            <div ng-repeat="league in leagues" class="list-group-item text-center" ng-click=setActiveLeague(league)>
+                                <div class="row" style="background-color:aliceblue; cursor: pointer;">
+                                    <div class="content col-xs-3">{{league.name}}</div>
+                                    <div class="content col-xs-3">{{league.location}}</div>
+                                    <div class="content col-xs-3">{{league.description}}</div>
+                                    <div class="content col-xs-3">{{claculateTime(league.startDate) | date: 'yyyy-MM-dd'}}</div>
+                                    <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                    <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/tabs-->
+    <!--/main content-->
+    <!--sidebar-->
+    <div class="content col-md-4 col-sm-12 col-xs-12" style="color:whitesmoke">
+        <div class="section-block summary">
+            <div class="row" ng-if="activeLeague">
+                <div class="col-xs-12 text-center"><label class="label label-default">SZCZEGÓŁY LIGI</label></div>
+                <div class="col-xs-12 text-right">
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń ligę" data-target="#deleteLeagueModel" ng-click="setLeagueEdited()"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" title="Edytuj ligę" data-target="#editLeagueModal" ng-click="setLeagueEdited()"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+
+                </div>
+                <div class="col-xs-12" style="color:whitesmoke text-left">
+                    <div class="col-xs-12">
+                        <h3>{{activeLeague.name}}</h3><br>Rozpoczęcie: {{claculateTime(activeLeague.startDate) | date: 'yyyy-MM-dd'}}<br>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 text-center">
+                    <br>
+                    <a type="button" class="btn btn-block btn-default" ng-href="{{'#!leagues/' + activeLeague.leagueId}}" target="_blank" title="Przejdź do aktywnej ligi"><span class="glyphicon glyphicon-new-window"> Przejdź</span></a>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- modal usuwanie zawodnika -->
+        <!-- Modal -->
+        <div class="modal fade" id="deleteLeagueModel" tabindex="-1" role="dialog" aria-labelledby="deleteLeagueModelLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="color:black;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteLeagueModelLabel">
+                            <label class="label label-default">USUWANIE LIGI</label>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                    </div>
+                    <div class="modal-body">
+                        Czy na pewno chcesz usunąć ligę?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-toggle="modal" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                        <button type="button" id="deleteLeagueButton" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteLeague()">USUŃ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- OKNO MODALNE EDYCJI LIGI -->
+    <div class="modal fade" id="editLeagueModal" tabindex="-1" role="dialog" aria-labelledby="editLeagueModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editLeagueModalLabel"><label class="label label-default">Utwórz ligę</label></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- Create league form -->
+                    <form novalidate name="leagueEditedForm">
+                        <div class=form-row>
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueEditedForm.leagueName.$invalid}">
+                                <label for="leagueName">Nazwa Ligi</label>
+                                <input type="text" class="form-control" name="leagueName" ng-model="leagueEdited.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
+                                <small class="error" ng-show="leagueEditedForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueEditedForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                                <small class="error" ng-show="leagueEditedForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                            </div>
+
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueEditedForm.startDate.$invalid}">
+                                <label for="startDate">Data rozpoczęcia</label>
+                                <input type="date" class="form-control" name="startDate" ng-model="leagueEdited.startDate" id="startDate" placeholder="Rozpoczęcie" required>
+                                <small class="error" ng-show="leagueEditedForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="endDate">Data zakończenia</label>
+                                <input type="date" class="form-control" ng-model="leagueEdited.endDate" id="endDate" placeholder="Zakończenie">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="location">Lokalizacja</label>
+                                <input type="text" class="form-control" ng-model="leagueEdited.location" id="location" placeholder="Lokalizacja">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="description" class="col-form-label">Opis</label>
+                                <textarea class="form-control" ng-model="leagueEdited.description" id="desc" placeholder="Opis"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                            <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
+                            <button type="submit" class="btn btn-success" ng-click="updateLeague(activeLeague.leagueId,leagueEdited.name, leagueEdited.startDate, leagueEdited.endDate,
+                            leagueEdited.description, leagueEdited.location)" data-dismiss="modal" ng-disabled="leagueEditedForm.$invalid"><span class="glyphicon glyphicon-ok"> Edytuj</span></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- OKNO MODALNE TWORZENIA LIGI -->
+<div class="modal fade" id="leagueModal" tabindex="-1" role="dialog" aria-labelledby="leagueModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="leagueModalLabel"><label class="label label-default">Utwórz ligę</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Create league form -->
+                <form novalidate name="leagueForm">
+                    <div class=form-row>
+                        <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.leagueName.$invalid}">
+                            <label for="leagueName">Nazwa Ligi</label>
+                            <input type="text" class="form-control" name="leagueName" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
+                            <small class="error" ng-show="leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                            <small class="error" ng-show="leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                            <small class="error" ng-show="leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                        </div>
+
+                        <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.startDate.$invalid}">
+                            <label for="startDate">Data rozpoczęcia</label>
+                            <input type="date" class="form-control" name="startDate" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie" required>
+                            <small class="error" ng-show="leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="endDate">Data zakończenia</label>
+                            <input type="date" class="form-control" ng-model="league.endDate" id="endDate" placeholder="Zakończenie">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="location">Lokalizacja</label>
+                            <input type="text" class="form-control" ng-model="league.location" id="location" placeholder="Lokalizacja">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="description" class="col-form-label">Opis</label>
+                            <textarea class="form-control" ng-model="league.description" id="desc" placeholder="Opis"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
+                        <button type="submit" class="btn btn-success" ng-click="addLeague(league.name, league.startDate, league.endDate,
+                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok"> Utwórz</span></button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
 </div>
