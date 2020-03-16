@@ -8,4 +8,5 @@ public interface PlayerMatchService {
 
     List<PlayerMatch> getPlayerMatches(Integer PlayerId);
     List<PlayerMatch> getAllMatches();
+    List<PlayerMatch> getPlayersMatchesInLeague(Integer leagueId);
 }

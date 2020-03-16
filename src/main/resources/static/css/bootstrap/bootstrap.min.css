@@ -6303,7 +6303,7 @@ a.thumbnail:hover {
 .list-group-item.disabled:hover {
     color: #777;
     cursor: not-allowed;
-    background-color: #eee
+    background-color: rgb(211, 193, 115);
 }
 
 .list-group-item.disabled .list-group-item-heading,
@@ -6361,7 +6361,7 @@ button.list-group-item:focus,
 button.list-group-item:hover {
     color: #555;
     text-decoration: none;
-    background-color: #f5f5f5
+    background-color: rgb(211, 193, 115);
 }
 
 button.list-group-item {

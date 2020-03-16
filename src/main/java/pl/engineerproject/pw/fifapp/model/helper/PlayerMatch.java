@@ -53,13 +53,17 @@ public class PlayerMatch implements Serializable {
     private String teamOpponents;
     @Column(name ="TEAM_OPPONENT_LOGO")
     private String teamOpponentsLogo;
-
+    @Column(name="LEAGUE_ID")
+    private Integer leagueId;
+    @Column(name="ROUND_ID")
+    private Integer roundId;
 
     public PlayerMatch(String pmId, Integer matchId, LocalDateTime matchDate, Integer playerId, String playerAlias,
                        String matchRole, Integer teamId, String teamName, String teamLigiUrl, Integer goalsScored,
                        Integer goalsConceded, Integer goalsDiff, String resultFlag, Integer firstOpponentId,
                        String firstOpponentName, Integer secondOpponentId, String secondOpponentName,
-                       Integer teamOpponentsId, String teamOpponents, String teamOpponentsLogo) {
+                       Integer teamOpponentsId, String teamOpponents, String teamOpponentsLogo, Integer leagueId,
+                       Integer roundId) {
         this.pmId = pmId;
         this.matchId = matchId;
         this.matchDate = matchDate;
@@ -80,10 +84,28 @@ public class PlayerMatch implements Serializable {
         this.teamOpponentsId = teamOpponentsId;
         this.teamOpponents = teamOpponents;
         this.teamOpponentsLogo = teamOpponentsLogo;
+        this.leagueId = leagueId;
+        this.roundId = roundId;
     }
 
     public PlayerMatch() {
 
+    }
+
+    public Integer getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(Integer leagueId) {
+        this.leagueId = leagueId;
+    }
+
+    public Integer getRoundId() {
+        return roundId;
+    }
+
+    public void setRoundId(Integer roundId) {
+        this.roundId = roundId;
     }
 
     public String getPmId() {

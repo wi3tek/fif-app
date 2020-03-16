@@ -1,19 +1,26 @@
 <div ng-init="init()">
+
+    <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertPrefix}}</strong>{{alertMessage}}
+    </div>
+
     <div class="content col-md-7 col-sm-12 col-xs-12">
         <div class="section-block">
             <div class="page-header">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h1>
-                            <bold>LIGA: {{league.name}}</bold>
+                            LIGA: {{league.name}}
                         </h1>
                     </div>
                     <div class="col-xs-6 text-left">
-                        <bold>LISTA KOLEJEK</bold>
+                        <label class="label label-default">LISTA KOLEJEK</label>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button type="button" class="btn btn-primary btn-xs" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#roundModal" title="DODAJ KOLEJKĘ"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWA KOLEJKA</span></button>
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#roundModal" title="DODAJ KOLEJKĘ"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWA KOLEJKA</span></button>
                     </div>
+                    <!-- ng-click="setNewMatchSettings(round)" -->
                 </div>
             </div>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -27,13 +34,13 @@
                         </label>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <label style="color:whitesmoke">{{claculateTime(round.roundDate) | date: 'dd MMMM yyyy'}}</label>
+                                    <label style="color:whitesmoke">{{claculateTime(round.roundDate) | date: 'dd MM yyyy'}}</label>
                                 </div>
                             </div>
                             <div class="col-xs-4 text-right">
                                 <button type="button" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#matchModal" class="btn btn-success btn-sm" aria-label="Left Align">
                     <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="top" title="Dodaj mecz" aria-hidden="true"></span></button>
-                                <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteRoundModal" title="Usuń kolejkę" ng-click="setEditRoundContext(round)">
+                                <button type="button" class="btn btn-danger btn-xs " data-toggle="modal" data-target="#deleteRoundModal" title="Usuń kolejkę" ng-click="setEditRoundContext(round)">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
 
                             </div>
@@ -177,7 +184,7 @@
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                 </div>
                                 <div class="col col-xs-6 text-right">
-                                    <button type="button" class="btn btn-success btn-sm" ng-click="editMatch()" data-dismiss="modal"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Edytuj</button>
+                                    <button type="button" class="btn btn-success btn-sm alertAction" ng-click="editMatch()" data-dismiss="modal"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Edytuj</button>
                                 </div>
                             </div>
 
@@ -221,7 +228,7 @@
                                                 <small class="error" ng-show="newMatchForm.homeSecondPlayer.$error.required">Wybierz gracza</small>
                                             </div>
                                             <div class="form-group">
-                                                <select class="selectpicker form-control" id="homeTeam" name="homeTeam" required data-live-search="true" data-live-search="true" ng-model="newMatch.homeTeamId" ng-options="team.teamId as team.name for team in teams">
+                                                <select class="selectpicker form-control" id="homeTeam" name="homeTeam" required data-live-search="true" data-live-search="true" ng-model="newMatch.homeTeamId" ng-options="key as value for (key , value) in teams">
                                             <option value="" disabled>DRUŻYNA GOSPODARZY</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.homeTeam.$error.required">Wybierz drużynę</small>
@@ -232,37 +239,33 @@
                                         <label for="awayData">GOŚCIE</label>
                                         <div class="well">
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awayFirstPlayer.$invalid}">
-                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeSecondPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
+                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
                                             <option value="" disabled>1 GOŚĆ</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.awayFirstPlayer.$error.required">Wybierz gracza</small>
                                             </div>
 
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awaySecondPlayer.$invalid}">
-                                                <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" required data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' + newMatch.awayFirstPlayerId }">
+                                                <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" required data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId } | filter: { playerId: '!' +newMatch.awayFirstPlayerId }">
                                             <option value="" disabled>2 GOŚĆ</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.awaySecondPlayer.$error.required">Wybierz gracza</small>
                                             </div>
 
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awayTeam.$invalid}">
-                                                <select class="selectpicker form-control text-center" id="awayTeam" name="awayTeam" required data-live-search="true" ng-model="newMatch.awayTeamId" ng-options="team.teamId as team.name for team in teams | filter: { teamId: '!' + newMatch.homeTeamId }">
+                                                <select class="selectpicker form-control text-center" id="awayTeam" name="awayTeam" required data-live-search="true" ng-model="newMatch.awayTeamId" ng-options="key as value for (key , value) in teams">
                                             <option value="" disabled>DRUŻYNA GOŚCI</option>
                                                 </select>
                                                 <small class="error" ng-show="newMatchForm.awayTeam.$error.required">Wybierz drużynę</small>
+                                                <small class="error" ng-show="newMatchForm.awayTeam.$error.required">Wybierz drużynę</small>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="comment" class="col-form-label">Komentarz meczowy</label>
-                                        <textarea class="form-control" ng-model="newMatch.comments" id="comment" placeholder="Dodaj komentarz"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group text-right">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                                     <button type="reset" class="btn btn-default" id="match-reset-btn" ng-click="resetNewMatch()">Wyczyść</button>
-                                    <button type="submit" class="btn btn-success" title="Dodaj Mecz" ng-click="addNewMatch(newMatch.homeFirstPlayerId,newMatch.homeSecondPlayerId,newMatch.awayFirstPlayerId,newMatch.awaySecondPlayerId,newMatch.homeTeamId,newMatch.awayTeamId,newMatch.comments,activeRound.roundId,activeRound.leagueId)"
+                                    <button type="submit" class="btn btn-success alertAction" title="Dodaj Mecz" ng-click="addNewMatch(newMatch.homeFirstPlayerId,newMatch.homeSecondPlayerId,newMatch.awayFirstPlayerId,newMatch.awaySecondPlayerId,newMatch.homeTeamId,newMatch.awayTeamId,activeRound.roundId,activeRound.leagueId)"
                                         data-dismiss="modal" ng-disabled="newMatchForm.$invalid">
                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj
                                     </button>
@@ -285,7 +288,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="deleteMatchModalLabel">
-                                <bold>Usuwanie meczu</bold>
+                                Usuwanie meczu
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -296,7 +299,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" href="#myModal" data-toggle="modal" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteMatch(matchEdited.matchId)">USUŃ</button>
+                            <button type="button" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteMatch(matchEdited.matchId)">USUŃ</button>
                         </div>
                     </div>
                 </div>
@@ -309,7 +312,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="deleteRoundModalLabel">
-                                <bold>Usuwanie kolejki</bold>
+                                Usuwanie kolejki
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -320,7 +323,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteRound(roundEdited.roundId)">USUŃ</button>
+                            <button type="button" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteRound(roundEdited.roundId)">USUŃ</button>
                         </div>
                     </div>
                 </div>
@@ -341,18 +344,18 @@
 
                         <div class="modal-body">
 
-                            <!-- Create league form -->
+                            <!-- Create round form -->
                             <form novalidate name="roundForm">
                                 <div class=form-row>
                                     <div class="form-group col-md-12" ng-class="{'has-error': roundForm.description.$invalid}">
-                                        <label for="description" class="col-form-label"><bold>Opis kolejki</bold></label>
+                                        <label for="description" class="col-form-label">Opis kolejki</label>
                                         <textarea class="form-control" ng-model="newRound.description" name="description" required ng-maxlength="200" id="description" placeholder="Opis kolejki"></textarea>
                                         <small class="error" ng-show="roundForm.description.maxlength">Zbyt długi opis</small>
                                     </div>
                                 </div>
                                 <div class="form-group text-right">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                                    <button type="submit" class="btn btn-primary" ng-click="addRound(quantityOfRounds, leagueId, newRound.description)" data-dismiss="modal" ng-disabled="roundForm.$invalid">Zapisz</button>
+                                    <button type="submit" class="btn btn-primary alertAction" ng-click="addRound(quantityOfRounds, leagueId, newRound.description)" data-dismiss="modal" ng-disabled="roundForm.$invalid">Zapisz</button>
                                 </div>
                             </form>
                         </div>
@@ -362,16 +365,20 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
     <div class="content col-md-5 col-sm-12 col-xs-12">
         <div class="section-block summary">
             <div class="row">
-                <div class="col-xs-6 text-left text-center">
+                <div class="col-xs-6 text-left text-left">
                     <label class="label label-default">TABELA LIGOWA</label>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <button type="button" class="btn btn-default btn-xs" title="Pokaż pełną tabelę">
+                    <button type="button" class="btn btn-default btn-xs" title="Pokaż pełną tabelę" ng-click="getPlayersMatchesInLeague(leagueId)" data-toggle="modal" data-target="#extendedTableModal">
                     <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                   </button>
                 </div>
@@ -407,4 +414,66 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="extendedTableModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><label class="label label-default text-center">TABELA LIGOWA</label></h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover table-sm" style="color:whitesmoke">
+                        <thead style="background-color:darkcyan">
+                            <tr style="font-weight: bold;">
+                                <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                                <th class="text-center" scope="col">M</th>
+                                <th class="text-center" scope="col">PKT</th>
+                                <th class="text-center" scope="col">Z</th>
+                                <th class="text-center" scope="col">R</th>
+                                <th class="text-center" scope="col">P</th>
+                                <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                                <th class="text-center" scope="col">BILANS</th>
+                                <th class="text-center" scope="col">WSP. BR+</th>
+                                <th class="text-center" scope="col">WSP. BR-</th>
+
+                                <th class="text-center" scope="col">WSP. PKT</th>
+                                <th class="text-center" scope="col">OSTATNIE 5 MECZÓW</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="table in leagueTable" style="background-color: whitesmoke; color:black;">
+                                <td scope="row" style="font-weight: bold;"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
+                                <td scope="col" style="font-weight: bold;">{{table.alias}}</td>
+                                <td class="text-center" scope="col">{{table.matches}}</td>
+                                <td class="text-center" scope="col">{{table.points}}</td>
+                                <td class="text-center" scope="col">{{table.wins}}</td>
+                                <td class="text-center" scope="col">{{table.draws}}</td>
+                                <td class="text-center" scope="col">{{table.loses}}</td>
+                                <td class="text-right" scope="col">{{table.goalsScored}}</td>
+                                <td class="text-center" style="width:2px;">-</td>
+                                <td class="text-left" scope="col">{{table.goalsConceded}}</td>
+                                <td class="text-center" scope="col">{{table.goalsDiff}}</td>
+                                <td class="text-center" scope="col">{{table.goalsScoredRate}}</td>
+                                <td class="text-center" scope="col">{{table.goalsConcededRate}}</td>
+                                <td class="text-center" style="font-weight: bold" scope="col">{{table.pointsRate}}</td>
+                                <td>
+                                    <div style="text-align:center">
+                                        <span data-toggle="tooltip" data-placement="top" title="{{playerMatch.goalsScored}}:{{playerMatch.goalsConceded}} przeciwko {{playerMatch.firstOpponentName}} i {{playerMatch.secondOpponentName}}" ng-repeat="playerMatch in playerMatches | filter: {playerId: table.playerId} | limitTo :5"
+                                            ng-class="playerMatch.resultFlag =='W' ? 'lastMatchWin' : (playerMatch.resultFlag =='R' ? 'lastMatchDraw' : (playerMatch.resultFlag == 'P' ? 'lastMatchLose' : 'noLastMatch'))">{{playerMatch.resultFlag}}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>

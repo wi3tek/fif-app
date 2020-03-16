@@ -46,10 +46,17 @@ angular.module('player.services', []).service('PlayerService', ["$http", functio
         })
     }
 
-    this.deletePlayer = function deletePlayer() {
+    this.deletePlayer = function deletePlayer(playerId) {
         return $http({
             method: 'DELETE',
             url: 'players/delete/' + playerId
+        })
+    }
+
+    this.getPlayersMatchesInLeague = function getPlayersMatchesInLeague(leagueId) {
+        return $http({
+            method: 'GET',
+            url: 'players/matchesInLeague/' + leagueId
         })
     }
 

@@ -83,7 +83,7 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
         })
     }
 
-    this.addNewMatch = function addLeague(homeFirstPlayerId, homeSecondPlayerId, awayFirstPlayerId, awaySecondPlayerId, homeTeamId, awayTeamId, comment, roundId, leagueId) {
+    this.addNewMatch = function addLeague(homeFirstPlayerId, homeSecondPlayerId, awayFirstPlayerId, awaySecondPlayerId, homeTeamId, awayTeamId, roundId, leagueId) {
         const myDate = new Date();
         const currentDate = new Date(myDate);
         currentDate.setHours(currentDate.getHours() + 1);
@@ -101,7 +101,7 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
                 awayGoals: 0,
                 homeTeamId: homeTeamId,
                 awayTeamId: awayTeamId,
-                comment: comment,
+                comment: '',
                 updateDate: currentDate.toISOString(),
                 roundId: roundId,
                 leagueId: leagueId

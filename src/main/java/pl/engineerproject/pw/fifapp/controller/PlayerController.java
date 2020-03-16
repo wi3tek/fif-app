@@ -59,5 +59,13 @@ public class PlayerController {
         return playerMatchService.getAllMatches();
     }
 
+    @RequestMapping("/matchesInLeague/{leagueId}")
+    public List<PlayerMatch> getPlayersMatchesInLeague(@PathVariable Integer leagueId) {
+        return playerMatchService.getPlayersMatchesInLeague(leagueId);
+    }
+
+
+
+
 
 }
