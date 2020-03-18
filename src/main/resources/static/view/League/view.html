@@ -93,7 +93,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" data-toggle="modal" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                        <button type="button" id="deleteLeagueButton" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteLeague()">USUŃ</button>
+                        <button type="button" id="deleteLeagueButton" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteLeague()"><i class="demo-icon icon-cancel-circled"></i> USUŃ</i></button>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                             <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
                             <button type="submit" class="btn btn-success alertAction" ng-click="updateLeague(activeLeague.leagueId,leagueEdited.name, leagueEdited.startDate, leagueEdited.endDate,
-                            leagueEdited.description, leagueEdited.location)" data-dismiss="modal" ng-disabled="leagueEditedForm.$invalid"><span class="glyphicon glyphicon-ok"> Edytuj</span></button>
+                            leagueEdited.description, leagueEdited.location)" data-dismiss="modal" ng-disabled="leagueEditedForm.$invalid"><i class="demo-icon icon-pencil"> </i>Edytuj </button>
                         </div>
                     </form>
                 </div>
@@ -209,7 +209,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                         <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
                         <button type="submit" class="btn btn-success alertAction" ng-click="addLeague(league.name, league.startDate, league.endDate,
-                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok"> Utwórz</span></button>
+                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"> Utwórz</button>
                     </div>
                 </form>
             </div>
