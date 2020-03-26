@@ -1,11 +1,13 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.UserConverter;
 import pl.engineerproject.pw.fifapp.dto.UserDto;
 import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.repository.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired

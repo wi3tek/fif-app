@@ -23,6 +23,8 @@ import javax.validation.constraints.AssertTrue;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -37,7 +39,7 @@ class FifAppApplicationTests {
 	@Test
 	public void checkUserConverter() {
 
-		UserDto userDto = new UserDto(1,"ANdrzej","hasło2012");
+		UserDto userDto = new UserDto(1,"ANdrzej","hasło2012","","",1,"",null);
 		User user = UserConverter.dtoToEntity(userDto);
 
 		assertEquals(user.getId(),userDto.getId());
