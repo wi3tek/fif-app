@@ -1,8 +1,8 @@
 'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'home.services']);
 
-fifapp.config(function($routeProvider) {
+fifapp.config(function($routeProvider, $httpProvider) {
     $routeProvider
 
         .when('/leagues', {
@@ -20,12 +20,16 @@ fifapp.config(function($routeProvider) {
             url: '/players',
             controller: 'PlayerController'
         })
-        // .when('/players/stat/:id', {
-        //     template: " "
-        // })
-        // .when('/player-stat-:id', {
-        //     template: " "
-        // })
+        .when('/register', {
+            templateUrl: '../../view/Home/register.html',
+            url: '/register',
+            controller: 'HomeController'
+        })
+        .when('/login', {
+            templateUrl: '../../view/Home/login.html',
+            url: '/login',
+            controller: 'HomeController'
+        })
 
     .otherwise({
         templateUrl: '../../view/Home/view.html',
@@ -35,9 +39,3 @@ fifapp.config(function($routeProvider) {
 
 });
 
-
-fifapp.constant("CONSTANTS", {
-    getLeagueByIdUrl: "/leagues/getLeague",
-    getAllLeagues: "/leagues/getAllLeagues",
-    saveLeague: "/league/saveLeague"
-});
