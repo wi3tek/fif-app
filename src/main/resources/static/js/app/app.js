@@ -1,6 +1,6 @@
 'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'home.services']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'home.services', 'auth.factory', 'login.controllers', 'logout.controllers', 'registration.controllers']);
 
 fifapp.config(function($routeProvider, $httpProvider) {
     $routeProvider
@@ -23,12 +23,21 @@ fifapp.config(function($routeProvider, $httpProvider) {
         .when('/register', {
             templateUrl: '../../view/Home/register.html',
             url: '/register',
-            controller: 'HomeController'
+            controller: 'RegistrationController'
         })
         .when('/login', {
             templateUrl: '../../view/Home/login.html',
             url: '/login',
-            controller: 'HomeController'
+            controller: 'LoginController'
+        })
+        .when('/logout', {
+            templateUrl: '../../view/Home/login.html',
+            url: '/logout',
+            controller: 'LogoutController'
+        })
+        .when('regulations', {
+            templateUrl: '../../view/Home/regulations.html',
+            url: 'regulamin'
         })
 
     .otherwise({
@@ -39,3 +48,6 @@ fifapp.config(function($routeProvider, $httpProvider) {
 
 });
 
+fifapp.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+}]);

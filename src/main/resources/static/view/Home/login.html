@@ -1,6 +1,7 @@
-<div ng-init="resetLoginForm()" ng-controller="HomeController">
-    <div class="alert alert-danger" ng-show="error">
-        Wystąpił problem z logowanie - spróbuj ponownie!
+<div ng-init="resetForm()">
+    <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertPrefix}}</strong>{{alertMessage}}
     </div>
     <div class="content col-md-6 col-sm-12 col-xs-12">
         <div class="section-block">
@@ -8,11 +9,11 @@
             <!-- MAIN CONTENT -->
             <div>
                 <h4><label class="label label-default">Zaloguj się</label></h4>
-                <form novalidate name="loginForm" role="form" ng-submit="login()">
+                <form novalidate name="loginForm" role="form" ng-submit="loginUser()">
                     <div class="form-group">
                         <div class="input-group" ng-class="{'has-error': loginForm.username.$invalid}">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" ng-model="userCredentials.username" class="form-control" name="username" placeholder="Użytkownik" required="required">
+                            <input type="text" ng-model="credentials.username" class="form-control" name="username" placeholder="Użytkownik" required="required">
                         </div>
                         <small class="error" ng-show="loginForm.username.$dirty
                         && loginForm.username.$error.required">Użytkownik wymagany</small>
@@ -20,13 +21,14 @@
                     <div class="form-group">
                         <div class="input-group" ng-class="{'has-error': loginForm.password.$invalid}">
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input type="password" ng-model="userCredentials.password" class="form-control" name="password" placeholder="Hasło" required="required">
+                            <input type="password" ng-model="credentials.password" class="form-control" name="password" placeholder="Hasło" required="required">
                         </div>
                         <small class="error" ng-show="loginForm.password.$dirty
                         && loginForm.password.$error.required">Hasło jest wymagane</small>
                     </div>
-                    <div class="form-group">
-                        <button style="background-color: darkcyan;" ng-disabled="loginForm.$invalid" class="btn btn-primary btn-block btn-lg">Zaloguj</button>
+                    <div class="form-actions text-right">
+                        <input type="submit" style="background-color: darkcyan;" ng-disabled="loginForm.$invalid" value="Zaloguj" class="btn btn-primary btn-sm">
+                        <button type="button" ng-click="resetForm()" class="btn btn-default btn-sm">Wyczyść</button>
                     </div>
                 </form>
             </div>

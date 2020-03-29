@@ -2,7 +2,9 @@
 
 var fifapp = angular.module('home.controllers', []);
 
-fifapp.controller('HomeController', ["$scope", 'HomeService', '$window', function($scope, HomeService, $window) {
+fifapp.controller('HomeController', ["$scope", 'HomeService', '$window', '$rootScope', '$http', '$location', '$route', 'LeagueService', function($scope, HomeService, $window, $rootScope,
+    $http, $location, $route, LeagueService) {
+
     $scope.alertMessage;
     $scope.alertStatus;
     $scope.alertPrefix;
@@ -10,6 +12,16 @@ fifapp.controller('HomeController', ["$scope", 'HomeService', '$window', functio
     $scope.userCredentials;
     $scope.newUser;
     $scope.loginForm;
+
+
+    if ($rootScope.authenticated) {
+        $location.path("/");
+        $scope.loginerror = false;
+    } else {
+        $location.path("/login");
+        $scope.loginerror = true;
+    }
+
 
     $scope.setAlert = function(message, status) {
         $scope.alertStatus = status;
@@ -27,34 +39,18 @@ fifapp.controller('HomeController', ["$scope", 'HomeService', '$window', functio
         }
     }
 
-    $scope.resetRegistrationForm = function() {
-        $scope.newUser = {};
-    }
 
-    $scope.resetLoginForm = function() {
-        $scope.userCredentials = {};
-    }
-
-
-
-    $scope.registerPlayer = function() {
-        if ($scope.newUser != null && $scope.newUser.username && $scope.newUser.password) {
-            HomeService.createUser($scope.newUser.username, $scope.newUser.password, $scope.newUser.email,
-                    $scope.newUser.reason)
-                .then(function success(response) {
-                        $scope.setAlert('Wysłano formularz do rejestracji', 1);
-                        console.log($scope.alertMessage + '\n' + response)
-                        $scope.resetRegistrationForm();
-                        $window.location.href = '../../view/Home/login.html';
-                    },
-                    function error(response) {
-                        $scope.setAlert('Błąd podczas rejestracji użytkownika', 0);
-                        console.log($scope.alertMessage + '\n' + response)
-
-                    });
-        } else {
-            $scope.setAlert('Uzupełnij dane użytkownika', 0);
-        }
+    $scope.getListOfLeagues = function() {
+        LeagueService.getAllLeagues()
+            .then(function success(response) {
+                    $scope.leagues = response.data;
+                    $scope.message = '';
+                    $scope.errorMessage = '';
+                },
+                function error(response) {
+                    $scope.message = '';
+                    $scope.errorMessage = 'Błąd podczas pobierania lig!';
+                });
     }
 
 }]);

@@ -18,7 +18,7 @@
                         <label class="label label-default">LISTA ZAWODNIKÓW</label>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button type="button" data-toggle="modal" data-target="#createPlayerModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Dodaj zawodnika"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWY ZAWODNIK</span></button>
+                        <button ng-show="authenticated" type="button" data-toggle="modal" data-target="#createPlayerModal" class="btn btn-primary btn-xs" aria-label="Left Align" title="Dodaj zawodnika"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWY ZAWODNIK</span></button>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="row" ng-if="activePlayer">
                 <div class="col-xs-12 text-center"><label class="label label-default">STATYSTYKI</label></div>
                 <div class="col-xs-12 text-right">
-                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń zawodnika" data-target="#deletePlayerModel" ng-click="setPlayerEdited()"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <button ng-show="authenticated" type="button" class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń zawodnika" data-target="#deletePlayerModel" ng-click="setPlayerEdited()"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                     <button type="button" class="btn btn-default btn-xs" data-toggle="modal" title="Edytuj zawodnika" data-target="#editPlayerModal" ng-click="setPlayerEdited()"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
                 </div>
                 <div class="col-xs-12" style="color:whitesmoke text-left">

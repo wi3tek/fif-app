@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="PL-pl">
+<html ng-app="fifapp" lang="pl-PL">
 
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../css/fontello/css/fontello.css" type="text/css" />
     <script src="../js/lib/angular.js"></script>
     <script src="../js/lib/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-resource.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-cookies.js"></script>
     <script src="../bootstrap341/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
@@ -29,11 +31,15 @@
     <script src="/js/app/PlayerService.js"></script>
     <script src="/js/app/HomeController.js"></script>
     <script src="/js/app/HomeService.js"></script>
+    <script src="/js/app/AuthInterceptor.js"></script>
+    <script src="/js/app/LoginController.js"></script>
+    <script src="/js/app/LogoutController.js"></script>
+    <script src="/js/app/RegistrationController.js"></script>
 
     <title>Fifapp</title>
 </head>
 
-<body ng-app="fifapp" ng-controller="LeagueController" ng-init="getListOfLeagues()">
+<body ng-controller="HomeController" ng-init="getListOfLeagues()">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -42,16 +48,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>                        
             </button>
-                    <a class="navbar-brand" href="#">FIF APP</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
+                <a class="navbar-brand" href="#">FIF APP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
 
                 <ul class="nav navbar-nav">
                     <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="#!leagues">Sezony<span class="caret"></span></a>
                         <ul class="dropdown-menu scrollable-menu" role="menu">
-                            <li><a href="" data-toggle="modal" data-target="#leagueModal">Utwórz nowy+</a></li>
+                            <li ng-show="authenticated"><a href="" data-toggle="modal" data-target="#leagueModal">Utwórz nowy+</a></li>
                             <li ng-repeat="league in leagues"><a ng-href="{{'#!leagues/' + league.leagueId}}">{{league.name}}</a></li>
                         </ul>
                     </li>
@@ -60,9 +66,10 @@
                     <li><a href="#">O nas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-href="#register"><span class="glyphicon glyphicon-user"></span> Dołącz do nas</a></li>
-                    <li><a ng-href="#!login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
+                    <li ng-show="!authenticated"><a ng-href="#!register"><span class="glyphicon glyphicon-user"></span> Dołącz do nas</a></li>
+                    <li ng-show="!authenticated"><a ng-href="#!login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
+                    <li ng-show="authenticated"><label>Witaj </label></li>
+                    <li ng-show="authenticated"><a href="#!logout"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
                 </ul>
             </div>
         </div>
