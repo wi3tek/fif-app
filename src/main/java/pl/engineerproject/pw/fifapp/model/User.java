@@ -6,27 +6,23 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
+@Table(name="user")
 @SequenceGenerator(name="user_seq", allocationSize=10000)
 public class User implements Serializable {
     private static final long serialVersionUID = 5626055063095835491L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
+    @Column(name="user_id")
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable=false)
     private String password;
 
-    @Column(nullable = false)
-    private String role;
-
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
-    private Integer activeFlag;
 
     @Column(nullable = false)
     private String registrationReason;
@@ -34,19 +30,14 @@ public class User implements Serializable {
     @Column(nullable = false)
     private LocalDateTime registrationDate;
 
-    public User(String username, String password, String role, String email,Integer activeFlag, String registrationReason, LocalDateTime registrationDate) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.email = email;
-        this.activeFlag=activeFlag;
-        this.registrationReason = registrationReason;
-        this.registrationDate = registrationDate;
-    }
+    @Column(nullable = false)
+    private boolean activeFlag;
 
-    public User() {
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "role_id") })
+    private List<Role> roles = new ArrayList<Role>();
 
-    }
 
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
@@ -56,13 +47,6 @@ public class User implements Serializable {
         this.registrationDate = registrationDate;
     }
 
-    public Integer getActiveFlag() {
-        return activeFlag;
-    }
-
-    public void setActiveFlag(Integer activeFlag) {
-        this.activeFlag = activeFlag;
-    }
 
     public String getRegistrationReason() {
         return registrationReason;
@@ -72,13 +56,6 @@ public class User implements Serializable {
         this.registrationReason = registrationReason;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getEmail() {
         return email;
@@ -112,4 +89,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+
+    public boolean isActiveFlag() {
+        return activeFlag;
+    }
+
+    public void setActiveFlag(boolean activeFlag) {
+        this.activeFlag = activeFlag;
+    }
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'home.services', 'auth.factory', 'login.controllers', 'logout.controllers', 'registration.controllers']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'registration.services', 'auth.factory', 'login.controllers', 'logout.controllers', 'registration.controllers']);
 
 fifapp.config(function($routeProvider, $httpProvider) {
     $routeProvider
@@ -20,9 +20,9 @@ fifapp.config(function($routeProvider, $httpProvider) {
             url: '/players',
             controller: 'PlayerController'
         })
-        .when('/register', {
-            templateUrl: '../../view/Home/register.html',
-            url: '/register',
+        .when('/registration', {
+            templateUrl: '../../view/Home/registration.html',
+            url: '/registration',
             controller: 'RegistrationController'
         })
         .when('/login', {
@@ -37,7 +37,15 @@ fifapp.config(function($routeProvider, $httpProvider) {
         })
         .when('regulations', {
             templateUrl: '../../view/Home/regulations.html',
-            url: 'regulamin'
+            url: 'regulations'
+        })
+        .when('/aboutUs', {
+            templateUrl: '../../view/Home/about.html',
+            url: 'aboutUs'
+        })
+        .when('/userDetails/:userLogin', {
+            templateUrl: '../../view/User/view.html',
+            url: 'userData'
         })
 
     .otherwise({

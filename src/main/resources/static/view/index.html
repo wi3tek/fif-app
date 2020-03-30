@@ -30,11 +30,11 @@
     <script src="/js/app/PlayerController.js"></script>
     <script src="/js/app/PlayerService.js"></script>
     <script src="/js/app/HomeController.js"></script>
-    <script src="/js/app/HomeService.js"></script>
     <script src="/js/app/AuthInterceptor.js"></script>
     <script src="/js/app/LoginController.js"></script>
     <script src="/js/app/LogoutController.js"></script>
     <script src="/js/app/RegistrationController.js"></script>
+    <script src="/js/app/RegistrationService.js"></script>
 
     <title>Fifapp</title>
 </head>
@@ -48,12 +48,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>                        
             </button>
-                <a class="navbar-brand" href="#">FIF APP</a>
+                <a class="navbar-brand" href="#" title="Strona główna"><span class="glyphicon glyphicon-home"></span> FIF APP</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
 
                 <ul class="nav navbar-nav">
-                    <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="#!leagues">Sezony<span class="caret"></span></a>
                         <ul class="dropdown-menu scrollable-menu" role="menu">
@@ -62,13 +61,13 @@
                         </ul>
                     </li>
                     <li><a ng-href="#!players">Zawodnicy</a></li>
-                    <li><a href="#">Statystyki</a></li>
-                    <li><a href="#">O nas</a></li>
+                    <li><a ng-href="#!regulations">Zasady</a></li>
+                    <li><a ng-href="#!aboutUs">O nas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-show="!authenticated"><a ng-href="#!register"><span class="glyphicon glyphicon-user"></span> Dołącz do nas</a></li>
+                    <li ng-show="!authenticated"><a ng-href="#!registration"><span class="glyphicon glyphicon-user"></span> Dołącz do nas</a></li>
                     <li ng-show="!authenticated"><a ng-href="#!login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
-                    <li ng-show="authenticated"><label>Witaj </label></li>
+                    <li ng-show="authenticated"><a ng-href="{{'#!userDetails/'+ loggedUser}}"><span class="glyphicon glyphicon-user"> {{loggedUser}}</span></a></li>
                     <li ng-show="authenticated"><a href="#!logout"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
                 </ul>
             </div>

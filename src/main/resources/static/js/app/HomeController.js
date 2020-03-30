@@ -2,16 +2,10 @@
 
 var fifapp = angular.module('home.controllers', []);
 
-fifapp.controller('HomeController', ["$scope", 'HomeService', '$window', '$rootScope', '$http', '$location', '$route', 'LeagueService', function($scope, HomeService, $window, $rootScope,
+fifapp.controller('HomeController', ["$scope", '$window', '$rootScope', '$http', '$location', '$route', 'LeagueService', function($scope, $window, $rootScope,
     $http, $location, $route, LeagueService) {
 
-    $scope.alertMessage;
-    $scope.alertStatus;
-    $scope.alertPrefix;
-
     $scope.userCredentials;
-    $scope.newUser;
-    $scope.loginForm;
 
 
     if ($rootScope.authenticated) {
@@ -20,23 +14,6 @@ fifapp.controller('HomeController', ["$scope", 'HomeService', '$window', '$rootS
     } else {
         $location.path("/login");
         $scope.loginerror = true;
-    }
-
-
-    $scope.setAlert = function(message, status) {
-        $scope.alertStatus = status;
-        if (status == 1) {
-            $scope.alertPrefix = 'SUKCES! '
-            $scope.alertMessage = message;
-        } else {
-            if (status == 0) {
-                $scope.alertPrefix = 'BŁĄD! '
-                $scope.alertMessage = message;
-            } else {
-                $scope.alertPrefix = ''
-                $scope.alertMessage = message;
-            }
-        }
     }
 
 

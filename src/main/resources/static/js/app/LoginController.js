@@ -6,6 +6,13 @@ fifapp.controller('LoginController', ["$scope", '$rootScope',
     '$http', '$location', '$route', '$cookies',
     function($scope, $rootScope,
         $http, $location, $route) {
+
+        $scope.alertMessage;
+        $scope.alertStatus;
+        $scope.alertPrefix;
+
+
+
         $scope.credentials = {};
 
         $scope.resetForm = function() {
@@ -26,6 +33,7 @@ fifapp.controller('LoginController', ["$scope", '$rootScope',
             }).then(function(response) {
                 if (response.data.name) {
                     $rootScope.authenticated = true;
+                    $rootScope.loggedUser = $scope.credentials.username;
                     console.log('poprawna autentykacja +\n response')
                     $scope.setAlert('Ppoprawna autentykacja', 1);
                 } else {
@@ -51,19 +59,15 @@ fifapp.controller('LoginController', ["$scope", '$rootScope',
                     $scope.setAlert('Poprawnie zalogowano!', 1);
                 } else {
                     $location.path("/login");
-                    $scope.loginerror = true;
-                    console.log("coś poszło nie tak\nresponse:" + response)
                     $scope.setAlert('Nie udało się zalogować. Spróbuj ponownie!', 0);
+                    // $scope.loginerror = true;
+                    console.log("coś poszło nie tak\nresponse:" + response)
+
                 }
 
 
             })
         }
-
-        $scope.alertMessage;
-        $scope.alertStatus;
-        $scope.alertPrefix;
-
 
         $scope.setAlert = function(message, status) {
             $scope.alertStatus = status;
