@@ -1,0 +1,121 @@
+<div ng-init="init()">
+
+    <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertPrefix}}</strong>{{alertMessage}}
+    </div>
+
+    <div class="content col-md-8 col-sm-12 col-xs-12">
+        <div class="section-block">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h1>
+                            PANEL ADMINISTRATORA
+                        </h1>
+                    </div>
+                    <div class="col-xs-12 text-left">
+                        <label class="label label-default">UŻYTKOWNICY</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div id="Tabs" role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><button class="btn tabButton" data-target="#activeUsers" aria-controls="activeUsers" role="tab" data-toggle="tab">
+                            Aktywni</button></li>
+                        <li><button class="btn tabButton" data-target="#inactiveUsers" aria-controls="inactiveUsers" role="tab" data-toggle="tab">Zablokowani</button></li>
+                        <br>
+                        <br>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content" style="padding-top: 20px">
+                        <div role="tabpanel" class="tab-pane active" id="activeUsers">
+                            <strong>Lista aktywnych użytkowników</strong> <br>
+                            <div class="row">
+                                <div class="panel-body fontFamily">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row text-center" style="background-color:darkcyan; color:white; padding:10px; border-radius: 50px;">
+                                                <div class="content col-xs-3"><strong>UŻYTKOWNIK</strong></div>
+                                                <div class="content col-xs-3 hidden-xs"><strong>EMAIL</strong></div>
+                                                <div class="content col-xs-3 hidden-xs"><strong>DATA REJESTRACJI</strong></div>
+                                                <div class="content col-xs-3"><strong>AKCJA</strong></div>
+                                                <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                            </div>
+                                            <div ng-repeat="user in users | filter : {activeFlag: true}" class="list-group-item list-group-item-action text-center" ng-click=setActiveUserPanel(user)>
+                                                <div class="row" style="background-color:aliceblue; cursor: pointer;">
+                                                    <div class="content col-xs-3">{{user.username}}</div>
+                                                    <div class="content col-xs-3 hidden-xs">{{user.email}}</div>
+                                                    <div class="content col-xs-3 hidden-xs">{{claculateTime(user.registrationDate) | date: 'yyyy-MM-dd HH:mm'}}</div>
+                                                    <div class="content col-xs-3"><button class="btn btn-sm btn-success" ng-click="desactivate(user)">Dezaktywuj</button></div>
+                                                    <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                                    <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="inactiveUsers">
+                            <strong>Lista zablokowanych użytkowników</strong> <br>
+                            <div class="row">
+                                <div class="panel-body fontFamily">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row text-center" style="background-color:darkcyan; color:white; padding:10px; border-radius: 50px;">
+                                                <div class="content col-xs-3"><strong>UŻYTKOWNIK</strong></div>
+                                                <div class="content col-xs-3 hidden-xs"><strong>EMAIL</strong></div>
+                                                <div class="content col-xs-3 hidden-xs"><strong>DATA REJESTRACJI</strong></div>
+                                                <div class="content col-xs-3"><strong>AKCJA</strong></div>
+                                                <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                            </div>
+                                            <div ng-repeat="user in users | filter : {activeFlag: false}" class="list-group-item list-group-item-action text-center" ng-click=setActiveUserPanel(user)>
+                                                <div class="row" style="background-color:aliceblue; cursor: pointer;">
+                                                    <div class="content col-xs-3">{{user.username}}</div>
+                                                    <div class="content col-xs-3 hidden-xs">{{user.email}}</div>
+                                                    <div class="content col-xs-3 hidden-xs">{{claculateTime(user.registrationDate) | date: 'yyyy-MM-dd HH:mm'}}</div>
+                                                    <div class="content col-xs-3"><button class="btn btn-sm btn-success" ng-click="activate(user)">Aktywuj</button></div>
+                                                    <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                                    <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <!--/tabs-->
+    <!--/main content-->
+    <!--sidebar-->
+    <div class="content col-md-4 col-sm-12 col-xs-12" style="color:whitesmoke">
+        <div class="section-block summary">
+            <div class="row" ng-if="activeLeague">
+                <div class="col-xs-12 text-center"><label class="label label-default">Użytkownik</label></div>
+                <div class="col-xs-12" style="color:whitesmoke text-left">
+                    <div class="col-xs-12">
+                        <h3>{{activeUserPanel.username}}</h3><br>Rozpoczęcie: {{claculateTime(activeUserPanel.registrationDate) | date: 'yyyy-MM-dd HH:mm'}}<br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
