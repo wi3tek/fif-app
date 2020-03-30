@@ -26,7 +26,7 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
 
     this.getLeagueMatches = function getLeagueMatches(leagueId) {
         return $http({
-            method: 'PUT',
+            method: 'GET',
             url: 'matches/getLeagueMatches/' + leagueId,
         });
     };

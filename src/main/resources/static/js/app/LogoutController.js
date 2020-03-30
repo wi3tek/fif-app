@@ -3,14 +3,15 @@
 var fifapp = angular.module('logout.controllers', []);
 
 fifapp.controller('LogoutController', ["$scope", '$rootScope',
-    '$http', '$location', '$route',
+    '$http', '$location', '$route', 'LoginService',
     function($scope, $rootScope,
-        $http, $location, $route) {
+        $http, $location, $route, LoginService) {
 
         $http.post('logout', {}).finally(function() {
             $rootScope.authenticated = false;
             $location.path("/login");
             $scope.setAlert('Poprawnie wylogowano!', 1);
+            LoginService.ClearCredentials();
         });
 
         $scope.alertMessage;

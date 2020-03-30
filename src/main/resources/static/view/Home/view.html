@@ -1,8 +1,28 @@
 <div ng-init="">
+
+    <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{alertPrefix}}</strong>{{alertMessage}}
+    </div>
+
+
     <div class="content col-md-8 col-sm-12 col-xs-12">
         <div class="section-block">
             <!-- MAIN CONTENT -->
-            <h1>Witamy oficjalnie</h1>
+            <div ng-show="!authenticated">
+                <h1>Witamy oficjalnie</h1>
+                <br>
+                <h2>Twórz ligi, rozgrywaj mecze i śledź swoje wyniki z aplikacją FIF APP!</h2>
+                <br>
+                <h4>Aby w pełni korzystać z aplikacji <a ng-href="#!login">Zaloguj się</a> lub <a ng-href="#!registration">Zarejestruj</a></h4>
+            </div>
+            <div ng-show="authenticated">
+                <h1>Dzień dobry <strong>{{loggedUser.username}}</strong></h1>
+                <br>
+                <h4></h4>
+            </div>
+
+
         </div>
     </div>
     <!--/tabs-->
@@ -12,18 +32,15 @@
         <div class="section-block summary">
             <h1 class="section-title">FIF APP</h1>
             <div class="profile-contents">
-                <h2 class="position">Znajdź nas</h2>
+                <h2 class="position">Kliknij po więcej informacji</h2>
                 <img src="../img/logo_v1.png" style="height:100px;" class="img responsive" alt="logo">
                 <!--social links-->
                 <ul class="list-inline">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-git"></i></a></li>
+                    <li><a title="Pofil autora" target="_blank" href="https://www.linkedin.com/in/patryk-wieteska/"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a title="Projekt w GitHub" target="_blank" href="https://github.com/patrykwieteska/fif-app/"><i class="fa fa-git"></i></a></li>
                 </ul>
                 <!--/social links-->
-                <a href="#" class="btn btn-contact"><i class="fa fa-envelope"></i>CONTACT US</a>
+                <a href="mailto:patrykwieteskapw@gmail.com?subject=Projekt%20FIF%20APP" class="btn btn-contact"><i class="fa fa-envelope"></i>Wyślij wiadomość</a>
             </div>
         </div>
     </div>

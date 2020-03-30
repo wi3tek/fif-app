@@ -8,26 +8,38 @@ fifapp.controller('HomeController', ["$scope", '$window', '$rootScope', '$http',
     $scope.userCredentials;
 
 
-    if ($rootScope.authenticated) {
-        $location.path("/");
-        $scope.loginerror = false;
-    } else {
-        $location.path("/login");
-        $scope.loginerror = true;
-    }
+    // if ($rootScope.authenticated) {
+    //     $location.path("/home");
+    //     $scope.loginerror = false;
+    // } else {
+    //     $location.path("/home");
+    //     $scope.loginerror = true;
+    // }
 
 
-    $scope.getListOfLeagues = function() {
-        LeagueService.getAllLeagues()
-            .then(function success(response) {
-                    $scope.leagues = response.data;
-                    $scope.message = '';
-                    $scope.errorMessage = '';
-                },
-                function error(response) {
-                    $scope.message = '';
-                    $scope.errorMessage = 'Błąd podczas pobierania lig!';
-                });
-    }
+    $(document).ready(function() {
+        $("#eventAlert").hide();
+        $(".alertAction").click(function showAlert() {
+            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
+                $("#eventAlert").slideUp(500);
+            });
+        });
+    });
 
+    // $scope.setAlert = function(message, status) {
+    //     $rootScope.alertStatus = status;
+    //     if (status == 1) {
+    //         $rootScope.alertPrefixZ = 'SUKCES! '
+    //         $rootScope.alertPrefixZ = message;
+    //     } else {
+    //         if (status == 0) {
+    //             $rootScope.alertPrefix = 'BŁĄD! '
+    //             $rootScope.alertPrefixZ = message;
+    //         } else {
+    //             $rootScope.alertPrefixZ = ''
+    //             $rootScope.alertPrefixZ = message;
+    //         }
+    //     }
+
+    // }
 }]);

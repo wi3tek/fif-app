@@ -11,6 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/fontello/css/fontello.css" type="text/css" />
+    <link href="../img/favicon.ico" rel="icon" type="image/png">
     <script src="../js/lib/angular.js"></script>
     <script src="../js/lib/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.6.9/angular-resource.js"></script>
@@ -30,16 +31,18 @@
     <script src="/js/app/PlayerController.js"></script>
     <script src="/js/app/PlayerService.js"></script>
     <script src="/js/app/HomeController.js"></script>
-    <script src="/js/app/AuthInterceptor.js"></script>
+    <script src="/js/app/LoginService.js"></script>
     <script src="/js/app/LoginController.js"></script>
     <script src="/js/app/LogoutController.js"></script>
     <script src="/js/app/RegistrationController.js"></script>
     <script src="/js/app/RegistrationService.js"></script>
+    <script src="/js/app/AdminController.js"></script>
+    <script src="/js/app/AdminService.js"></script>
 
     <title>Fifapp</title>
 </head>
 
-<body ng-controller="HomeController" ng-init="getListOfLeagues()">
+<body ng-controller="LeagueController" ng-init="getListOfLeagues()">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -63,11 +66,13 @@
                     <li><a ng-href="#!players">Zawodnicy</a></li>
                     <li><a ng-href="#!regulations">Zasady</a></li>
                     <li><a ng-href="#!aboutUs">O nas</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="authenticated"><a href="#!controlPanel"><span class="glyphicon glyphicon-th"></span> Panel kontrolny</a></li>
                     <li ng-show="!authenticated"><a ng-href="#!registration"><span class="glyphicon glyphicon-user"></span> Dołącz do nas</a></li>
                     <li ng-show="!authenticated"><a ng-href="#!login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
-                    <li ng-show="authenticated"><a ng-href="{{'#!userDetails/'+ loggedUser}}"><span class="glyphicon glyphicon-user"> {{loggedUser}}</span></a></li>
+                    <li ng-show="authenticated"><a ng-href="{{'#!userDetails/'+ loggedUser.username}}"><span class="glyphicon glyphicon-user"> {{loggedUser.username}}</span></a></li>
                     <li ng-show="authenticated"><a href="#!logout"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
                 </ul>
             </div>
@@ -75,9 +80,15 @@
     </nav>
 
     <!--main content-->
-    <div class="main-content">
+    <div class="main-content" ng-controller="HomeController">
         <div class="container">
             <div class="row">
+
+                <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{alertPrefixZ}}</strong>{{alertMessageZ}}
+                </div>
+
                 <div ng-view></div>
             </div>
         </div>
@@ -86,7 +97,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <span class="copyright">Created by <a href="https://www.linkedin.com/in/patryk-wieteska/" target="_blank">Patryk Wieteska</a></span>
+                <span class="copyright">Created by <a>Patryk Wieteska</a></span>
             </div>
         </div>
     </footer>

@@ -704,3 +704,20 @@
                                         input {
                                             outline: none;
                                         }
+                                        
+                                        .tabButton {
+                                            margin: 1px;
+                                            cursor: pointer;
+                                            background-color: darkcyan;
+                                            color: white;
+                                        }
+                                        
+                                        .tabButton:hover {
+                                            background-color: rgb(211, 193, 115);
+                                            color: white;
+                                        }
+                                        
+                                        .tabButton:focus {
+                                            color: white;
+                                            background-color: rgb(211, 193, 115);
+                                        }

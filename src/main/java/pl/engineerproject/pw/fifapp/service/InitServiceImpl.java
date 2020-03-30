@@ -48,5 +48,17 @@ public class InitServiceImpl implements InitService {
 		user.getRoles().add(roleUser);
 
 		userService.saveUser(user);
+
+		User user1 = new User();
+		user1.setUsername(DUMMY_ADMIN_USER+"2");
+		user1.setEmail("zz"+DUMMY_EMAIL);
+		user1.setPassword(passwordEncoder.encode(DUMMY_ADMIN_PASSWORD));
+		user1.setRegistrationDate(LocalDateTime.now());
+		user1.setRegistrationReason(DUMMY_REGISTRATION_REASON+" no i także tego");
+		user1.setActiveFlag(true);
+
+		user1.getRoles().add(roleUser);
+
+		userService.saveUser(user1);
 	}
 }

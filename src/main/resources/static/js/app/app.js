@@ -1,33 +1,33 @@
 'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'registration.services', 'auth.factory', 'login.controllers', 'logout.controllers', 'registration.controllers']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'registration.services', 'login.controllers', 'logout.controllers', 'registration.controllers', 'login.services', 'admin.controllers', 'admin.services']);
 
 fifapp.config(function($routeProvider, $httpProvider) {
     $routeProvider
 
         .when('/leagues', {
             templateUrl: '../../view/League/view.html',
-            url: '/leagues',
+            url: '/ligi',
             controller: 'LeagueController'
         })
         .when('/leagues/:leagueId', {
-            url: '/leagues/:leagueId',
+            url: '/liga/:leagueId',
             templateUrl: '../../view/Round/view.html',
             controller: 'RoundController',
         })
         .when('/players', {
             templateUrl: '../../view/Player/view.html',
-            url: '/players',
+            url: '/zawodnicy',
             controller: 'PlayerController'
         })
         .when('/registration', {
             templateUrl: '../../view/Home/registration.html',
-            url: '/registration',
+            url: '/rejestracja',
             controller: 'RegistrationController'
         })
         .when('/login', {
             templateUrl: '../../view/Home/login.html',
-            url: '/login',
+            url: '/zaloguj-sie',
             controller: 'LoginController'
         })
         .when('/logout', {
@@ -35,22 +35,28 @@ fifapp.config(function($routeProvider, $httpProvider) {
             url: '/logout',
             controller: 'LogoutController'
         })
-        .when('regulations', {
+        .when('/regulations', {
             templateUrl: '../../view/Home/regulations.html',
-            url: 'regulations'
+            url: 'zasady'
         })
         .when('/aboutUs', {
             templateUrl: '../../view/Home/about.html',
-            url: 'aboutUs'
+            url: 'o-nas'
         })
         .when('/userDetails/:userLogin', {
             templateUrl: '../../view/User/view.html',
             url: 'userData'
         })
+        .when('/controlPanel', {
+            templateUrl: '../../view/Admin/view.html',
+            url: 'controlPanel',
+            controller: 'AdminController'
+        })
 
     .otherwise({
         templateUrl: '../../view/Home/view.html',
         url: '/home',
+        controller: 'HomeController'
     })
 
 
@@ -59,3 +65,14 @@ fifapp.config(function($routeProvider, $httpProvider) {
 fifapp.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }]);
+
+
+fifapp.run(['$rootScope', '$location', '$cookieStore', '$http',
+    function($rootScope, $location, $cookieStore, $http) {
+        // keep user logged in after page refresh
+        $rootScope.loggedUser = $cookieStore.get('globals');
+        if ($rootScope.loggedUser) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.loggedUser.authdata; // jshint ignore:line
+        }
+    }
+]);

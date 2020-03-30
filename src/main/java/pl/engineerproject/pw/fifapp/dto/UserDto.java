@@ -1,72 +1,33 @@
 package pl.engineerproject.pw.fifapp.dto;
 
+import pl.engineerproject.pw.fifapp.model.Role;
+
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class UserDto {
 
     private Integer id;
     private String username;
-    private String password;
-    private String role;
     private String email;
-    private Integer activeFlag;
+    private boolean activeFlag;
     private String registrationReason;
     private LocalDateTime registrationDate;
+    private List<String> roles;
 
-    public UserDto(Integer id, String username, String password, String role, String email, Integer activeFlag,
-                   String registerationReason, LocalDateTime registrationDate) {
+    public UserDto(Integer id, String username, String email, boolean activeFlag,
+                   String registrationReason, LocalDateTime registrationDate, List<String> roles) {
         this.id = id;
         this.username = username;
-        this.password = password;
-        this.role = role;
         this.email = email;
         this.activeFlag = activeFlag;
-        this.registrationReason = registerationReason;
+        this.registrationReason = registrationReason;
         this.registrationDate = registrationDate;
+        this.roles = roles;
     }
 
     public UserDto() {
-    }
-
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public Integer getActiveFlag() {
-        return activeFlag;
-    }
-
-    public void setActiveFlag(Integer activeFlag) {
-        this.activeFlag = activeFlag;
-    }
-
-    public String getRegistrationReason() {
-        return registrationReason;
-    }
-
-    public void setRegistrationReason(String registrationReason) {
-        this.registrationReason = registrationReason;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Integer getId() {
@@ -85,11 +46,43 @@ public class UserDto {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isActiveFlag() {
+        return activeFlag;
+    }
+
+    public void setActiveFlag(boolean activeFlag) {
+        this.activeFlag = activeFlag;
+    }
+
+    public String getRegistrationReason() {
+        return registrationReason;
+    }
+
+    public void setRegistrationReason(String registrationReason) {
+        this.registrationReason = registrationReason;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

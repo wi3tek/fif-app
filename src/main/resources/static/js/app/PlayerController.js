@@ -11,21 +11,6 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', function($scop
     $scope.alertStatus;
     $scope.alertPrefix;
 
-    // $scope.closeAlert = function() {
-    //     $scope.show = false;
-
-    // };
-
-    // $(document).ready(function() {
-    //     if ($scope.show) {
-    //         $("#formAlert").show();
-    //     }
-    // });
-
-    // $scope.initAlert = function() {
-    //     $scope.show = true;
-    // }
-
     $scope.setAlert = function(message, status) {
         $scope.alertStatus = status;
         if (status == 1) {

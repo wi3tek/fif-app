@@ -11,6 +11,8 @@ import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.repository.UserRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,5 +49,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll().stream().map(UserConverter::entityToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        userRepository.save(UserConverter.dtoToEntity(userDto));
     }
 }
