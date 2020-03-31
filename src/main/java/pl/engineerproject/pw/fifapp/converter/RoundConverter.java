@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class RoundConverter {
 
     public static Round dtoToEntity(RoundDto roundDto) {
-        League league = new League(roundDto.getLeagueName(),roundDto.getDescription(),roundDto.getLeagueStartDate(),roundDto.getLeagueEndDate(),roundDto.getLeagueLocation());
+        League league = new League(roundDto.getLeagueName(),roundDto.getDescription(),roundDto.getLeagueStartDate(),roundDto.getLeagueEndDate(),roundDto.getLeagueLocation(),null);
         league.setLeagueId(roundDto.getLeagueId());
 
         Round round = new Round(

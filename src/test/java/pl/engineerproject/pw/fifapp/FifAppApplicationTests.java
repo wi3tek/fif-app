@@ -51,7 +51,7 @@ class FifAppApplicationTests {
 	@Test
 	public void checkRoundConverter() throws ParseException {
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-		League league = new League("Nazwa ligi", "opis",null,null,"Wrocław");
+		League league = new League("Nazwa ligi", "opis",null,null,"Wrocław",null);
 		league.setLeagueId(1);
 		Round round = new Round(df.parse("2019-01-02"),1,"description12312",league,null,null);
 

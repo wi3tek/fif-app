@@ -9,7 +9,7 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
         });
     }
 
-    this.addLeague = function addLeague(name, startDate, endDate, description, location) {
+    this.addLeague = function addLeague(name, startDate, endDate, description, location, ownerId) {
         return $http({
             method: 'POST',
             url: 'leagues/saveLeague',
@@ -18,12 +18,13 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
                 description: description,
                 startDate: startDate,
                 endDate: endDate,
-                location: location
+                location: location,
+                ownerId: id
             }
         });
     }
 
-    this.updateLeague = function updateLeague(leagueId, name, startDate, endDate, description, location) {
+    this.updateLeague = function updateLeague(leagueId, name, startDate, endDate, description, location, ownerId) {
         return $http({
             method: 'PUT',
             url: 'leagues/update',
@@ -33,7 +34,8 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
                 description: description,
                 startDate: startDate,
                 endDate: endDate,
-                location: location
+                location: location,
+                ownerId: ownerId
             }
         })
     }

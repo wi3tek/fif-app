@@ -11,18 +11,28 @@ public class LeagueDto {
     private String startDate;
     private String endDate;
     private String location;
+    private Integer ownerId;
 
-    public LeagueDto(Integer leagueId, String name, String description, String startDate, String endDate, String location) {
+    public LeagueDto(Integer leagueId, String name, String description, String startDate, String endDate, String location,Integer ownerId) {
         this.leagueId=leagueId;
         this.name=name;
         this.description=description;
         this.startDate=startDate;
         this.endDate=endDate;
         this.location=location;
+        this.ownerId = ownerId;
     }
 
     public LeagueDto() {
 
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 
     public Integer getLeagueId() {

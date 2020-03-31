@@ -20,6 +20,7 @@ public class League implements Serializable {
     private String startDate;
     private String endDate;
     private String location;
+    private User owner;
 
     public Integer getLeagueId() {
         return leagueId;
@@ -69,12 +70,21 @@ public class League implements Serializable {
         this.location = location;
     }
 
-    public League(String name, String description, String startDate, String endDate, String location) {
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public League(String name, String description, String startDate, String endDate, String location, User owner) {
         this.name=name;
         this.description=description;
         this.startDate=startDate;
         this.endDate=endDate;
         this.location=location;
+        this.owner = owner;
     }
 
     public League() {
