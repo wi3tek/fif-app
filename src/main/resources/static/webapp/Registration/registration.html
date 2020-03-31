@@ -1,0 +1,95 @@
+<div ng-init="resetForm()">
+
+    <div class="content col-md-6 col-sm-12 col-xs-12">
+        <div class="section-block">
+            <!-- MAIN CONTENT -->
+            <div>
+                <h4><label class="label label-default">Zarejestruj się</label></h4>
+                <form novalidate name="registrationForm" role="form" ng-submit="registerUser()">
+                    <div class="form-group">
+                        <div class="input-group" ng-class="{'has-error': registrationForm.username.$invalid && !registrationForm.username.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" ng-model="newUser.username" name="username" placeholder="Nazwa użytkownika" required="required" autofocus>
+                        </div>
+                        <small class="error" ng-show="registrationForm.username.$dirty
+                        && registrationForm.username.$error.required">Podaj nazwę użytkownika</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" ng-class="{'has-error': registrationForm.password.$invalid && !registrationForm.password.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" ng-model="newUser.password" name="password" placeholder="Hasło" required="required">
+                        </div>
+                        <small class="error" ng-show="registrationForm.password.$dirty
+                        && registrationForm.password.$error.required">Hasło jest wymagane</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" ng-class="{'has-error': registrationForm.confirmPassword.$invalid && !registrationForm.confirmPassword.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" ng-model="newUser.confirmPassword" name="confirmPassword" placeholder="Powtórz hasło" required="required" equal={{newUser.password}}>
+                        </div>
+                        <small class="error" ng-show="registrationForm.confirmPassword.$dirty
+                        && registrationForm.confirmPassword.$error.required">Powtórz hasło</small>
+                        <small class="help-block" ng-show="registrationForm.confirmPassword.$error.equal">Hasła nie są takie same</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" ng-class="{'has-error': registrationForm.email.$invalid && !registrationForm.email.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control" ng-model="newUser.email" name="email" placeholder="Email" required="required">
+                        </div>
+                        <small class="error" ng-show="registrationForm.email.$dirty
+                        && registrationForm.email.$error.required">Email jest wymagany</small>
+                        <small class="error" ng-show="registrationForm.email.$dirty
+                        && registrationForm.email.$error.input.$error.email">Niepoprawny adres email</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" ng-class="{'has-error': registrationForm.confirmEmail.$invalid && !registrationForm.confirmEmail.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control" ng-model="newUser.confirmEmail" name="confirmEmail" placeholder="Powtórz Email" required="required" equal={{newUser.email}}>
+                        </div>
+                        <small class="error" ng-show="registrationForm.confirmEmail.$dirty
+                        && registrationForm.confirmEmail.$error.required">Powtórz email</small>
+                        <small class="error" ng-show="registrationForm.confirmEmail.$dirty
+                        && registrationForm.confirmEmail.$error.input.$error.email">Niepoprawny adres email</small>
+                        <small class="error" ng-show="registrationForm.confirmEmail.$dirty
+                        && registrationForm.confirmEmail.$error.equal">Hasła nie są takie same</small>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" ng-class="{'has-error': registrationForm.reason.$invalid && !registrationForm.reason.$pristine}">
+                            <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                            <textarea class="form-control" name="reason" ng-model="newUser.reason" id="reason" placeholder="uzasadnij prośbę o dołączenie" required="required"></textarea>
+                        </div>
+                        <small class="error" ng-show="registrationForm.reason.$dirty
+                        && registrationForm.reason.$error.required">Wpisz uzasadnienie rejestracji</small>
+                    </div>
+                    <div class="form-actions text-right">
+                        <input type="submit" value="Zarejestruj" style="background-color: darkcyan;" ng-disabled="registrationForm.$invalid" class="btn btn-primary btn-sm alertAction">
+                        <button type="submit" ng-click="resetForm()" class="btn btn-default btn-sm">Wyczyść</button>
+                    </div>
+                </form>
+            </div>
+            <div class="text-right">Masz już konto?<a class="btn btn-link" ng-href="#!login">Zaloguj się</a></div>
+        </div>
+    </div>
+    <!--/tabs-->
+    <!--/main content-->
+    <!--sidebar-->
+    <div class="content col-md-4 col-sm-12 col-xs-12">
+        <div class="section-block summary">
+            <h1 class="section-title">FIF APP</h1>
+            <div class="profile-contents">
+                <h2 class="position">Kliknij po więcej informacji</h2>
+                <img src="/commons/img/logo_v1.png" style="height:100px;" class="img responsive" alt="logo">
+                <!--social links-->
+                <ul class="list-inline">
+                    <li><a title="Pofil autora" target="_blank" href="https://www.linkedin.com/in/patryk-wieteska/"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a title="Projekt w GitHub" target="_blank" href="https://github.com/patrykwieteska/fif-app/"><i class="fa fa-git"></i></a></li>
+                </ul>
+                <!--/social links-->
+                <a href="mailto:patrykwieteskapw@gmail.com?subject=Projekt%20FIF%20APP" class="btn btn-contact"><i class="fa fa-envelope"></i>Wyślij wiadomość</a>
+            </div>
+        </div>
+    </div>
+    <!--/sidebar-->
+</div>

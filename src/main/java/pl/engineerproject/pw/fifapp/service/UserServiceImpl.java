@@ -1,6 +1,8 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.UserConverter;
@@ -22,11 +24,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
-
-    @Override
-    public User findByUsername(String username){
-        return userRepository.findByUsername(username);
-    }
 
     @Override
     public void createUser(RegistrationFormDto registrationFormDto) {
@@ -59,5 +56,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UserDto userDto) {
         userRepository.save(UserConverter.dtoToEntity(userDto));
+    }
+
+    @Override
+    public UserDto getUserById(Integer userId) {
+        return UserConverter.entityToDto(userRepository.getOne(userId));
+    }
+
+    @Override
+    public UserDto getUserByUsername(String username) {
+        return UserConverter.entityToDto(userRepository.findByUsername(username));
+    }
+
+    public void setUserAccess(Integer userId, boolean access) {
+        User user = userRepository.getOne(userId);
+        user.setActiveFlag(access);
+
+        userRepository.save(user);
     }
 }

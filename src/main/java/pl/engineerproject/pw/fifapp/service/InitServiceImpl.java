@@ -40,9 +40,9 @@ public class InitServiceImpl implements InitService {
 		user.setActiveFlag(true);
 
 		Role roleAdmin = new Role();
-		roleAdmin.setRoleName("ADMIN");
+		roleAdmin.setRoleName("ROLE_ADMIN");
 		Role roleUser = new Role();
-		roleUser.setRoleName("USER");
+		roleUser.setRoleName("ROLE_USER");
 
 		user.getRoles().add(roleAdmin);
 		user.getRoles().add(roleUser);

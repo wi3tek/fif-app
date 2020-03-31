@@ -15,9 +15,10 @@ public class UserDto {
     private String registrationReason;
     private LocalDateTime registrationDate;
     private List<String> roles;
+    private boolean isAdmin;
 
     public UserDto(Integer id, String username, String email, boolean activeFlag,
-                   String registrationReason, LocalDateTime registrationDate, List<String> roles) {
+                   String registrationReason, LocalDateTime registrationDate, List<String> roles, boolean isAdmin) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -25,6 +26,7 @@ public class UserDto {
         this.registrationReason = registrationReason;
         this.registrationDate = registrationDate;
         this.roles = roles;
+        this.isAdmin=isAdmin;
     }
 
     public UserDto() {
@@ -84,5 +86,13 @@ public class UserDto {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

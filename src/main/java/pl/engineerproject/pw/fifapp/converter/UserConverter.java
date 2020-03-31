@@ -23,7 +23,15 @@ public class UserConverter   {
 
     public static UserDto entityToDto(User user) {
         List<String> roleDtos = user.getRoles().stream().map(Role::getRoleName).collect(Collectors.toList());
-        return new UserDto(user.getId(),user.getUsername(),user.getEmail(),user.isActiveFlag(),user.getRegistrationReason(),user.getRegistrationDate(),roleDtos);
-    }
+        boolean isAdmin = false;
 
+        for (String roleDto : roleDtos) {
+            if (roleDto.equals("ROLE_ADMIN")) {
+                isAdmin = true;
+                break;
+            }
+        }
+
+        return new UserDto(user.getId(),user.getUsername(),user.getEmail(),user.isActiveFlag(),user.getRegistrationReason(),user.getRegistrationDate(),roleDtos, isAdmin);
+    }
 }
