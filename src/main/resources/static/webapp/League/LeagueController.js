@@ -2,7 +2,7 @@
 
 var fifapp = angular.module('league.controllers', []);
 
-fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService', function($scope, LeagueService, AlertService) {
+fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService', '$rootScope', function($scope, LeagueService, AlertService, $rootScope) {
     $scope.leagueEdited;
     $scope.activeLeague;
 
