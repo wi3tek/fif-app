@@ -30,7 +30,7 @@ public class InitServiceImpl implements InitService {
 	@Override
 	@Transactional
 	public void initUser() throws Exception {
-
+// Below initial insert User entity with role Admin
 		User user = new User();
 		user.setUsername(DUMMY_ADMIN_USER);
 		user.setEmail(DUMMY_EMAIL);
