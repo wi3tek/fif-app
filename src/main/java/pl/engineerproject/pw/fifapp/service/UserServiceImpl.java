@@ -1,6 +1,7 @@
 package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,7 +12,9 @@ import pl.engineerproject.pw.fifapp.dto.UserDto;
 import pl.engineerproject.pw.fifapp.model.Role;
 import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.repository.UserRepository;
+import pl.engineerproject.pw.fifapp.validation.Validator;
 
+import javax.xml.ws.Response;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,21 +29,27 @@ public class UserServiceImpl implements UserService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    public void createUser(RegistrationFormDto registrationFormDto) {
-        User user = new User();
-        user.setUsername(registrationFormDto.getUsername());
-        user.setPassword(passwordEncoder.encode(registrationFormDto.getPassword()));
-        user.setEmail(registrationFormDto.getEmail());
-        user.setRegistrationReason(registrationFormDto.getRegistrationReason());
-        user.setRegistrationDate(LocalDateTime.now());
-        user.setActiveFlag(false);
+    public ResponseEntity createUser(RegistrationFormDto registrationFormDto) {
 
-        Role userRole = new Role();
-        userRole.setRoleName("USER");
+        if(!Validator.isEmailConfirmed(registrationFormDto.getEmail(),registrationFormDto.getConfirmEmail()) || !Validator.isPasswordConfirmed(registrationFormDto.getPassword(),registrationFormDto.getConfirmPassword())) {
+            return ResponseEntity.badRequest().body("{\"Register form has errors\": \"User was not created\"}");
+        } else {
+            User user = new User();
+            user.setUsername(registrationFormDto.getUsername());
+            user.setPassword(passwordEncoder.encode(registrationFormDto.getPassword()));
+            user.setEmail(registrationFormDto.getEmail());
+            user.setRegistrationReason(registrationFormDto.getRegistrationReason());
+            user.setRegistrationDate(LocalDateTime.now());
+            user.setActiveFlag(false);
 
-        user.getRoles().add(userRole);
+            Role userRole = new Role();
+            userRole.setRoleName("USER");
 
-        userRepository.save(user);
+            user.getRoles().add(userRole);
+
+            userRepository.save(user);
+            return ResponseEntity.ok("{\"User created\":\""+user.getUsername()+"\"}");
+        }
     }
 
     @Override

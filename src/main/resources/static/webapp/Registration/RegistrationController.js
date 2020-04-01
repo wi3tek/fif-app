@@ -31,7 +31,7 @@ fifapp.controller('RegistrationController', ["$scope", '$rootScope',
 
         $scope.registerUser = function() {
             if ($scope.newUser != null && $scope.newUser.username && $scope.newUser.password) {
-                RegistrationService.createUser($scope.newUser.username, $scope.newUser.password, $scope.newUser.email,
+                RegistrationService.createUser($scope.newUser.username, $scope.newUser.password, $scope.newUser.confirmPassword, $scope.newUser.email, $scope.newUser.confirmEmail,
                         $scope.newUser.reason)
                     .then(function success(response) {
                             AlertService.setAlert('Wysłano formularz do rejestracji - otrzymasz powiadomienie email', 1);
@@ -40,7 +40,11 @@ fifapp.controller('RegistrationController', ["$scope", '$rootScope',
                             $location.path('/home');
                         },
                         function error(response) {
-                            AlertService.setAlert('Błąd podczas rejestracji użytkownika', 0);
+                            if (response.status === 400) {
+                                AlertService.setAlert('Błąd wprowadzonych danych - hasła i adresy email muszą być takie same', 0);
+                            } else {
+                                AlertService.setAlert('Błąd - nazwa użytkownika ustnieje', 0);
+                            }
                             console.log($scope.alertMessage + '\n' + response)
 
                         });
@@ -54,7 +58,6 @@ fifapp.controller('RegistrationController', ["$scope", '$rootScope',
             $scope.newUser = null
         }
 
-
-
     }
+
 ]);

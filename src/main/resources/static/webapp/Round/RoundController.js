@@ -2,7 +2,7 @@
 
 var fifapp = angular.module('round.controllers', []);
 
-fifapp.controller('RoundController', ["$scope", 'RoundService', 'PlayerService', '$routeParams', 'AlertService', function($scope, RoundService, PlayerService, $routeParams, MatchService, AlertService) {
+fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService', '$routeParams', 'AlertService', '$rootScope', function($scope, RoundService, PlayerService, $routeParams, MatchService, AlertService, $rootScope) {
     $scope.oneAtATime = true;
     $scope.matchEdited;
     $scope.activeRound;

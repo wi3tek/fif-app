@@ -1,6 +1,7 @@
 package pl.engineerproject.pw.fifapp.dto;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -13,11 +14,21 @@ public class RegistrationFormDto {
 
     @NotNull
     @NotEmpty
+    @Email
     private String email;
 
     @NotNull
     @NotEmpty
+    @Email
+    private String confirmEmail;
+
+    @NotNull
+    @NotEmpty
     private String password;
+
+    @NotNull
+    @NotEmpty
+    private String confirmPassword;
 
     @NotNull
     @NotEmpty
@@ -54,5 +65,22 @@ public class RegistrationFormDto {
 
     public void setRegistrationReason(String registrationReason) {
         this.registrationReason = registrationReason;
+    }
+
+
+    public String getConfirmEmail() {
+        return confirmEmail;
+    }
+
+    public void setConfirmEmail(String confirmEmail) {
+        this.confirmEmail = confirmEmail;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

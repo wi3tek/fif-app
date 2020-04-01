@@ -19,6 +19,7 @@ import pl.engineerproject.pw.fifapp.model.Role;
 import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.service.UserService;
 
+import javax.xml.ws.Response;
 import java.security.Principal;
 import java.util.List;
 
@@ -31,9 +32,9 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = RequestMethod.POST, value="/register")
-    public void registerUser(@RequestBody RegistrationFormDto registrationFormDto) {
+    public ResponseEntity registerUser(@RequestBody RegistrationFormDto registrationFormDto) {
 
-        userService.createUser(registrationFormDto);
+        return userService.createUser(registrationFormDto);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

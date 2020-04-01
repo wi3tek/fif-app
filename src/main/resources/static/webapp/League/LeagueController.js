@@ -17,9 +17,12 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
                         $scope.reset();
                     },
                     function error(response) {
-                        AlertService.setAlert('Błąd podczas dodawania ligi', 0);
+                        if (response.status === 500) {
+                            AlertService.setAlert('Liga o nazwie ' + $scope.league.name + ' już istnieje', 0);
+                        } else {
+                            AlertService.setAlert('Błąd podczas dodawania ligi', 0);
+                        }
                         console.log($scope.alertMessage + '\n' + response)
-
                     });
         } else {
             AlertService.setAlert('Uzupełnij dane ligi', 0);

@@ -1,10 +1,8 @@
 package pl.engineerproject.pw.fifapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,16 +20,6 @@ public class SpringSecurityConfig
 
     @Autowired
     DataSource dataSource;
-
-//    @Autowired
-//    protected void configureGlobal(AuthenticationManagerBuilder auth)
-//            throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin").password("{noop}password")
-//                .roles("USER");
-//        auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("USER", "ADMIN");
-//    }
-
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -53,7 +41,7 @@ public class SpringSecurityConfig
                 .antMatchers("/webapp/User/user.html","/userDetails/**").hasAnyRole("ADMIN","USER")
                 .antMatchers("/usersControls/getAllUsers","/usersControls/activate","/usersControls/activate", "/webapp/Admin/admin.html","/controlPanel","controlPanel").hasRole("ADMIN")
                 .antMatchers("/commons/**","/webapp/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/", "/home","/leagues/**", "/players/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/", "/home","/leagues/**", "/players/**", "/rounds/**").permitAll()
                 .antMatchers("/usersControls/register", "/usersControls/user").permitAll()
                 .anyRequest().authenticated()
                 .and()

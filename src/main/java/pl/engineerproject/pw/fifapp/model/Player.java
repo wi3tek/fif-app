@@ -20,7 +20,7 @@ public class Player implements Serializable {
     @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
     private String alias;
 
     @Column

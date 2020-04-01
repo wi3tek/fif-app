@@ -19,7 +19,7 @@ angular.module('league.services', []).service('LeagueService', ["$http", functio
                 startDate: startDate,
                 endDate: endDate,
                 location: location,
-                ownerId: id
+                ownerId: ownerId
             }
         });
     }

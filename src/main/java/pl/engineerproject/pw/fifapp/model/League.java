@@ -15,11 +15,14 @@ public class League implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "league_seq")
     private Integer leagueId;
+    @Column(unique = true)
     private String name;
     private String description;
     private String startDate;
     private String endDate;
     private String location;
+
+    @ManyToOne
     private User owner;
 
     public Integer getLeagueId() {

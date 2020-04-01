@@ -214,19 +214,19 @@
                                                 <select class="selectpicker form-control" id="homeFirstPlayer" name="homeFirstPlayer" required data-live-search="true" ng-model="newMatch.homeFirstPlayerId" ng-options="player.playerId as player.alias for player in players">
                                             <option value="" disabled>1 GOSPODARZ</option>
                                                     </select>
-                                                <small class="error" ng-show="newMatchForm.homeFirstPlayer.$error.required">Wybierz gracza</small>
+                                                <small class="error" ng-show="newMatchForm.homeFirstPlayer.$dirty && newMatchForm.homeFirstPlayer.$error.required">Wybierz gracza</small>
                                             </div>
                                             <div class="form-group">
                                                 <select class="selectpicker form-control text-center" id="homeSecondPlayer" required name="homeSecondPlayer" data-live-search="true" ng-model="newMatch.homeSecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId }">
                                             <option value="" disabled>2 GOSPODARZ</option>
                                         </select>
-                                                <small class="error" ng-show="newMatchForm.homeSecondPlayer.$error.required">Wybierz gracza</small>
+                                                <small class="error" ng-show="newMatchForm.homeSecondPlayer.$dirty && newMatchForm.homeSecondPlayer.$error.required">Wybierz gracza</small>
                                             </div>
                                             <div class="form-group">
                                                 <select class="selectpicker form-control" id="homeTeam" name="homeTeam" required data-live-search="true" data-live-search="true" ng-model="newMatch.homeTeamId" ng-options="key as value for (key , value) in teams">
                                             <option value="" disabled>DRUŻYNA GOSPODARZY</option>
                                         </select>
-                                                <small class="error" ng-show="newMatchForm.homeTeam.$error.required">Wybierz drużynę</small>
+                                                <small class="error" ng-show="newMatchForm.homeTeam.$dirty && newMatchForm.homeTeam.$error.required">Wybierz drużynę</small>
                                             </div>
                                         </div>
                                     </div>
@@ -237,21 +237,21 @@
                                                 <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
                                             <option value="" disabled>1 GOŚĆ</option>
                                         </select>
-                                                <small class="error" ng-show="newMatchForm.awayFirstPlayer.$error.required">Wybierz gracza</small>
+                                                <small class="error" ng-show="newMatchForm.awayFirstPlayer.$dirty && newMatchForm.awayFirstPlayer.$error.required">Wybierz gracza</small>
                                             </div>
 
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awaySecondPlayer.$invalid && !newMatchForm.awaySecondPlayer.$pristine}">
                                                 <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" required data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId } | filter: { playerId: '!' +newMatch.awayFirstPlayerId }">
                                             <option value="" disabled>2 GOŚĆ</option>
                                         </select>
-                                                <small class="error" ng-show="newMatchForm.awaySecondPlayer.$error.required">Wybierz gracza</small>
+                                                <small class="error" ng-show="newMatchForm.awaySecondPlayer.$dirty && newMatchForm.awaySecondPlayer.$error.required">Wybierz gracza</small>
                                             </div>
 
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awayTeam.$invalid && !newMatchForm.awaySecondPlayer.$pristine}">
                                                 <select class="selectpicker form-control text-center" id="awayTeam" name="awayTeam" required data-live-search="true" ng-model="newMatch.awayTeamId" ng-options="key as value for (key , value) in teams">
                                             <option value="" disabled>DRUŻYNA GOŚCI</option>
                                                 </select>
-                                                <small class="error" ng-show="newMatchForm.awayTeam.$error.required">Wybierz drużynę</small>
+                                                <small class="error" ng-show="newMatchForm.awayTeam.$dirty && newMatchForm.awayTeam.$error.required">Wybierz drużynę</small>
                                             </div>
                                         </div>
                                     </div>

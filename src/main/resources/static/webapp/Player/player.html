@@ -123,7 +123,7 @@
                             </div>
                             <div class="form-group col-md-12" ng-class="{ 'has-error': editPlayerForm.dateOfBirth.$invalid}">
                                 <label for="dateOfBirth">Data urodzenia</label>
-                                <input type="date" class="form-control" name="dateOfBirth" ng-model="playerEdited.dateOfBirth" required id="dateOfBirth" placeholder="Data urodzenia" required>
+                                <input type="date" class="form-control" name="dateOfBirth" max="2001-01-01" ng-model="playerEdited.dateOfBirth" required id="dateOfBirth" placeholder="Data urodzenia" required>
                                 <small class="error" ng-show="editPlayerForm.dateOfBirth.$error.required">Data urodzenia jest wymagana</small>
                             </div>
                             <div class="form-group col-md-12" ng-class="{ 'has-error': editPlayerForm.playerUser.$invalid}">
@@ -164,24 +164,31 @@
                         <div class="form-group col-md-12" ng-class="{ 'has-error': playerForm.playerName.$invalid && !playerForm.playerName.$pristine}">
                             <label for="playerName">Imię</label>
                             <input type="text" class="form-control" name="playerName" ng-model="player.name" required id="playerName" placeholder="Imię" required ng-minlength="4" ng-maxlength="25">
-                            <small class="error" ng-show="playerForm.playerName.$error.required">Imię jest wymagane</small>
-                            <small class="error" ng-show="playerForm.playerName.$error.minlength">Zbyt krótkie imię - min. 3 znaki</small>
-                            <small class="error" ng-show="playerForm.playerName.$error.maxlength">Zbyt długie imię</small>
+                            <small class="error" ng-show="playerForm.playerName.$dirty
+                            && playerForm.playerName.$error.required">Imię jest wymagane</small>
+                            <small class="error" ng-show="playerForm.playerName.$dirty
+                            && playerForm.playerName.$error.minlength">Zbyt krótkie imię - min. 3 znaki</small>
+                            <small class="error" ng-show="playerForm.playerName.$dirty
+                            && playerForm.playerName.$error.maxlength">Zbyt długie imię</small>
                         </div>
                         <div class="form-group col-md-12" ng-class="{ 'has-error': playerForm.playerAlias.$invalid && !playerForm.playerAlias.$pristine}">
                             <label for="playerAlias">Pseudonim</label>
                             <input type="text" class="form-control" name="playerAlias" required ng-model="player.alias" id="playerAlias" placeholder="Pseudonim" required ng-minlength="4" ng-maxlength="25">
-                            <small class="error" ng-show="playerForm.playerAlias.$error.required">Pseudonim jest wymagany</small>
-                            <small class="error" ng-show="playerForm.playerAlias.$error.minlength">Zbyt krótki pseudonim - min. 3 znaki</small>
-                            <small class="error" ng-show="playerForm.playerAlias.$error.maxlength">Zbyt długi pseudonim</small>
+                            <small class="error" ng-show="playerForm.playerAlias.$dirty
+                            && playerForm.playerAlias.$error.required">Pseudonim jest wymagany</small>
+                            <small class="error" ng-show="playerForm.playerAlias.$dirty
+                            && playerForm.playerAlias.$error.minlength">Zbyt krótki pseudonim - min. 3 znaki</small>
+                            <small class="error" ng-show="playerForm.playerAlias.$dirty
+                            && playerForm.playerAlias.$error.maxlength">Zbyt długi pseudonim</small>
                         </div>
                         <div class="form-group col-md-12" ng-class="{ 'has-error': playerForm.dateOfBirth.$invalid && !playerForm.dateOfBirth.$pristine}">
                             <label for="dateOfBirth">Data urodzenia</label>
-                            <input type="date" class="form-control" name="dateOfBirth" ng-model="player.dateOfBirth" required id="dateOfBirth" placeholder="Data urodzenia" required>
-                            <small class="error" ng-show="playerForm.dateOfBirth.$error.required">Data urodzenia jest wymagana</small>
+                            <input type="date" class="form-control" name="dateOfBirth" max="2001-01-01" ng-model="player.dateOfBirth" required id="dateOfBirth" placeholder="Data urodzenia" required>
+                            <small class="error" ng-show="playerForm.dateOfBirth.$dirty
+                            && playerForm.dateOfBirth.$error.required">Data urodzenia jest wymagana</small>
                         </div>
                         <div class="form-group col-md-12" ng-class="{ 'has-error': playerForm.playerUser.$invalid && !playerForm.playerUser.$pristine}">
-                            <label for="playerUser">Pseudonim</label>
+                            <label for="playerUser">Powiązany użytkownik</label>
                             <input type="text" class="form-control" name="playerUser" ng-model="player.playerUser" disabled id="playerUser" placeholder="Powiązany użytkownik">
                         </div>
                         <div class="form-group text-right">

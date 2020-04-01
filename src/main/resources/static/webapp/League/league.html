@@ -113,18 +113,18 @@
                     <!-- Create league form -->
                     <form novalidate name="leagueEditedForm">
                         <div class=form-row>
-                            <div class="form-group col-md-6" ng-class="{'has-error': leagueEditedForm.leagueName.$invalid}">
+                            <div class="form-group col-md-6" ng-class="{'has-error': leagueEditedForm.leagueName.$invalid && !leagueEditedForm.leagueName.$pristine}">
                                 <label for="leagueName">Nazwa Ligi</label>
                                 <input type="text" class="form-control" name="leagueName" ng-model="leagueEdited.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
-                                <small class="error" ng-show="leagueEditedForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
-                                <small class="error" ng-show="leagueEditedForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
-                                <small class="error" ng-show="leagueEditedForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                                <small class="error" ng-show="leagueEditedForm.leagueName.$dirty && leagueEditedForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueEditedForm.leagueName.$dirty && leagueEditedForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                                <small class="error" ng-show="leagueEditedForm.leagueName.$dirty && leagueEditedForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
                             </div>
 
                             <div class="form-group col-md-6" ng-class="{'has-error': leagueEditedForm.startDate.$invalid}">
                                 <label for="startDate">Data rozpoczęcia</label>
                                 <input type="date" class="form-control" name="startDate" ng-model="leagueEdited.startDate" id="startDate" placeholder="Rozpoczęcie" required>
-                                <small class="error" ng-show="leagueEditedForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueEditedForm.startDate.$dirty && leagueEditedForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
 
                             </div>
                             <div class="form-group col-md-6">
@@ -176,15 +176,15 @@
                         <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.leagueName.$invalid && !leagueForm.leagueName.$pristine}">
                             <label for="leagueName">Nazwa Ligi</label>
                             <input type="text" class="form-control" name="leagueName" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
-                            <small class="error" ng-show="leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
-                            <small class="error" ng-show="leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
-                            <small class="error" ng-show="leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                            <small class="error" ng-show="leagueForm.leagueName.$dirty && leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                            <small class="error" ng-show="leagueForm.leagueName.$dirty && leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                            <small class="error" ng-show="leagueForm.leagueName.$dirty && leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
                         </div>
 
                         <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.startDate.$invalid && !leagueForm.startDate.$pristine}">
                             <label for="startDate">Data rozpoczęcia</label>
                             <input type="date" class="form-control" name="startDate" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie" required>
-                            <small class="error" ng-show="leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
+                            <small class="error" ng-show="leagueForm.startDate.$dirty && leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
 
                         </div>
                         <div class="form-group col-md-6">

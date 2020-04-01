@@ -103,7 +103,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <span class="copyright">Created by <a>Patryk Wieteska</a></span>
+                <span class="copyright">Created by <a href="/aboutUs">Patryk Wieteska</a></span>
             </div>
         </div>
     </footer>
@@ -127,15 +127,15 @@
                             <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.leagueName.$invalid}">
                                 <label for="leagueName">Nazwa Ligi</label>
                                 <input type="text" class="form-control" name="leagueName" ng-model="league.name" id="leagueName" placeholder="Nazwa Ligi" required ng-minlength="4" ng-maxlength="25">
-                                <small class="error" ng-show="leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
-                                <small class="error" ng-show="leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
-                                <small class="error" ng-show="leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$dirty && leagueForm.leagueName.$error.required">Nazwa ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$dirty && leagueForm.leagueName.$error.minlength">Zbyt krótka nazwa - min. 3 znaki</small>
+                                <small class="error" ng-show="leagueForm.leagueName.$dirty && leagueForm.leagueName.$error.maxlength">Zbyt długa nazwa</small>
                             </div>
 
                             <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.startDate.$invalid}">
                                 <label for="startDate">Data rozpoczęcia</label>
                                 <input type="date" class="form-control" name="startDate" ng-model="league.startDate" id="startDate" placeholder="Rozpoczęcie" required>
-                                <small class="error" ng-show="leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
+                                <small class="error" ng-show="leagueForm.startDate.$dirty && leagueForm.startDate.$error.required">Data rozpoczęcia ligi jest wymagana</small>
 
                             </div>
                             <div class="form-group col-md-6">
