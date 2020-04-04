@@ -31,9 +31,9 @@ public class 	FifAppApplication {
 
 
 	// INSERT INITIAL ADMIN USER:
-	@EventListener(ApplicationReadyEvent.class)
-	public void initData() throws Exception {
-
-		initService.initUser();
-	}
+//	@EventListener(ApplicationReadyEvent.class)
+//	public void initData() throws Exception {
+//
+//		initService.initUser();
+//	}
 }
