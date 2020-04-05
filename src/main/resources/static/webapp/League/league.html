@@ -52,8 +52,8 @@
             <div class="row" ng-if="activeLeague">
                 <div class="col-xs-12 text-center"><label class="label label-default">SZCZEGÓŁY LIGI</label></div>
                 <div class="col-xs-12 text-right">
-                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń ligę" data-target="#deleteLeagueModel" ng-click="setLeagueEdited()"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" title="Edytuj ligę" data-target="#editLeagueModal" ng-click="setLeagueEdited()"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                    <button ng-show="authenticated" type="button" class="btn btn-danger btn-xs" data-toggle="modal" title="Usuń ligę" data-target="#deleteLeagueModel" ng-click="setLeagueEdited()"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <button ng-show="authenticated" type="button" class="btn btn-default btn-xs" data-toggle="modal" title="Edytuj ligę" data-target="#editLeagueModal" ng-click="setLeagueEdited()"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
 
                 </div>
                 <div class="col-xs-12" style="color:whitesmoke text-left">

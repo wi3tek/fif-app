@@ -39,7 +39,7 @@ fifapp.factory('LoginService', ['$http', '$cookieStore', '$rootScope', '$timeout
                     btoa(credentials.username + ":" +
                         credentials.password)
             } : {};
-            $http.get('/usersControls/user', {
+            $http.get('/usersControls/getUser', {
                 headers: headers
             }).then(function(response) {
                 if (response.data.name) {

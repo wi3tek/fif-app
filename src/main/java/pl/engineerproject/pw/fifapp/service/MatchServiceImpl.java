@@ -25,6 +25,12 @@ public class MatchServiceImpl implements MatchService {
     @Autowired
     MatchRepository matchRepository;
 
+
+    @Override
+    public void addMatch(MatchDto matchDto) {
+        matchRepository.save(MatchConverter.dtoToEntity(matchDto));
+    }
+
     @Autowired
     MatchPlayerRelService matchPlayerRelService;
 
@@ -33,10 +39,6 @@ public class MatchServiceImpl implements MatchService {
         return MatchConverter.entityToDto(matchRepository.getOne(matchId));
     }
 
-    @Override
-    public void addMatch(MatchDto matchDto) {
-        matchRepository.save(MatchConverter.dtoToEntity(matchDto));
-    }
 
     @Override
     public void editMatch(MatchDto matchDto) {

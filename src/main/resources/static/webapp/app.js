@@ -1,6 +1,6 @@
 'use strict'
 
-var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'registration.services', 'login.controllers', 'logout.controllers', 'registration.controllers', 'login.services', 'admin.controllers', 'admin.services', 'user.controllers', 'user.services', 'alert.services']);
+var fifapp = angular.module('fifapp', ['ngRoute', 'ngResource', 'ngCookies', 'league.controllers', 'league.services', 'round.controllers', 'round.services', 'player.controllers', 'player.services', 'home.controllers', 'registration.services', 'login.controllers', 'logout.controllers', 'registration.controllers', 'login.services', 'admin.controllers', 'admin.services', 'user.controllers', 'user.services', 'alert.services', 'match.services']);
 
 fifapp.config(function($routeProvider, $httpProvider) {
     $routeProvider

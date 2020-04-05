@@ -2,7 +2,7 @@
 
 var fifapp = angular.module('round.controllers', []);
 
-fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService', '$routeParams', 'AlertService', '$rootScope', function($scope, RoundService, PlayerService, $routeParams, MatchService, AlertService, $rootScope) {
+fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService', 'MatchService', '$routeParams', 'AlertService', '$rootScope', function($scope, RoundService, PlayerService, MatchService, $routeParams, AlertService) {
     $scope.oneAtATime = true;
     $scope.matchEdited;
     $scope.activeRound;
@@ -14,6 +14,14 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
     $scope.roundEdited;
     $scope.matchesInDeletedRound;
 
+    $(document).ready(function() {
+        $("#eventAlert").hide();
+        $(".alertAction").click(function showAlert() {
+            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
+                $("#eventAlert").slideUp(500);
+            });
+        });
+    });
 
     function countObjects(superObject) {
         var count = 0;
@@ -220,7 +228,9 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
 
     $scope.addNewMatch = function() {
         if ($scope.newMatch != null) {
-            RoundService.addNewMatch($scope.newMatch.homeFirstPlayerId, $scope.newMatch.homeSecondPlayerId, $scope.newMatch.awayFirstPlayerId, $scope.newMatch.awaySecondPlayerId, $scope.newMatch.homeTeamId, $scope.newMatch.awayTeamId, $scope.activeRound.roundId, $scope.activeRound.leagueId)
+            MatchService.addNewMatch($scope.newMatch.homeFirstPlayerId, $scope.newMatch.homeSecondPlayerId,
+                    $scope.newMatch.awayFirstPlayerId, $scope.newMatch.awaySecondPlayerId, $scope.newMatch.homeTeamId,
+                    $scope.newMatch.awayTeamId, $scope.activeRound.roundId, $scope.activeRound.leagueId)
                 .then(function success(response) {
                         AlertService.setAlert('Poprawnie dodano mecz', 1);
                         console.log($scope.alertMessage + '\n' + response);
@@ -294,8 +304,8 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
                         $scope.resetNewRound;
                         $scope.init();
                     },
-                    function error(response) {
-                        AlertService.setAlert('Błąd podczas dodawania ligi', 0);
+                    function error() {
+                        AlertService.setAlert('Błąd podczas dodawania kolejki', 0);
                     });
         } else {
             AlertService.setAlert('Błąd danych - nie udało się dodać kolejki', 0);
@@ -307,8 +317,7 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
             .then(function success(response) {
                     $scope.leagueTable = response.data;
                 },
-                function error() {
-                    AlertService.setAlert('Błąd podczas pobierania tabeli ligowej', 0)
+                function error(response) {
                     console.log($scope.alertMessage + '\n' + response);
                 })
     }
@@ -319,10 +328,8 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
             PlayerService.getPlayersMatchesInLeague(leagueId)
                 .then(function success(response) {
                         $scope.playerMatches = response.data;
-                        AlertService.setAlert('Pobrano listę meczów gracza', 1)
                     },
                     function error(response) {
-                        AlertService.setAlert('Błąd podczas dodawania gracza!', 0);
                         console.log($scope.alertMessage + '\n' + response);
                     });
         } else {
@@ -330,17 +337,5 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
         }
     }
 
-    $(document).ready(function() {
-        $("#eventAlert").hide();
-        $(".alertAction").click(function showAlert() {
-            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
-                $("#eventAlert").slideUp(500);
-            });
-        });
-    });
 
-
-    $(document).ready(function() {
-        $('span').tooltip();
-    })
 }])

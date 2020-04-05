@@ -7,9 +7,19 @@
  */
                                         /*-Base-*/
                                         
+                                        html {
+                                            height: 100%;
+                                        }
+                                        
                                         body {
-                                            background-color: #ECEBEB;
+                                            /* background-color: #ECEBEB; */
                                             font-family: 'Open Sans', sans-serif;
+                                            background: url('/commons/img/background.jpg') no-repeat center center fixed;
+                                            -webkit-background-size: cover;
+                                            -moz-background-size: cover;
+                                            background-size: cover;
+                                            -o-background-size: cover;
+                                            height: 100%;
                                         }
                                         
                                         .position0 {
@@ -678,8 +688,22 @@
                                         
                                         .footer {
                                             background-color: #007272;
+                                            position: relative;
+                                            margin-top: -150px;
+                                            /* negative value of footer height */
+                                            /* height: 150px; */
+                                            clear: both;
                                             padding: 10px;
                                             text-align: center;
+                                        }
+                                        
+                                        #wrapper {
+                                            min-height: 100%;
+                                        }
+                                        
+                                        #main {
+                                            overflow: auto;
+                                            padding-bottom: 150px;
                                         }
                                         
                                         .copyright {

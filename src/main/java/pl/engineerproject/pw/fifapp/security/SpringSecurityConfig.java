@@ -18,6 +18,25 @@ import javax.sql.DataSource;
 public class SpringSecurityConfig
         extends WebSecurityConfigurerAdapter {
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/", "/home","/leagues/**", "/players/**", "/rounds/**", "/matches/**").permitAll()
+                .antMatchers("/webapp/User/user.html","/userDetails/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/usersControls/getAllUsers","/usersControls/activate","/usersControls/deactivate", "/webapp/Admin/admin.html","/controlPanel","controlPanel").hasRole("ADMIN")
+                .antMatchers("/commons/**","/webapp/**").permitAll()
+                .antMatchers("/usersControls/register", "/usersControls/user").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
     @Autowired
     DataSource dataSource;
 
@@ -31,24 +50,7 @@ public class SpringSecurityConfig
     }
 
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
 
-        http
-                .httpBasic()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/webapp/User/user.html","/userDetails/**").hasAnyRole("ADMIN","USER")
-                .antMatchers("/usersControls/getAllUsers","/usersControls/activate","/usersControls/activate", "/webapp/Admin/admin.html","/controlPanel","controlPanel").hasRole("ADMIN")
-                .antMatchers("/commons/**","/webapp/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/", "/home","/leagues/**", "/players/**", "/rounds/**").permitAll()
-                .antMatchers("/usersControls/register", "/usersControls/user").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

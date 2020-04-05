@@ -41,6 +41,7 @@
     <script src="/webapp/User/UserController.js"></script>
     <script src="/webapp/User/UserService.js"></script>
     <script src="/webapp/Home/AlertService.js"></script>
+    <script src="/webapp/Match/MatchService.js"></script>
 
     <title>Fifapp</title>
 </head>
@@ -86,8 +87,8 @@
 
 
     <!--main content-->
-    <div class="main-content" ng-controller="HomeController">
-        <div class="container">
+    <div id="wrapper" ng-controller="HomeController">
+        <div id="main" class="container clear-top">
             <div class="row">
 
                 <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
@@ -101,10 +102,8 @@
     </div>
 
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <span class="copyright">Created by <a href="/aboutUs">Patryk Wieteska</a></span>
-            </div>
+        <div class="row">
+            <span class="copyright">Created by <a ng-disabled>Patryk Wieteska</a></span>
         </div>
     </footer>
 

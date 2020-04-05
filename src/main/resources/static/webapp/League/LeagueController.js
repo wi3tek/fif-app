@@ -6,6 +6,15 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
     $scope.leagueEdited;
     $scope.activeLeague;
 
+    $(document).ready(function() {
+        $("#eventAlert").hide();
+        $(".alertAction").click(function showAlert() {
+            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
+                $("#eventAlert").slideUp(500);
+            });
+        });
+    })
+
     $scope.addLeague = function() {
         if ($scope.league != null && $scope.league.name && $scope.league.startDate) {
             LeagueService.addLeague($scope.league.name, $scope.league.startDate, $scope.league.endDate,
@@ -87,21 +96,6 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
         $scope.league = {};
         $scope.leagueForm.$setPristine();
     }
-
-    $(document).ready(function() {
-        $("#eventAlert").hide();
-        $(".alertAction").click(function showAlert() {
-            $("#eventAlert").fadeTo(3500, 500).slideUp(500, function() {
-                $("#eventAlert").slideUp(500);
-            });
-        });
-    })
-
-
-
-
-
-
 
     $scope.claculateTime = function(dt) {
         return new Date(dt).getTime();

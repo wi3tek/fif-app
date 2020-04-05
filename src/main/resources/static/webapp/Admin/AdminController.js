@@ -2,11 +2,9 @@
 
 var fifapp = angular.module('admin.controllers', []);
 
-fifapp.controller('AdminController', ["$scope", '$rootScope',
-    '$http', '$location', 'AdminService', 'AlertService',
+fifapp.controller('AdminController', ["$scope", '$rootScope', '$location', 'AdminService', 'AlertService',
 
-    function($scope, $rootScope,
-        $http, $location, AdminService, AlertService) {
+    function($scope, $rootScope, $location, AdminService, AlertService) {
 
         $scope.activeUserPanel;
 

@@ -19,6 +19,13 @@ public class MatchController {
     @Autowired
     MatchService matchService;
 
+    @RequestMapping(value="/addMatch", method = RequestMethod.POST)
+    public ResponseEntity addMatch(@RequestBody MatchDto matchDto) {
+
+        return matchService.createMatch(matchDto);
+
+    }
+
     @Autowired
     MatchPlayerRelService matchPlayerRelService;
 
@@ -37,12 +44,7 @@ public class MatchController {
         return matchService.getRoundMatches(roundId);
     }
 
-    @RequestMapping(value="/addMatch", method = RequestMethod.POST)
-    public ResponseEntity addMatch(@RequestBody MatchDto matchDto) {
 
-        return matchService.createMatch(matchDto);
-
-    }
 
     @RequestMapping(value = "/updateMatch", method = RequestMethod.PUT)
     public void updateMatch(@RequestBody MatchDto matchDto) {
