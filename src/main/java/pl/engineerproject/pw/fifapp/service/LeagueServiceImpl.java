@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.engineerproject.pw.fifapp.converter.LeagueConverter;
+import pl.engineerproject.pw.fifapp.converter.UserConverter;
 import pl.engineerproject.pw.fifapp.dto.LeagueDto;
+import pl.engineerproject.pw.fifapp.model.League;
+import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.repository.LeagueRepository;
 
 import java.util.List;
@@ -16,6 +19,9 @@ public class LeagueServiceImpl implements LeagueService{
     @Autowired
     LeagueRepository leagueRepository;
 
+    @Autowired
+    UserService userService;
+
     @Override
     public LeagueDto getLeagueById(Integer leagueId) {
         return LeagueConverter.entityToDto(leagueRepository.getOne(leagueId));
@@ -23,7 +29,11 @@ public class LeagueServiceImpl implements LeagueService{
 
     @Override
     public void saveLeague(LeagueDto leagueDto) {
-        leagueRepository.save(LeagueConverter.dtoToEntity(leagueDto));
+        User user = UserConverter.dtoToEntity(userService.getUserById(leagueDto.getOwnerId()));
+        League league = LeagueConverter.dtoToEntity(leagueDto);
+        league.setOwner(user);
+
+        leagueRepository.save(league);
     }
 
     @Override

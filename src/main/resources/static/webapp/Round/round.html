@@ -1,0 +1,479 @@
+<div ng-init="init()">
+
+    <div class="content col-md-7 col-sm-12 col-xs-12">
+        <div class="section-block">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h1>
+                            LIGA: {{league.name}}
+                        </h1>
+                    </div>
+                    <div class="col-xs-6 text-left">
+                        <label class="label label-default">LISTA KOLEJEK</label>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button ng-show="authenticated" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#roundModal" title="DODAJ KOLEJKĘ"><span class="glyphicon glyphicon-plus" aria-hidden="true"> NOWA KOLEJKA</span></button>
+                    </div>
+                    <!-- ng-click="setNewMatchSettings(round)" -->
+                </div>
+            </div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                <div class="panel panel-default" ng-repeat="round in rounds">
+                    <div class="panel-heading" style="background-color: darkcyan; font-weight:bold;" role="tab" id="headingOne{{round.roundId}}" is-open="$first" is-open="$first">
+                        <div class="row">
+                            <div class="panel-title" data-toggle="collapse" data-target="#collapseOne{{round.roundId}}" aria-expanded="false" data-parent="#accordion">
+                                <div class="col-xs-4 text-left">
+                                    <label style="color:whitesmoke">
+                            {{round.whichLeagueRound}} KOLEJKA
+                        </label>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <label style="color:whitesmoke">{{claculateTime(round.roundDate) | date: 'dd MM yyyy'}}</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 text-right">
+
+
+                                <button ng-show="authenticated" type="button" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#matchModal" class="btn btn-success btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="top" title="Dodaj mecz" aria-hidden="true">
+
+                    </span>
+                </button>
+
+
+                                <button ng-show="authenticated" type="button" class="btn btn-danger btn-xs " data-toggle="modal" data-target="#deleteRoundModal" title="Usuń kolejkę" ng-click="setEditRoundContext(round)">
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseOne{{round.roundId}}" ng-class="$index==0 ? 'panel-collapse collapse in' : 'panel-collapse collapse'" role="tabpanel" aria-labelledby="headingOne{{round.roundId}}">
+                        <div class="panel-body ">
+                            <!-- LISTA MECZÓW -->
+                            <!--<table class="table" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">-->
+                            <div class="container-fluid">
+                                <div class="row" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">
+                                    <div class="row" style="background-color:aliceblue;">
+                                        <div class="col-xs-1 text-center hidden-xs" style="padding:16px;"><label class="label label-default">{{claculateTime(match.matchDate) | date: 'HH:mm'}}</label></div>
+                                        <div class="col-xs-1 text-right" style="padding-top:8px;">
+                                            <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                                                " data-placement="top" ng-attr-title="{{match.homeTeamName}}">
+                                                <img ng-src="{{match.homeTeamLogoUrl}}" width="35px" height="35px" title="{{match.homeTeamName}}">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-3 text-right" style="padding-top:5px;">
+                                            <div style="color: black;">
+                                                <div class="row"><label style="text-transform: uppercase;">{{match.homeFirstPlayerAlias}}</label></div>
+                                                <div class="row"><label style="text-transform: uppercase;">{{match.homeSecondPlayerAlias}}</label></div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xs-2 text-center" style=" width:100px; padding-top:10px;">
+
+                                            <button type="button" style="width:100%; font-size:20px;" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" ng-click="setEditContext(match)" ng-disabled="!authenticated" data-placement="top" title="Edytuj wynik">{{match.homeGoals}}:{{match.awayGoals}}</button>
+
+                                        </div>
+
+                                        <div class="col-xs-3 text-left" style="padding-top:5px;">
+                                            <div style="color: black;">
+                                                <div class="row"><label style="text-transform: uppercase;">{{match.awayFirstPlayerAlias}}</label></div>
+                                                <div class="row"><label style="text-transform: uppercase;">{{match.awaySecondPlayerAlias}}</label></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-1 text-left" style="padding-top:8px;">
+                                            <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                                                " data-placement="top" ng-attr-title="{{match.awayTeamName}}">
+                                                <img ng-src="{{match.awayTeamLogoUrl}}" width="35px" height="35px" title="{{match.awayTeamName}}">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                        <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODALNE OKNO EDYCJI WYNIKU -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><label class="label label-default">{{claculateTime(matchEdited.matchDate) | date: 'EEEE, MMMM M, yyyy - HH:mm'}}</label></h4>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row" style="background-color:aliceblue;">
+                                <div class="col-xs-2 text-right" style="padding-top:8px;">
+                                    <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                                    " data-placement="top" ng-attr-title="{{matchEdited.homeTeamName}}">
+                                        <img ng-src="{{matchEdited.homeTeamLogoUrl}}" width="35px" height="35px" title="{{matchEdited.homeTeamName}}">
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-3 text-right" style="padding-top:5px;">
+                                    <div style="color: black;">
+                                        <div class="row"><label style="text-transform: uppercase; margin-right:5px;">{{matchEdited.homeFirstPlayerAlias}}</label></div>
+                                        <div class="row"><label style="text-transform: uppercase; margin-right:5px;">{{matchEdited.homeSecondPlayerAlias}}</label></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xs-4" style=" width:100px; padding-top:10px;">
+
+                                    <div class="row">
+                                        <div class="col" style="float:left">
+                                            <div class="col text-center">
+                                                <input type="text" style="width:50px; font-size:20px; text-align:center; font-weight:bold" disabled class="form-control col-sm-1" ng-model="matchEdited.homeGoals" id="homeGoals">
+                                            </div>
+
+                                            <div class="col text-center">
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" ng-click="matchEdited.homeGoals=matchEdited.homeGoals+1" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                                                    <button type="button" ng-click="matchEdited.homeGoals=matchEdited.homeGoals-1" ng-disabled="matchEdited.homeGoals<=0" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="col text-center">
+                                                <input type="text" style="width:50px; font-size:20px; text-align:center; font-weight:bold" disabled class="form-control col-sm-1 number" ng-model="matchEdited.awayGoals" id="awayGoals">
+                                            </div>
+                                            <div class="col text-center">
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" ng-click="matchEdited.awayGoals=matchEdited.awayGoals+1" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                                                    <button type="button" ng-click="matchEdited.awayGoals=matchEdited.awayGoals-1" ng-disabled="matchEdited.awayGoals<=0" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-3 text-left" style="padding-top:5px;">
+                                    <div style="color: black;">
+                                        <div class="row"><label style="text-transform: uppercase; margin-left:5px;">{{matchEdited.awayFirstPlayerAlias}}</label></div>
+                                        <div class="row"><label style="text-transform: uppercase; margin-left:5px;">{{matchEdited.awaySecondPlayerAlias}}</label></div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-1 text-left" style="padding-top:8px;">
+                                    <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                                    " data-placement="top" ng-attr-title="{{matchEdited.awayTeamName}}">
+                                        <img ng-src="{{matchEdited.awayTeamLogoUrl}}" width="35px" height="35px" title="{{matchEdited.awayTeamName}}">
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label for="comment" class="col-form-label col-xs-12">Komentarz meczowy</label>
+                                    <textarea class="form-control col-xs-12" ng-model="matchEdited.comment" id="comment" placeholder="Dodaj komentarz"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col col-xs-6 text-left">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" href="#deleteMatchModal" data-dismiss="modal" title="Usuń mecz" ng-click="setEditContext(matchEdited)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </div>
+                                <div class="col col-xs-6 text-right">
+                                    <button type="button" class="btn btn-success btn-sm alertAction" ng-click="editMatch()" data-dismiss="modal"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Edytuj</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- MODAL - DODAWANIE MECZU -->
+            <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="matchModalLabel"><label class="label label-default label-lg">NOWY MECZ</label></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <!-- Create Match form -->
+                            <form name="newMatchForm" novalidate>
+                                <div class=form-row>
+                                    <div class="form-group col-md-6" ng-class="{'has-error': newMatchForm.homeData.$invalid && !newMatchForm.homeData.$pristine}">
+                                        <label for="homeData">GOSPODARZE</label>
+                                        <div class="well">
+                                            <div class="form-group">
+                                                <select class="selectpicker form-control" id="homeFirstPlayer" name="homeFirstPlayer" required data-live-search="true" ng-model="newMatch.homeFirstPlayerId" ng-options="player.playerId as player.alias for player in players">
+                                            <option value="" disabled>1 GOSPODARZ</option>
+                                                    </select>
+                                                <small class="error" ng-show="newMatchForm.homeFirstPlayer.$dirty && newMatchForm.homeFirstPlayer.$error.required">Wybierz gracza</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="selectpicker form-control text-center" id="homeSecondPlayer" required name="homeSecondPlayer" data-live-search="true" ng-model="newMatch.homeSecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId }">
+                                            <option value="" disabled>2 GOSPODARZ</option>
+                                        </select>
+                                                <small class="error" ng-show="newMatchForm.homeSecondPlayer.$dirty && newMatchForm.homeSecondPlayer.$error.required">Wybierz gracza</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="selectpicker form-control" id="homeTeam" name="homeTeam" required data-live-search="true" data-live-search="true" ng-model="newMatch.homeTeamId" ng-options="key as value for (key , value) in teams">
+                                            <option value="" disabled>DRUŻYNA GOSPODARZY</option>
+                                        </select>
+                                                <small class="error" ng-show="newMatchForm.homeTeam.$dirty && newMatchForm.homeTeam.$error.required">Wybierz drużynę</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="awayData">GOŚCIE</label>
+                                        <div class="well">
+                                            <div class="form-group" ng-class="{'has-error': newMatchForm.awayFirstPlayer.$invalid && !newMatchForm.awayFirstPlayer.$pristine}">
+                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
+                                            <option value="" disabled>1 GOŚĆ</option>
+                                        </select>
+                                                <small class="error" ng-show="newMatchForm.awayFirstPlayer.$dirty && newMatchForm.awayFirstPlayer.$error.required">Wybierz gracza</small>
+                                            </div>
+
+                                            <div class="form-group" ng-class="{'has-error': newMatchForm.awaySecondPlayer.$invalid && !newMatchForm.awaySecondPlayer.$pristine}">
+                                                <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" required data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId } | filter: { playerId: '!' +newMatch.awayFirstPlayerId }">
+                                            <option value="" disabled>2 GOŚĆ</option>
+                                        </select>
+                                                <small class="error" ng-show="newMatchForm.awaySecondPlayer.$dirty && newMatchForm.awaySecondPlayer.$error.required">Wybierz gracza</small>
+                                            </div>
+
+                                            <div class="form-group" ng-class="{'has-error': newMatchForm.awayTeam.$invalid && !newMatchForm.awaySecondPlayer.$pristine}">
+                                                <select class="selectpicker form-control text-center" id="awayTeam" name="awayTeam" required data-live-search="true" ng-model="newMatch.awayTeamId" ng-options="key as value for (key , value) in teams">
+                                            <option value="" disabled>DRUŻYNA GOŚCI</option>
+                                                </select>
+                                                <small class="error" ng-show="newMatchForm.awayTeam.$dirty && newMatchForm.awayTeam.$error.required">Wybierz drużynę</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group text-right">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                                    <button type="reset" class="btn btn-default" id="match-reset-btn" ng-click="resetNewMatch()">Wyczyść</button>
+                                    <button type="submit" class="btn btn-success alertAction" title="Dodaj Mecz" ng-click="addNewMatch()" data-dismiss="modal" ng-disabled="newMatchForm.$invalid">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- modal usuwanie meczu -->
+            <!-- Modal -->
+            <div class="modal fade" id="deleteMatchModal" tabindex="-1" role="dialog" aria-labelledby="deleteMatchModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteMatchModalLabel">
+                                Usuwanie meczu
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                        </div>
+                        <div class="modal-body">
+                            Czy na pewno chcesz usunąć mecz?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" href="#myModal" data-toggle="modal" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                            <button type="button" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteMatch(matchEdited.matchId)">USUŃ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal usuwanie kolejki -->
+            <!-- Modal -->
+            <div class="modal fade" id="deleteRoundModal" tabindex="-1" role="dialog" aria-labelledby="deleteRoundModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteRoundModalLabel">
+                                Usuwanie kolejki
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                        </div>
+                        <div class="modal-body">
+                            Czy na pewno chcesz usunąć kolejkę {{roundEdited.whichLeagueRound}}?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                            <button type="button" class="btn btn-danger alertAction" data-dismiss="modal" ng-click="deleteRound(roundEdited.roundId)">USUŃ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OKNO MODALNE TWORZENIA KOLEJKI -->
+            <div class="modal fade" id="roundModal" tabindex="-1" role="dialog" aria-labelledby="roundModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="roundModalLabel">
+                                <label class="label label-default">Utwórz kolejkę</label>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <!-- Create round form -->
+                            <form novalidate name="roundForm">
+                                <div class=form-row>
+                                    <div class="form-group col-md-12" ng-class="{'has-error': roundForm.description.$invalid && !roundForm.description.$pristine}">
+                                        <label for="description" class="col-form-label">Opis kolejki</label>
+                                        <textarea class="form-control" ng-model="newRound.description" name="description" required ng-maxlength="200" id="description" placeholder="Opis kolejki"></textarea>
+                                        <small class="error" ng-show="roundForm.description.maxlength">Zbyt długi opis</small>
+                                    </div>
+                                </div>
+                                <div class="form-group text-right">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                    <button type="submit" class="btn btn-primary alertAction" ng-click="addRound(quantityOfRounds, leagueId, newRound.description)" data-dismiss="modal" ng-disabled="roundForm.$invalid">Zapisz</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <div class="content col-md-5 col-sm-12 col-xs-12">
+        <div class="section-block summary">
+            <div class="row">
+                <div class="col-xs-6 text-left text-left">
+                    <label class="label label-default">TABELA LIGOWA</label>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button type="button" class="btn btn-default btn-xs" title="Pokaż pełną tabelę" ng-click="getPlayersMatchesInLeague(leagueId)" data-toggle="modal" data-target="#extendedTableModal">
+                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                  </button>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-hover table-sm" style="color:whitesmoke">
+                    <thead>
+                        <tr style="font-weight: bold;">
+                            <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                            <th class="text-center" scope="col">M</th>
+                            <th class="text-center" scope="col">Z</th>
+                            <th class="text-center" scope="col">R</th>
+                            <th class="text-center" scope="col">P</th>
+                            <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                            <th class="text-center" scope="col">WSP. PKT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="table in leagueTable">
+                            <td scope="row"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
+                            <td scope="col">{{table.alias}}</td>
+                            <td class="text-center" scope="col">{{table.matches}}</td>
+                            <td class="text-center" scope="col">{{table.wins}}</td>
+                            <td class="text-center" scope="col">{{table.draws}}</td>
+                            <td class="text-center" scope="col">{{table.loses}}</td>
+                            <td class="text-right" scope="col">{{table.goalsScored}}</td>
+                            <td class="text-center" style="width:2px;">-</td>
+                            <td class="text-left" scope="col">{{table.goalsConceded}}</td>
+                            <td class="text-center" scope="col">{{table.pointsRate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="extendedTableModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><label class="label label-default text-center">TABELA LIGOWA</label></h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover table-sm" style="color:whitesmoke">
+                        <thead style="background-color:darkcyan">
+                            <tr style="font-weight: bold;">
+                                <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                                <th class="text-center" scope="col">M</th>
+                                <th class="text-center" scope="col">PKT</th>
+                                <th class="text-center" scope="col">Z</th>
+                                <th class="text-center" scope="col">R</th>
+                                <th class="text-center" scope="col">P</th>
+                                <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                                <th class="text-center" scope="col">BILANS</th>
+                                <th class="text-center" scope="col">WSP. BR+</th>
+                                <th class="text-center" scope="col">WSP. BR-</th>
+
+                                <th class="text-center" scope="col">WSP. PKT</th>
+                                <th class="text-center" scope="col">OSTATNIE 5 MECZÓW</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="table in leagueTable" style="background-color: whitesmoke; color:black;">
+                                <td scope="row" style="font-weight: bold;"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
+                                <td scope="col" style="font-weight: bold;">{{table.alias}}</td>
+                                <td class="text-center" scope="col">{{table.matches}}</td>
+                                <td class="text-center" scope="col">{{table.points}}</td>
+                                <td class="text-center" scope="col">{{table.wins}}</td>
+                                <td class="text-center" scope="col">{{table.draws}}</td>
+                                <td class="text-center" scope="col">{{table.loses}}</td>
+                                <td class="text-right" scope="col">{{table.goalsScored}}</td>
+                                <td class="text-center" style="width:2px;">-</td>
+                                <td class="text-left" scope="col">{{table.goalsConceded}}</td>
+                                <td class="text-center" scope="col">{{table.goalsDiff}}</td>
+                                <td class="text-center" scope="col">{{table.goalsScoredRate}}</td>
+                                <td class="text-center" scope="col">{{table.goalsConcededRate}}</td>
+                                <td class="text-center" style="font-weight: bold" scope="col">{{table.pointsRate}}</td>
+                                <td>
+                                    <div style="text-align:center">
+                                        <span data-toggle="tooltip" data-placement="top" title="{{playerMatch.goalsScored}}:{{playerMatch.goalsConceded}} przeciwko {{playerMatch.firstOpponentName}} i {{playerMatch.secondOpponentName}}" ng-repeat="playerMatch in playerMatches | filter: {playerId: table.playerId} | limitTo :5"
+                                            ng-class="playerMatch.resultFlag =='W' ? 'lastMatchWin' : (playerMatch.resultFlag =='R' ? 'lastMatchDraw' : (playerMatch.resultFlag == 'P' ? 'lastMatchLose' : 'noLastMatch'))">{{playerMatch.resultFlag}}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

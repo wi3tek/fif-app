@@ -15,11 +15,15 @@ public class League implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "league_seq")
     private Integer leagueId;
+    @Column(unique = true)
     private String name;
     private String description;
     private String startDate;
     private String endDate;
     private String location;
+
+    @ManyToOne
+    private User owner;
 
     public Integer getLeagueId() {
         return leagueId;
@@ -69,12 +73,21 @@ public class League implements Serializable {
         this.location = location;
     }
 
-    public League(String name, String description, String startDate, String endDate, String location) {
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public League(String name, String description, String startDate, String endDate, String location, User owner) {
         this.name=name;
         this.description=description;
         this.startDate=startDate;
         this.endDate=endDate;
         this.location=location;
+        this.owner = owner;
     }
 
     public League() {
