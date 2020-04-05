@@ -63,7 +63,6 @@ fifapp.controller('LoginController', ["$scope", '$rootScope',
 
         $scope.loginUser = function() {
             $scope.dataLoading = true;
-            // authenticate($scope.credentials, function(response) {
             LoginService.Login($scope.credentials, function(response) {
                 if ($rootScope.authenticated) {
                     LoginService.SetCredentials($scope.credentials.username, $scope.credentials.password)

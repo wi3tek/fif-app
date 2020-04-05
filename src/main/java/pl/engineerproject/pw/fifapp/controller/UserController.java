@@ -18,14 +18,23 @@ import pl.engineerproject.pw.fifapp.model.MatchData;
 import pl.engineerproject.pw.fifapp.model.Role;
 import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.service.UserService;
-
-import javax.xml.ws.Response;
-import java.security.Principal;
 import java.util.List;
+import javax.xml.ws.Response;
+
+
+import java.security.Principal;
+
 
 @RestController
 @RequestMapping(path = "/usersControls")
 public class UserController {
+
+
+
+    @RequestMapping("/getUser")
+    public Principal user(Principal user) {
+        return user;
+    }
 
 
     @Autowired
@@ -53,10 +62,6 @@ public class UserController {
     }
 
 
-    @RequestMapping("/user")
-    public Principal user(Principal user) {
-        return user;
-    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/getAllUsers")

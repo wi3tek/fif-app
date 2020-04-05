@@ -32,8 +32,6 @@ fifapp.factory('LoginService', ['$http', '$cookieStore', '$rootScope', '$timeout
 
     service.Login = function(credentials, callback) {
 
-        /* Dummy authentication for testing, uses $timeout to simulate api call
-         ----------------------------------------------*/
         $timeout(function() {
 
             var headers = credentials ? {
@@ -58,14 +56,6 @@ fifapp.factory('LoginService', ['$http', '$cookieStore', '$rootScope', '$timeout
                 console.log('Błędne logowanie')
             });
         }, 1000);
-
-
-        /* Use this for real authentication
-         ----------------------------------------------*/
-        //$http.post('/api/authenticate', { email: email, password: password })
-        //    .success(function (response) {
-        //        callback(response);
-        //    });
 
     };
 
