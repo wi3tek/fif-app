@@ -64,9 +64,5 @@ class FifAppApplicationTests {
 		assertEquals(roundDto.getLeagueStartDate(),round.getLeague().getStartDate());
 		assertEquals(roundDto.getLeagueLocation(),round.getLeague().getLocation());
 
-
 	}
-
-
-
 }

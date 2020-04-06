@@ -2,7 +2,7 @@
 
 var fifapp = angular.module('player.controllers', []);
 
-fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService', function($scope, PlayerService, AlertService) {
+fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService', '$rootScope', function($scope, PlayerService, AlertService, $rootScope) {
     $scope.playerEdited;
     $scope.newPlayer;
     $scope.activePlayer;
@@ -18,7 +18,7 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService'
 
     $scope.addPlayer = function() {
         if ($scope.player != null && $scope.player.name && $scope.player.alias) {
-            PlayerService.addPlayer($scope.player.name, $scope.player.alias, $scope.player.dateOfBirth, $scope.player.userId)
+            PlayerService.addPlayer($scope.player.name, $scope.player.alias, $scope.player.dateOfBirth, $rootScope.currentUser.id)
                 .then(function success(response) {
                         AlertService.setAlert('Poprawnie dodano zawodnika "' + $scope.player.alias + '"', 1);
                         console.log(response)
@@ -36,7 +36,7 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService'
     $scope.updatePlayer = function() {
         if ($scope.playerEdited != null && $scope.playerEdited.name && $scope.playerEdited.alias) {
             PlayerService.updatePlayer($scope.playerEdited.playerId, $scope.playerEdited.name, $scope.playerEdited.alias, $scope.playerEdited.dateOfBirth,
-                    $scope.playerEdited.joinDate, $scope.playerEdited.userId)
+                    $scope.playerEdited.joinDate, $rootScope.currentUser.id)
                 .then(function success(response) {
                         AlertService.setAlert('Porpawnie zaktualizowano dane zawodnika "' + $scope.playerEdited.alias + '"', 1);
                         $scope.getPlayers();
