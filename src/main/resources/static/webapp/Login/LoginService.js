@@ -22,7 +22,7 @@ fifapp.factory('LoginService', ['$http', '$cookieStore', '$rootScope', '$timeout
         $rootScope.currentUser = {}
         $cookieStore.remove('currentUser')
         $cookieStore.remove('globals');
-        $http.defaults.headers.common.Authorization = 'Basic ';
+        // $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
     service.Logout = function() {
