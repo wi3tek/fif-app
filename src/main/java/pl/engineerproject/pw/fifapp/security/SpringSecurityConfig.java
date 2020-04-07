@@ -1,40 +1,39 @@
 package pl.engineerproject.pw.fifapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
 @Configuration
+@EnableAutoConfiguration
+@EnableWebSecurity
 public class SpringSecurityConfig
         extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http
-                .httpBasic()
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/", "/home","/leagues/**", "/players/**", "/rounds/**", "/matches/**").permitAll()
-                .antMatchers("/webapp/User/user.html","/userDetails/**").hasAnyRole("ADMIN","USER")
-                .antMatchers("/usersControls/getAllUsers","/usersControls/activate","/usersControls/deactivate", "/webapp/Admin/admin.html","/controlPanel","controlPanel").hasRole("ADMIN")
-                .antMatchers("/commons/**","/webapp/**").permitAll()
-                .antMatchers("/usersControls/register", "/usersControls/user").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(new FilterCors(), ChannelProcessingFilter.class);
+        http.csrf().disable();
+        http.httpBasic();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/", "/home","/**");
+        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/", "/home","/**");
+        http.authorizeRequests().antMatchers("/usersControls/register", "/usersControls/user","/webapp/User/user.html","/userDetails/**").hasAnyRole("ADMIN","USER");
+        http.authorizeRequests().antMatchers("/usersControls/getAllUsers","/usersControls/activate","/usersControls/deactivate", "/webapp/Admin/admin.html","/controlPanel").hasRole("ADMIN");
+
     }
 
     @Autowired
