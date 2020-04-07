@@ -31,7 +31,7 @@ public class SpringSecurityConfig
         http.httpBasic();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/", "/home","/**");
         http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/", "/home","/**");
-        http.authorizeRequests().antMatchers("/usersControls/register", "/usersControls/user","/webapp/User/**","/userDetails/**").hasAnyRole("ADMIN","USER");
+        http.authorizeRequests().antMatchers("/usersControls/register", "/usersControls/user","/webapp/User/user.html","/userDetails/**").hasAnyRole("ADMIN","USER");
         http.authorizeRequests().antMatchers("/usersControls/getAllUsers","/usersControls/activate","/usersControls/deactivate", "/webapp/Admin/admin.html","/controlPanel").hasRole("ADMIN");
 
     }
