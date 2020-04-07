@@ -20,9 +20,9 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
             LeagueService.addLeague($scope.league.name, $scope.league.startDate, $scope.league.endDate,
                     $scope.league.description, $scope.league.location, $rootScope.currentUser.id)
                 .then(function success(response) {
+                        $scope.getListOfLeagues();
                         AlertService.setAlert('Poprawnie dodano ligę', 1);
                         console.log($scope.alertMessage + '\n' + response)
-                        $scope.getListOfLeagues();
                         $scope.reset();
                     },
                     function error(response) {
@@ -41,11 +41,11 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
     $scope.updateLeague = function() {
         if ($scope.leagueEdited != null && $scope.leagueEdited.name && $scope.leagueEdited.startDate) {
             LeagueService.updateLeague($scope.activeLeague.leagueId, $scope.leagueEdited.name, $scope.leagueEdited.startDate, $scope.leagueEdited.endDate,
-                    $scope.leagueEdited.description, $scope.leagueEdited.location)
+                    $scope.leagueEdited.description, $scope.leagueEdited.location, $rootScope.currentUser.id)
                 .then(function success(response) {
+                        $scope.getListOfLeagues();
                         AlertService.setAlert('Poprawnie zaktualizowano ligę', 1);
                         console.log($scope.alertMessage + '\n' + response)
-                        $scope.getListOfLeagues();
                         $scope.reset();
                     },
                     function error(response) {
@@ -88,8 +88,11 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
         LeagueService.getAllLeagues()
             .then(function success(response) {
                     $scope.leagues = response.data;
+                    console.log('Pobrano listę lig')
                 },
-                function error(response) {});
+                function error(response) {
+                    console.log('Nie udalo sie pobrac listy lig\n' + response)
+                });
     }
 
     $scope.reset = function() {

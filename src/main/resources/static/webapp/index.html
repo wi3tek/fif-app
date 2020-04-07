@@ -48,7 +48,7 @@
 
 <body ng-controller="HomeController">
     <nav class="navbar navbar-inverse">
-        <div ng-controller="LeagueController" ng-init="getListOfLeagues()">
+        <div ng-controller="LeagueController" ng-init="init()">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -153,8 +153,7 @@
                         <div class="form-group text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                             <button type="reset" class="btn btn-default" id="reset-btn" ng-click="reset()">Wyczyść</button>
-                            <button type="submit" class="btn btn-success" ng-click="addLeague(league.name, league.startDate, league.endDate,
-                            league.description, league.location)" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok"> Utwórz</span></button>
+                            <button type="submit" class="btn btn-success" ng-click="addLeague()" data-dismiss="modal" ng-disabled="leagueForm.$invalid"><span class="glyphicon glyphicon-ok"> Utwórz</span></button>
                         </div>
                     </form>
                 </div>

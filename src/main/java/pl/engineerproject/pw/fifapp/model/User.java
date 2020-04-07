@@ -105,4 +105,18 @@ public class User implements Serializable {
     public void setActiveFlag(boolean activeFlag) {
         this.activeFlag = activeFlag;
     }
+
+    public User(String username, String password, String email, String registrationReason,
+                LocalDateTime registrationDate, boolean activeFlag) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.registrationReason = registrationReason;
+        this.registrationDate = registrationDate;
+        this.activeFlag = activeFlag;
+    }
+
+    public User() {
+
+    }
 }

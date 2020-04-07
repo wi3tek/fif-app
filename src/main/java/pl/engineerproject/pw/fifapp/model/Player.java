@@ -3,8 +3,6 @@ package pl.engineerproject.pw.fifapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 @Entity
 @SequenceGenerator(name="player_seq",initialValue = 30, allocationSize=1000)
@@ -33,7 +31,7 @@ public class Player implements Serializable {
     private Date lastModificationDate;
 
     @OneToOne
-    private User user;
+    private User owner;
 
 
     public Player(String name, String alias, Date dateOfBirth, Date joinDate, Date lastModificationDate) {
@@ -97,12 +95,12 @@ public class Player implements Serializable {
         this.lastModificationDate = lastModificationDate;
     }
 
-    public User getUser() {
-        return user;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
 

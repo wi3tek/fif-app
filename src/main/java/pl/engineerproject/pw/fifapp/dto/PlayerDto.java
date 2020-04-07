@@ -1,8 +1,6 @@
 package pl.engineerproject.pw.fifapp.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class PlayerDto {
 
@@ -12,7 +10,7 @@ public class PlayerDto {
     private Date dateOfBirth;
     private Date joinDate;
     private Date lastModificationDate;
-    private Integer userId;
+    private Integer ownerId;
     private String userName;
 
 
@@ -79,12 +77,12 @@ public class PlayerDto {
         this.lastModificationDate = lastModificationDate;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getOwnerId() {
+        return ownerId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getUserName() {
