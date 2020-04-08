@@ -33,7 +33,7 @@ public class MatchData implements Serializable {
     private Player awayFirstPlayer;
 
     @OneToOne
-    @Column(nullable = false, unique = true)
+    @JoinColumn(nullable = false, unique = true)
     private Player awaySecondPlayer;
 
     @Column
