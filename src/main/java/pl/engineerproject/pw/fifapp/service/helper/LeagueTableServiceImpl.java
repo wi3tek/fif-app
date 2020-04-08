@@ -3,6 +3,7 @@ package pl.engineerproject.pw.fifapp.service.helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.model.helper.LeagueTable;
 import pl.engineerproject.pw.fifapp.repository.helper.LeagueTableRepository;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class LeagueTableServiceImpl implements LeagueTableService {
 
     @Autowired

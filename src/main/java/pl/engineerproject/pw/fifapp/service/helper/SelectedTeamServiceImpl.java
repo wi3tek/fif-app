@@ -2,6 +2,7 @@ package pl.engineerproject.pw.fifapp.service.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.dto.TeamDto;
 import pl.engineerproject.pw.fifapp.model.helper.SelectedTeam;
 import pl.engineerproject.pw.fifapp.repository.helper.SelectedTeamRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class SelectedTeamServiceImpl implements SelectedTeamService {
 
     @Autowired
