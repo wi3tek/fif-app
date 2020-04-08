@@ -36,14 +36,13 @@
 
 
                                 <button ng-show="authenticated && currentUser.id == league.ownerId" type="button" ng-click="setNewMatchSettings(round)" data-toggle="modal" data-target="#matchModal" class="btn btn-success btn-sm" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="top" title="Dodaj mecz" aria-hidden="true">
-
+                    <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="top" title="Dodaj mecz" aria-hidden="true"> DODAJ MECZ
                     </span>
                 </button>
 
 
-                                <button ng-show="authenticated  && currentUser.id == league.ownerId" type="button" class="btn btn-danger btn-xs " data-toggle="modal" data-target="#deleteRoundModal" title="Usuń kolejkę" ng-click="setEditRoundContext(round)">
-                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
+                                <button ng-show="authenticated  && currentUser.id == league.ownerId" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteRoundModal" title="Usuń kolejkę" ng-click="setEditRoundContext(round)">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 
                             </div>
                         </div>
@@ -184,9 +183,10 @@
                             <div class="row">
                                 <div class="col col-xs-6 text-left">
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" href="#deleteMatchModal" data-dismiss="modal" title="Usuń mecz" ng-click="setEditContext(matchEdited)">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                                 </div>
                                 <div class="col col-xs-6 text-right">
+                                    <button type="button" href="#myModal" data-toggle="modal" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
                                     <button type="button" class="btn btn-success btn-sm alertAction" ng-click="editMatch()" data-dismiss="modal"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Edytuj</button>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
                         <div class="modal-body">
 
                             <!-- Create Match form -->
-                            <form name="newMatchForm" novalidate>
+                            <form name="newMatchForm" novalidate accept-charset="UTF-8">
                                 <div class=form-row>
                                     <div class="form-group col-md-6" ng-class="{'has-error': newMatchForm.homeData.$invalid && !newMatchForm.homeData.$pristine}">
                                         <label for="homeData">GOSPODARZE</label>
@@ -235,6 +235,7 @@
                                             <option value="" disabled>DRUŻYNA GOSPODARZY</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.homeTeam.$dirty && newMatchForm.homeTeam.$error.required">Wybierz drużynę</small>
+                                                <small class="error" ng-show="newMatchForm.awayTeam.$dirty && newMatchForm.homeTeam == newMatchForm.awayTeam">Drużyny muszą być różne</small>
                                             </div>
                                         </div>
                                     </div>
@@ -260,6 +261,7 @@
                                             <option value="" disabled>DRUŻYNA GOŚCI</option>
                                                 </select>
                                                 <small class="error" ng-show="newMatchForm.awayTeam.$dirty && newMatchForm.awayTeam.$error.required">Wybierz drużynę</small>
+                                                <small class="error" ng-show="newMatchForm.awayTeam.$dirty && newMatchForm.awayTeam == newMatchForm.homeTeam">Drużyny muszą być różne</small>
                                             </div>
                                         </div>
                                     </div>
@@ -267,7 +269,7 @@
                                 <div class="form-group text-right">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                                     <button type="reset" class="btn btn-default" id="match-reset-btn" ng-click="resetNewMatch()">Wyczyść</button>
-                                    <button type="submit" class="btn btn-success alertAction" title="Dodaj Mecz" ng-click="addNewMatch()" data-dismiss="modal" ng-disabled="newMatchForm.$invalid">
+                                    <button type="submit" class="btn btn-success alertAction" title="Dodaj Mecz" ng-click="addNewMatch()" data-dismiss="modal" ng-disabled="(newMatchForm.$invalid || newMatchForm.awayTeam == newMatchForm.homeTeam)">
                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dodaj
                                     </button>
                                 </div>
@@ -346,7 +348,7 @@
                         <div class="modal-body">
 
                             <!-- Create round form -->
-                            <form novalidate name="roundForm">
+                            <form novalidate name="roundForm" accept-charset="UTF-8">
                                 <div class=form-row>
                                     <div class="form-group col-md-12" ng-class="{'has-error': roundForm.description.$invalid && !roundForm.description.$pristine}">
                                         <label for="description" class="col-form-label">Opis kolejki</label>
