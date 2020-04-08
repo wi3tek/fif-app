@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
+@Transactional
 public class InitServiceImpl implements InitService {
 
 	private static final String DUMMY_ADMIN_USER = "admin";

@@ -2,6 +2,7 @@ package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.converter.TeamConverter;
 import pl.engineerproject.pw.fifapp.dto.TeamDto;
 import pl.engineerproject.pw.fifapp.repository.TeamRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class TeamServiceImpl implements TeamService {
 
     @Autowired

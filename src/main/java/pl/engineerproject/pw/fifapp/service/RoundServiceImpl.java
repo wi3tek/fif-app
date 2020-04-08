@@ -3,6 +3,7 @@ package pl.engineerproject.pw.fifapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.converter.RoundConverter;
 import pl.engineerproject.pw.fifapp.dto.RoundDto;
 import pl.engineerproject.pw.fifapp.repository.RoundRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class RoundServiceImpl implements RoundService {
 
     @Autowired
