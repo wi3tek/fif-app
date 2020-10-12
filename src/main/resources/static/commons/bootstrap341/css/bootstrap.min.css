@@ -8,7 +8,7 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 html {
-    font-family: sans-serif;
+    font-family: ;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -5494,39 +5494,42 @@ fieldset[disabled] .navbar-default .btn-link:hover {
 }
 
 .navbar-inverse {
-    background-color: #007272;
-    border-color: #007272
+    background-color: white;
+    border-bottom: 3px solid darkolivegreen;
 }
 
 .navbar-inverse .navbar-brand {
-    color: rgb(238, 231, 231);
+    color: darkolivegreen
 }
 
 .navbar-inverse .navbar-brand:focus,
 .navbar-inverse .navbar-brand:hover {
-    color: #fff;
-    background-color: rgb(211, 193, 115)/*transparent */
+    color: white;
+    background-color: darkseagreen/*transparent */
 }
 
 .navbar-inverse .navbar-text {
-    color: rgb(238, 231, 231);
+    color: darkolivegreen;
+    font-weight: bold;
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: rgb(238, 231, 231);
+    color: darkolivegreen;
+    font-weight: bold;
 }
 
 .navbar-inverse .navbar-nav>li>a:focus,
 .navbar-inverse .navbar-nav>li>a:hover {
-    color: #fff;
-    background-color: rgb(211, 193, 115)
+    color: white;
+    background-color: darkseagreen;
+    font-weight: bold;
 }
 
 .navbar-inverse .navbar-nav>.active>a,
 .navbar-inverse .navbar-nav>.active>a:focus,
 .navbar-inverse .navbar-nav>.active>a:hover {
     color: #fff;
-    background-color: rgb(211, 193, 115)
+    background-color: darkseagreen
 }
 
 .navbar-inverse .navbar-nav>.disabled>a,
@@ -5540,7 +5543,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
 .navbar-inverse .navbar-nav>.open>a:focus,
 .navbar-inverse .navbar-nav>.open>a:hover {
     color: #fff;
-    background-color: rgb(211, 193, 115)
+    background-color: darkseagreen
 }
 
 @media (max-width:767px) {
@@ -6303,7 +6306,7 @@ a.thumbnail:hover {
 .list-group-item.disabled:hover {
     color: #777;
     cursor: not-allowed;
-    background-color: rgb(211, 193, 115);
+    background-color: darkseagreen;
 }
 
 .list-group-item.disabled .list-group-item-heading,
@@ -6361,7 +6364,7 @@ button.list-group-item:focus,
 button.list-group-item:hover {
     color: #555;
     text-decoration: none;
-    background-color: rgb(211, 193, 115);
+    background-color: darkseagreen;
 }
 
 button.list-group-item {

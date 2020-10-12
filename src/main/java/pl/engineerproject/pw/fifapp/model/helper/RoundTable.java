@@ -7,9 +7,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="leagues_results")
-public class LeagueTable implements Serializable {
-    private static final long serialVersionUID = 2020970066779405026L;
+@Table(name="rounds_table")
+public class RoundTable implements Serializable {
+    private static final long serialVersionUID = -5354143979341385780L;
 
     @Column(name = "id")
     @Id
@@ -18,6 +18,8 @@ public class LeagueTable implements Serializable {
     private Integer playerId;
     @Column(name = "ALIAS")
     private String alias;
+    @Column(name = "Kolejka")
+    private Integer roundId;
     @Column(name = "Liga")
     private Integer leagueId;
     @Column(name = "Mecze")
@@ -37,20 +39,21 @@ public class LeagueTable implements Serializable {
     @Column(name = "BILANS")
     private Integer goalsDiff;
     @Column
-    private Double goalsScoredRate  ;
+    private Double goalsScoredRate;
     @Column
     private Double goalsConcededRate;
     @Column
     private Double pointsRate;
 
 
-    public LeagueTable(Integer viewId, Integer playerId, String alias, Integer leagueId, Integer matches,
+    public RoundTable(Integer viewId, Integer playerId, String alias, Integer roundId, Integer leagueId, Integer matches,
                        Integer points, Integer wins, Integer draws, Integer loses, Integer goalsScored,
                        Integer goalsConceded, Integer goalsDiff, Double goalsScoredRate, Double goalsConcededRate,
                        Double pointsRate) {
         this.viewId = viewId;
         this.playerId = playerId;
         this.alias = alias;
+        this.roundId = roundId;
         this.leagueId = leagueId;
         this.matches = matches;
         this.points = points;
@@ -66,7 +69,7 @@ public class LeagueTable implements Serializable {
     }
 
 
-    public LeagueTable() {
+    public RoundTable() {
 
     }
 
@@ -94,12 +97,12 @@ public class LeagueTable implements Serializable {
         this.alias = alias;
     }
 
-    public Integer getLeagueId() {
-        return leagueId;
+    public Integer getRoundId() {
+        return roundId;
     }
 
-    public void setLeagueId(Integer leagueId) {
-        this.leagueId = leagueId;
+    public void setRoundId(Integer roundId) {
+        this.roundId = roundId;
     }
 
     public Integer getMatches() {
@@ -188,5 +191,13 @@ public class LeagueTable implements Serializable {
 
     public void setPointsRate(Double pointsRate) {
         this.pointsRate = pointsRate;
+    }
+
+    public Integer getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(Integer leagueId) {
+        this.leagueId = leagueId;
     }
 }

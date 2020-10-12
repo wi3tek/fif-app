@@ -5,7 +5,6 @@ import pl.engineerproject.pw.fifapp.dto.LeagueDto;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.model.MatchData;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 public interface MatchService {

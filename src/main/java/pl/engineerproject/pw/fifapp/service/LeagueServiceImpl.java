@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class LeagueServiceImpl implements LeagueService{
+public class    LeagueServiceImpl implements LeagueService{
 
     @Autowired
     LeagueRepository leagueRepository;

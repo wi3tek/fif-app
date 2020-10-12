@@ -21,19 +21,19 @@ public class MatchData implements Serializable {
     private LocalDateTime matchDate;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Player homeFirstPlayer;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Player homeSecondPlayer;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Player awayFirstPlayer;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Player awaySecondPlayer;
 
     @Column
@@ -43,11 +43,11 @@ public class MatchData implements Serializable {
     private Integer awayGoals;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Team homeTeam;
 
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Team awayTeam;
 
     @Column

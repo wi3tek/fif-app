@@ -1,6 +1,6 @@
 <div ng-init="init()">
-
-    <div class="content col-md-7 col-sm-12 col-xs-12">
+    <div class="content col-md-1 hidden-sm hidden-xs"></div>
+    <div class="content col-md-6 col-sm-12 col-xs-12">
         <div class="section-block">
             <div class="page-header">
                 <div class="row">
@@ -21,12 +21,12 @@
                 <div class="panel-body fontFamily">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <div class="row" style="background-color:darkcyan; color:white; padding:10px; border-radius: 50px;">
+                            <div class="row" style="background-color:midnightblue; color:white; padding:10px; border-radius: 50px;">
                                 <div class="content col-xs-3"><strong>IMIĘ</strong></div>
                                 <div class="content col-xs-3"><strong>PSEUDONIM</strong></div>
                                 <div class="content col-xs-3"><strong>DATA UR.</strong></div>
                                 <div class="content col-xs-3"><strong>DOŁĄCZYŁ</strong></div>
-                                <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
                             </div>
                             <div ng-repeat="player in players" class="list-group-item list-group-item-action" ng-click=setActivePlayer(player)>
                                 <div class="row" style="background-color:aliceblue; cursor: pointer;">
@@ -34,7 +34,7 @@
                                     <div class="content col-xs-3">{{player.alias}}</div>
                                     <div class="content col-xs-3">{{claculateTime(player.dateOfBirth) | date: 'yyyy-MM-dd'}}</div>
                                     <div class="content col-xs-3">{{claculateTime(player.joinDate) | date: 'yyyy-MM-dd'}}</div>
-                                    <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                    <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
                                     <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
     <!--/tabs-->
     <!--/main content-->
     <!--sidebar-->
-    <div class="content col-md-5 col-sm-12 col-xs-12" style="color:whitesmoke">
+    <div class="content col-md-4 col-sm-12 col-xs-12" style="color:whitesmoke">
         <div class="section-block summary">
             <div class="row" ng-if="activePlayer">
                 <div class="col-xs-12 text-center"><label class="label label-default">STATYSTYKI</label></div>
@@ -91,6 +91,7 @@
 
 
     </div>
+    <div class="content col-md-1 hidden-sm hidden-xs"></div>
 
     <!-- OKNO MODALNE EDYCJI ZAWODNIKA -->
     <div class="modal fade" id="editPlayerModal" tabindex="-1" role="dialog" aria-labelledby="editPlayerModalLabel" aria-hidden="true">

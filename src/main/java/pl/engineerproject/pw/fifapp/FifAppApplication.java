@@ -10,16 +10,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import pl.engineerproject.pw.fifapp.service.InitService;
+import pl.engineerproject.pw.fifapp.service.InitServiceImpl;
 
 @EnableEncryptableProperties
 @SpringBootApplication
-public class 	FifAppApplication {
+public class FifAppApplication {
 
 	@Autowired
 	private InitService initService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FifAppApplication.class, args);
+
 	}
 
 
@@ -29,7 +31,8 @@ public class 	FifAppApplication {
 		return new ModelMapper();
 	}
 
-
-	// INSERT INITIAL ADMIN USER:
-//u
+//	@EventListener(ApplicationReadyEvent.class)
+//	public void initData() throws Exception {
+//		initService.initUser();
+//	}
 }

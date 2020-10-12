@@ -1,13 +1,14 @@
 <div ng-init="">
-    <div class="content col-md-8 col-sm-12 col-xs-12">
+    <div class="content col-md-1 hidden-sm hidden-xs"></div>
+    <div class="content col-md-6 col-sm-12 col-xs-12">
         <div class="section-block">
             <!-- MAIN CONTENT -->
             <div ng-show="!authenticated">
                 <h1>Witamy oficjalnie</h1>
                 <br>
-                <h2>Twórz ligi, rozgrywaj mecze i śledź swoje wyniki z aplikacją FIF APP!</h2>
+                <h2>Twórz ligi, rozgrywaj mecze i śledź swoje wyniki z Fifową Śpodą!</h2>
                 <br>
-                <h4>Aby w pełni korzystać z aplikacji <a ng-href="#!login">Zaloguj się</a> lub <a ng-href="#!registration">Zarejestruj</a></h4>
+                <h4>Aby w pełni korzystać z aplikacji <a style="color:midnightblue" ng-href="#!login">Zaloguj się</a> lub <a style="color:midnightblue" ng-href="#!registration">Zarejestruj</a></h4>
             </div>
             <div ng-show="authenticated">
                 <h1>Dzień dobry <strong>{{loggedUser.username}}</strong></h1>
@@ -21,7 +22,7 @@
     <!--sidebar-->
     <div class="content col-md-4 col-sm-12 col-xs-12">
         <div class="section-block summary">
-            <h1 class="section-title">FIF APP</h1>
+            <h1 class="section-title">Fifowa Śpoda</h1>
             <div class="profile-contents">
                 <h2 class="position">Kliknij po więcej informacji</h2>
                 <img src="/commons/img/logo_v1.png" style="height:100px;" class="img responsive" alt="logo">
@@ -35,5 +36,6 @@
             </div>
         </div>
     </div>
+    <div class="content col-md-1 hidden-sm hidden-xs"></div>
     <!--/sidebar-->
 </div>

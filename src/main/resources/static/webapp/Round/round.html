@@ -1,4 +1,7 @@
 <div ng-init="init()">
+    <div class="content col-md-1 hidden-sm hidden-xs">
+
+    </div>
 
     <div class="content col-md-7 col-sm-12 col-xs-12">
         <div class="section-block">
@@ -6,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h1>
-                            LIGA: {{league.name}}
+                            FIFOWA ŚPODA: {{league.name}}
                         </h1>
                     </div>
                     <div class="col-xs-6 text-left">
@@ -20,7 +23,7 @@
             </div>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                 <div class="panel panel-default" ng-repeat="round in rounds">
-                    <div class="panel-heading" style="background-color: darkcyan; font-weight:bold;" role="tab" id="headingOne{{round.roundId}}" is-open="$first" is-open="$first">
+                    <div class="panel-heading" style="background-color: midnightblue; font-weight:bold;" role="tab" id="headingOne{{round.roundId}}" is-open="$first" is-open="$first">
                         <div class="row">
                             <div class="panel-title" data-toggle="collapse" data-target="#collapseOne{{round.roundId}}" aria-expanded="false" data-parent="#accordion">
                                 <div class="col-xs-4 text-left">
@@ -49,12 +52,12 @@
                         <div class="panel-body ">
                             <!-- LISTA MECZÓW -->
                             <!--<table class="table" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">-->
-                            <div class="container-fluid">
+                            <div class="container-fluid col-md-6  col-sm-12 col-xs-12">
                                 <div class="row" ng-repeat="match in leagueMatches | filter : {roundId: round.roundId}">
                                     <div class="row" style="background-color:aliceblue;">
                                         <div class="col-xs-1 text-center hidden-xs" style="padding:16px;"><label class="label label-default">{{claculateTime(match.matchDate) | date: 'HH:mm'}}</label></div>
                                         <div class="col-xs-1 text-right" style="padding-top:8px;">
-                                            <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                            <div data-toggle="tooltip" style="height:35px; width:35px; border-radius:5px;
                                                                 " data-placement="top" ng-attr-title="{{match.homeTeamName}}">
                                                 <img ng-src="{{match.homeTeamLogoUrl}}" width="35px" height="35px" title="{{match.homeTeamName}}">
                                             </div>
@@ -83,16 +86,49 @@
 
                                         </div>
                                         <div class="col-xs-1 text-left" style="padding-top:8px;">
-                                            <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                            <div data-toggle="tooltip" style="height:35px; width:35px; border-radius:5px;
                                                                 " data-placement="top" ng-attr-title="{{match.awayTeamName}}">
                                                 <img ng-src="{{match.awayTeamLogoUrl}}" width="35px" height="35px" title="{{match.awayTeamName}}">
                                             </div>
 
                                         </div>
-                                        <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                        <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
                                         <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                     </div>
                                 </div>
+
+                            </div>
+                            <div class="container-fluid col-md-1 hidden-sm hidden-xs"></div>
+                            <div class="container-fluid col-md-5  col-sm-12 col-xs-12">
+
+                                <div class="section-block summary" style="color:midnightblue; background-color: whitesmoke;">
+                                    <div class="row">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                                <tr style="font-weight: bold;">
+                                                    <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                                                    <th class="text-center" scope="col">M (Z-R-P)</th>
+                                                    <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                                                    <th class="text-center" scope="col">Pkt</th>
+                                                    <th class="text-center" scope="col">WSP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="table in roundTable | filter: { roundId:round.roundId}">
+                                                    <td scope="row"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
+                                                    <td scope="col">{{table.alias}}</td>
+                                                    <td class="text-center" scope="col">{{table.matches}} ({{table.wins}}-{{table.draws}}-{{table.loses}})</td>
+                                                    <td class="text-right" scope="col">{{table.goalsScored}}</td>
+                                                    <td class="text-center" style="width:1px;">-</td>
+                                                    <td class="text-left" scope="col">{{table.goalsConceded}}</td>
+                                                    <td class="text-center" scope="col">{{table.points}}</td>
+                                                    <td class="text-center" scope="col">{{table.pointsRate}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
 
                             </div>
                         </div>
@@ -113,7 +149,7 @@
                         <div class="container-fluid">
                             <div class="row" style="background-color:aliceblue;">
                                 <div class="col-xs-2 text-right" style="padding-top:8px;">
-                                    <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                    <div data-toggle="tooltip" style="background-color:midnightblue; height:35px; width:35px; border-radius:5px;
                                                     " data-placement="top" ng-attr-title="{{matchEdited.homeTeamName}}">
                                         <img ng-src="{{matchEdited.homeTeamLogoUrl}}" width="35px" height="35px" title="{{matchEdited.homeTeamName}}">
                                     </div>
@@ -164,7 +200,7 @@
 
                                 </div>
                                 <div class="col-xs-1 text-left" style="padding-top:8px;">
-                                    <div data-toggle="tooltip" style="background-color:darkcyan; height:35px; width:35px; border-radius:5px;
+                                    <div data-toggle="tooltip" style="background-color:midnightblue; height:35px; width:35px; border-radius:5px;
                                                     " data-placement="top" ng-attr-title="{{matchEdited.awayTeamName}}">
                                         <img ng-src="{{matchEdited.awayTeamLogoUrl}}" width="35px" height="35px" title="{{matchEdited.awayTeamName}}">
                                     </div>
@@ -223,7 +259,7 @@
                                                 <small class="error" ng-show="newMatchForm.homeFirstPlayer.$dirty && newMatchForm.homeFirstPlayer.$error.required">Wybierz gracza</small>
                                             </div>
                                             <div class="form-group">
-                                                <select class="selectpicker form-control text-center" id="homeSecondPlayer" required name="homeSecondPlayer" data-live-search="true" ng-model="newMatch.homeSecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId }">
+                                                <select class="selectpicker form-control" id="homeSecondPlayer" name="homeSecondPlayer" required data-live-search="true" ng-model="newMatch.homeSecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId }">
                                             <option value="" disabled>2 GOSPODARZ</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.homeSecondPlayer.$dirty && newMatchForm.homeSecondPlayer.$error.required">Wybierz gracza</small>
@@ -241,14 +277,14 @@
                                         <label for="awayData">GOŚCIE</label>
                                         <div class="well">
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awayFirstPlayer.$invalid && !newMatchForm.awayFirstPlayer.$pristine}">
-                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId }">
+                                                <select class="selectpicker form-control" id="awayFirstPlayer" name="awayFirstPlayer" required data-live-search="true" ng-model="newMatch.awayFirstPlayerId" ng-options="player.playerId as player.alias for player in players">
                                             <option value="" disabled>1 GOŚĆ</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.awayFirstPlayer.$dirty && newMatchForm.awayFirstPlayer.$error.required">Wybierz gracza</small>
                                             </div>
 
                                             <div class="form-group" ng-class="{'has-error': newMatchForm.awaySecondPlayer.$invalid && !newMatchForm.awaySecondPlayer.$pristine}">
-                                                <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" required data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.homeFirstPlayerId } | filter: { playerId: '!' +newMatch.homeSecondPlayerId } | filter: { playerId: '!' +newMatch.awayFirstPlayerId }">
+                                                <select class="selectpicker form-control" id="awaySecondPlayer" name="awaySecondPlayer" required data-live-search="true" ng-model="newMatch.awaySecondPlayerId" ng-options="player.playerId as player.alias for player in players | filter: { playerId: '!' +newMatch.awayFirstPlayerId }">
                                             <option value="" disabled>2 GOŚĆ</option>
                                         </select>
                                                 <small class="error" ng-show="newMatchForm.awaySecondPlayer.$dirty && newMatchForm.awaySecondPlayer.$error.required">Wybierz gracza</small>
@@ -372,48 +408,87 @@
 
         </div>
     </div>
-    <div class="content col-md-5 col-sm-12 col-xs-12">
-        <div class="section-block summary">
-            <div class="row">
-                <div class="col-xs-6 text-left text-left">
-                    <label class="label label-default">TABELA LIGOWA</label>
-                </div>
-                <div class="col-xs-6 text-right">
-                    <button type="button" class="btn btn-default btn-xs" title="Pokaż pełną tabelę" ng-click="getPlayersMatchesInLeague(leagueId)" data-toggle="modal" data-target="#extendedTableModal">
+    <div class="content col-md-4 col-sm-12 col-xs-12">
+        <!--tabelki-->
+        <div class="content col-md-12 col-sm-12 col-xs-12">
+            <div class="section-block summary">
+                <div class="row">
+                    <div class="col-xs-6 text-left text-left">
+                        <label class="label label-default">TABELA LIGOWA</label>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button type="button" class="btn btn-default btn-xs" title="Pokaż pełną tabelę" ng-click="getPlayersMatchesInLeague(leagueId)" data-toggle="modal" data-target="#extendedTableModal">
                     <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                   </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-hover table-sm" style="color:whitesmoke">
+                        <thead>
+                            <tr style="font-weight: bold;">
+                                <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                                <th class="text-center" scope="col">M</th>
+                                <th class="text-center" scope="col">Z</th>
+                                <th class="text-center" scope="col">R</th>
+                                <th class="text-center" scope="col">P</th>
+                                <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                                <th class="text-center" scope="col">WSP. PKT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="table in leagueTable">
+                                <td scope="row"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
+                                <td scope="col">{{table.alias}}</td>
+                                <td class="text-center" scope="col">{{table.matches}}</td>
+                                <td class="text-center" scope="col">{{table.wins}}</td>
+                                <td class="text-center" scope="col">{{table.draws}}</td>
+                                <td class="text-center" scope="col">{{table.loses}}</td>
+                                <td class="text-right" scope="col">{{table.goalsScored}}</td>
+                                <td class="text-center" style="width:2px;">-</td>
+                                <td class="text-left" scope="col">{{table.goalsConceded}}</td>
+                                <td class="text-center" scope="col">{{table.pointsRate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="row">
-                <table class="table table-hover table-sm" style="color:whitesmoke">
-                    <thead>
-                        <tr style="font-weight: bold;">
-                            <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
-                            <th class="text-center" scope="col">M</th>
-                            <th class="text-center" scope="col">Z</th>
-                            <th class="text-center" scope="col">R</th>
-                            <th class="text-center" scope="col">P</th>
-                            <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
-                            <th class="text-center" scope="col">WSP. PKT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="table in leagueTable">
-                            <td scope="row"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
-                            <td scope="col">{{table.alias}}</td>
-                            <td class="text-center" scope="col">{{table.matches}}</td>
-                            <td class="text-center" scope="col">{{table.wins}}</td>
-                            <td class="text-center" scope="col">{{table.draws}}</td>
-                            <td class="text-center" scope="col">{{table.loses}}</td>
-                            <td class="text-right" scope="col">{{table.goalsScored}}</td>
-                            <td class="text-center" style="width:2px;">-</td>
-                            <td class="text-left" scope="col">{{table.goalsConceded}}</td>
-                            <td class="text-center" scope="col">{{table.pointsRate}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
+
+        <!-- <div class="content col-md-5 col-sm-5 col-xs-5">
+            <div class="section-block summary" style="color:midnightblue; background-color: whitesmoke;">
+                <div class="row">
+                    <div class="col-xs-6 text-left text-left">
+                        <label class="label label-default">TABELA {{quantityOfRounds}} KOLEJKI:</label>
+                    </div>
+                    <br>
+                </div>
+                <div class="row">
+                    <table class="table table-hover table-sm">
+                        <thead>
+                            <tr style="font-weight: bold;">
+                                <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                                <th class="text-center" scope="col">M(Z-R-P)</th>
+                                <th class="text-center" scope="colgroup" colspan="3"><i class="demo-icon icon-soccer-ball"></i></th>
+                                <th class="text-center" scope="col">Pkt</th>
+                                <th class="text-center" scope="col">WSP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="table in roundTable">
+                                <td scope="row"><span ng-class="$index >= 7 ? 'position-red' : ($index  >= 3 ? 'position-default' : 'position'+$index)"> {{ $index + 1 }} </span></td>
+                                <td scope="col">{{table.alias}}</td>
+                                <td class="text-center" scope="col">{{table.matches}} ({{table.wins}}-{{table.draws}}-{{table.loses}})</td>
+                                <td class="text-right" scope="col">{{table.goalsScored}}</td>
+                                <td class="text-center" style="width:1px;">-</td>
+                                <td class="text-left" scope="col">{{table.goalsConceded}}</td>
+                                <td class="text-center" scope="col">{{table.points}}</td>
+                                <td class="text-center" scope="col">{{table.pointsRate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> -->
     </div>
 
     <!-- Modal -->
@@ -426,7 +501,7 @@
                 </div>
                 <div class="modal-body">
                     <table class="table table-hover table-sm" style="color:whitesmoke">
-                        <thead style="background-color:darkcyan">
+                        <thead style="background-color:midnightblue">
                             <tr style="font-weight: bold;">
                                 <th class="text-center" scope="colgroup" colspan="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
                                 <th class="text-center" scope="col">M</th>

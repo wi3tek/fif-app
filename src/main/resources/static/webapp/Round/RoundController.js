@@ -13,6 +13,7 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
     $scope.newRound;
     $scope.roundEdited;
     $scope.matchesInDeletedRound;
+    $scope.lastRound;
 
     $(document).ready(function() {
         $("#eventAlert").hide();
@@ -58,8 +59,18 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
         RoundService.getLeagueRounds($scope.leagueId)
             .then(function success(response) {
                     $scope.rounds = response.data;
-                    console.log('Udało się pobrać kolejki ligowe!')
+                    $scope.lastRound = $scope.rounds[0].roundId
+                    console.log('Udało się pobrać kolejki ligowe!' + '$scope.lastRound =' + $scope.lastRound);
                     $scope.quantityOfRounds = countObjects(response.data);
+
+                    RoundService.getRoundTable($scope.leagueId)
+                        .then(function success(response) {
+                                $scope.roundTable = response.data;
+                                console.log('HEHE funkcja' + $scope.alertMessage + '\n' + response + '\n $scope.lastRound=' + $scope.lastRound);
+                            },
+                            function error(response) {
+                                console.log('HEHE nieudana funkcja' + $scope.alertMessage + '\n' + response + '\n $scope.lastRound=' + $scope.lastRound);
+                            })
                 },
                 function error(response) {
                     console.log('Błąd podczas pobrania rund ligowych')
@@ -125,7 +136,9 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
         $scope.getLeagueMatches();
         $scope.getLeagueTable();
 
+
     }
+
 
     $scope.setEditContext = function(data) {
         $scope.matchEdited = data;

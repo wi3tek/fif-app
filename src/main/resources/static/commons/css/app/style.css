@@ -13,8 +13,8 @@
                                         
                                         body {
                                             /* background-color: #ECEBEB; */
-                                            font-family: 'Open Sans', sans-serif;
-                                            background: url('/commons/img/background.jpg') no-repeat center center fixed;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
+                                            background: url('/commons/img/background.png') no-repeat center center fixed;
                                             -webkit-background-size: cover;
                                             -moz-background-size: cover;
                                             background-size: cover;
@@ -26,7 +26,7 @@
                                             background-color: gold;
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -39,7 +39,7 @@
                                             background-color: rgb(73, 184, 73);
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -52,7 +52,7 @@
                                             background-color: rgb(73, 184, 73);
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -65,7 +65,7 @@
                                             background-color: rgb(202, 48, 48);
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -78,7 +78,7 @@
                                             background-color: gray;
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -98,7 +98,7 @@
                                             background-color: green;
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -114,7 +114,7 @@
                                             background-color: orange;
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -130,7 +130,7 @@
                                             background-color: red;
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -146,7 +146,7 @@
                                             background-color: gray;
                                             color: white;
                                             border-radius: 50%;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                             font-weight: bold;
                                             width: 20px;
                                             height: 20px;
@@ -160,7 +160,7 @@
                                         
                                         .table-hover tbody tr:hover td,
                                         .table-hover tbody tr:hover th {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                         }
                                         
                                         .panel {
@@ -168,17 +168,17 @@
                                         }
                                         
                                         .matchRow {
-                                            background-color: #007272;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            background-color: #547a34;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                         }
                                         
                                         .fontFamily {
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                         }
                                         
                                         .roundRow {
                                             background-color: mediumseagreen;
-                                            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                                            font-family: 'Helvetica Neue', Arial, sans-serif;
                                         }
                                         
                                         .scrollable-menu {
@@ -200,13 +200,13 @@
                                         }
                                         
                                         a {
-                                            color: rgb(211, 193, 115);
+                                            color: darkseagreen;
                                         }
                                         /*-Header-*/
                                         
                                         .header {
-                                            background-color: #007272;
-                                            border-bottom: 5px solid rgb(211, 193, 115);
+                                            background-color: #547a34;
+                                            border-bottom: 5px solid darkseagreen;
                                             padding: 30px 0px;
                                         }
                                         
@@ -236,7 +236,7 @@
                                             margin: 0px 0px 5px 0px;
                                             display: table;
                                             border-radius: 4px;
-                                            color: rgb(211, 193, 115);
+                                            color: darkseagreen;
                                         }
                                         
                                         .goal-summary .backers span,
@@ -256,7 +256,7 @@
                                         
                                         .goal-summary .reminder a:hover,
                                         .goal-summary .reminder a:focus {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                             color: #fff;
                                         }
                                         
@@ -282,7 +282,7 @@
                                         }
                                         
                                         .section-block.summary {
-                                            background-color: #007272;
+                                            background-color: midnightblue;
                                         }
                                         
                                         .section-block.summary h1 {
@@ -344,7 +344,7 @@
                                         }
                                         
                                         .profile-contents ul li a {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                             color: #FFF;
                                             height: 40px;
                                             width: 40px;
@@ -362,14 +362,14 @@
                                         }
                                         
                                         .profile-contents ul li a:hover {
-                                            background-color: #007272
+                                            background-color: #547a34
                                         }
                                         /*-Funding Meta-*/
                                         
                                         .funding-meta {}
                                         
                                         .funding-meta h1 {
-                                            background: #007272;
+                                            background: #547a34;
                                             color: #fff;
                                             border-radius: 4px;
                                             display: table;
@@ -386,7 +386,7 @@
                                         }
                                         
                                         .type-meta i.fa {
-                                            color: #007272;
+                                            color: #547a34;
                                             margin-right: 5px;
                                         }
                                         
@@ -419,7 +419,7 @@
                                         .funding-meta h2,
                                         .funding-meta span.contribution {
                                             display: inline-block;
-                                            color: rgb(211, 193, 115);
+                                            color: darkseagreen;
                                         }
                                         
                                         .funding-meta span.contribution,
@@ -444,7 +444,7 @@
                                         }
                                         
                                         .progress-bar {
-                                            background-color: #007272;
+                                            background-color: #547a34;
                                             box-shadow: none;
                                         }
                                         
@@ -473,7 +473,7 @@
                                         }
                                         
                                         .reward-block h3 {
-                                            background: #007272;
+                                            background: #547a34;
                                             color: #fff;
                                             font-size: 15px;
                                             font-weight: 700;
@@ -486,12 +486,12 @@
                                         .reward-block h2 {
                                             font-size: 20px;
                                             font-weight: 300;
-                                            color: #007272;
+                                            color: #547a34;
                                             margin: 15px 0px;
                                         }
                                         
                                         .reward-block i.fa {
-                                            color: #007272;
+                                            color: #547a34;
                                         }
                                         
                                         .reward-block span {
@@ -559,7 +559,7 @@
                                         .nav-tabs>li.active>a:focus,
                                         .nav-tabs>li.active>a:hover {
                                             color: #FFF;
-                                            background-color: #007272;
+                                            background-color: #547a34;
                                             border: 0;
                                             border-radius: 4px;
                                             font-weight: 700;
@@ -604,7 +604,7 @@
                                         }
                                         
                                         .btn.btn-launch {
-                                            background-color: #007272;
+                                            background-color: #547a34;
                                             color: #FFF;
                                             font-size: 17px;
                                             font-weight: 600;
@@ -616,12 +616,12 @@
                                         .btn.btn-reward,
                                         .btn.btn-reward:hover,
                                         .btn.btn-reward :focus {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                             box-shadow: none;
                                         }
                                         
                                         .btn.btn-reward {
-                                            background-color: #007272;
+                                            background-color: #547a34;
                                             color: #FFF;
                                             font-size: 14px;
                                             font-weight: 600;
@@ -629,7 +629,7 @@
                                         }
                                         
                                         .btn.btn-signup {
-                                            background-color: #007272;
+                                            background-color: #547a34;
                                             color: #fff;
                                             height: 40px;
                                             width: 43px;
@@ -639,14 +639,14 @@
                                         }
                                         
                                         .btn.btn-contact {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                             color: #fff;
                                             font-weight: 700;
                                         }
                                         
                                         .btn.btn-contact:hover,
                                         .btn.btn-contact:focus {
-                                            background-color: #007272;
+                                            background-color: #547a34;
                                         }
                                         
                                         .btn.btn-contact i.fa {
@@ -660,7 +660,7 @@
                                         }
                                         
                                         .btn.btn-download {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                             color: #fff;
                                         }
                                         /*-Credits-*/
@@ -687,14 +687,14 @@
                                         /*-Footer-*/
                                         
                                         .footer {
-                                            background-color: #007272;
+                                            background-color: white;
                                             position: relative;
                                             margin-top: -150px;
-                                            /* negative value of footer height */
-                                            /* height: 150px; */
+                                            height: auto;
                                             clear: both;
                                             padding: 10px;
                                             text-align: center;
+                                            border-bottom: 3px solid darkolivegreen;
                                         }
                                         
                                         #wrapper {
@@ -713,7 +713,7 @@
                                         
                                         .copyright a {
                                             background: #fff;
-                                            color: #007272;
+                                            color: #547a34;
                                             padding: 0px 5px;
                                             margin-left: 4px;
                                             border-radius: 4px;
@@ -732,16 +732,16 @@
                                         .tabButton {
                                             margin: 1px;
                                             cursor: pointer;
-                                            background-color: darkcyan;
+                                            background-color: midnightblue;
                                             color: white;
                                         }
                                         
                                         .tabButton:hover {
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                             color: white;
                                         }
                                         
                                         .tabButton:focus {
                                             color: white;
-                                            background-color: rgb(211, 193, 115);
+                                            background-color: darkseagreen;
                                         }
