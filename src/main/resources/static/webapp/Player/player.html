@@ -1,6 +1,6 @@
 <div ng-init="init()">
-
-    <div class="content col-md-7 col-sm-12 col-xs-12">
+    <div class="content col-md-1 hidden-sm hidden-xs"></div>
+    <div class="content col-md-6 col-sm-12 col-xs-12">
         <div class="section-block">
             <div class="page-header">
                 <div class="row">
@@ -21,12 +21,12 @@
                 <div class="panel-body fontFamily">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <div class="row" style="background-color:darkcyan; color:white; padding:10px; border-radius: 50px;">
+                            <div class="row" style="background-color:midnightblue; color:white; padding:10px; border-radius: 50px;">
                                 <div class="content col-xs-3"><strong>IMIĘ</strong></div>
                                 <div class="content col-xs-3"><strong>PSEUDONIM</strong></div>
                                 <div class="content col-xs-3"><strong>DATA UR.</strong></div>
                                 <div class="content col-xs-3"><strong>DOŁĄCZYŁ</strong></div>
-                                <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
                             </div>
                             <div ng-repeat="player in players" class="list-group-item list-group-item-action" ng-click=setActivePlayer(player)>
                                 <div class="row" style="background-color:aliceblue; cursor: pointer;">
@@ -34,7 +34,7 @@
                                     <div class="content col-xs-3">{{player.alias}}</div>
                                     <div class="content col-xs-3">{{claculateTime(player.dateOfBirth) | date: 'yyyy-MM-dd'}}</div>
                                     <div class="content col-xs-3">{{claculateTime(player.joinDate) | date: 'yyyy-MM-dd'}}</div>
-                                    <div class="col-xs-12" style="background-color:darkcyan; height:3px;width:100%"></div>
+                                    <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
                                     <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
     <!--/tabs-->
     <!--/main content-->
     <!--sidebar-->
-    <div class="content col-md-5 col-sm-12 col-xs-12" style="color:whitesmoke">
+    <div class="content col-md-4 col-sm-12 col-xs-12" style="color:whitesmoke">
         <div class="section-block summary">
             <div class="row" ng-if="activePlayer">
                 <div class="col-xs-12 text-center"><label class="label label-default">STATYSTYKI</label></div>
@@ -91,6 +91,7 @@
 
 
     </div>
+    <div class="content col-md-1 hidden-sm hidden-xs"></div>
 
     <!-- OKNO MODALNE EDYCJI ZAWODNIKA -->
     <div class="modal fade" id="editPlayerModal" tabindex="-1" role="dialog" aria-labelledby="editPlayerModalLabel" aria-hidden="true">
@@ -105,7 +106,7 @@
 
                 <div class="modal-body">
                     <!-- EDit player form -->
-                    <form novalidate name="editPlayerForm">
+                    <form novalidate name="editPlayerForm" accept-charset="UTF-8">
                         <div class=form-row>
                             <div class="form-group col-md-12" ng-class="{ 'has-error': editPlayerForm.playerName.$invalid}">
                                 <label for="playerEditedName">Imię</label>
@@ -126,7 +127,7 @@
                                 <input type="date" class="form-control" name="dateOfBirth" max="2001-01-01" ng-model="playerEdited.dateOfBirth" required id="dateOfBirth" placeholder="Data urodzenia" required>
                                 <small class="error" ng-show="editPlayerForm.dateOfBirth.$error.required">Data urodzenia jest wymagana</small>
                             </div>
-                            <div class="form-group col-md-12" ng-class="{ 'has-error': editPlayerForm.playerUser.$invalid}">
+                            <div class="form-group col-md-12 hidden" ng-class="{ 'has-error': editPlayerForm.playerUser.$invalid}">
                                 <label for="playerUser">Powiązany użytkownik</label>
                                 <input type="text" class="form-control" name="playerUser" ng-model="playerEdited.playerUser" id="playerUser" placeholder="Powiązany użytkownik">
                             </div>
@@ -159,7 +160,7 @@
 
             <div class="modal-body">
                 <!-- Create player form -->
-                <form novalidate name="playerForm">
+                <form novalidate name="playerForm" accept-charset="UTF-8">
                     <div class=form-row>
                         <div class="form-group col-md-12" ng-class="{ 'has-error': playerForm.playerName.$invalid && !playerForm.playerName.$pristine}">
                             <label for="playerName">Imię</label>
@@ -189,7 +190,7 @@
                         </div>
                         <div class="form-group col-md-12" ng-class="{ 'has-error': playerForm.playerUser.$invalid && !playerForm.playerUser.$pristine}">
                             <label for="playerUser">Powiązany użytkownik</label>
-                            <input type="text" class="form-control" name="playerUser" ng-model="player.playerUser" disabled id="playerUser" placeholder="Powiązany użytkownik">
+                            <input type="text" class="form-control hidden" name="playerUser" ng-model="player.playerUser" disabled id="playerUser" placeholder="Powiązany użytkownik">
                         </div>
                         <div class="form-group text-right">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>

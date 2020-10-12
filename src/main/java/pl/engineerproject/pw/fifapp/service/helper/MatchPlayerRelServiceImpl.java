@@ -2,6 +2,7 @@ package pl.engineerproject.pw.fifapp.service.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.model.MatchData;
 import pl.engineerproject.pw.fifapp.model.helper.MatchPlayerRel;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
+@Transactional
 public class MatchPlayerRelServiceImpl implements MatchPlayerRelService {
 
     @Autowired

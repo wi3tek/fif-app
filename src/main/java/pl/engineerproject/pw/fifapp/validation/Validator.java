@@ -1,5 +1,7 @@
 package pl.engineerproject.pw.fifapp.validation;
 
+import pl.engineerproject.pw.fifapp.dto.MatchDto;
+
 import javax.validation.constraints.Email;
 
 public class Validator {
@@ -11,4 +13,5 @@ public class Validator {
     public static boolean isPasswordConfirmed(String password, String confirmPassford) {
         return password.equals(confirmPassford);
     }
+    
 }

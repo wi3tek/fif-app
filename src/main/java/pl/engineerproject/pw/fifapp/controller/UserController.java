@@ -19,7 +19,6 @@ import pl.engineerproject.pw.fifapp.model.Role;
 import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.service.UserService;
 import java.util.List;
-import javax.xml.ws.Response;
 
 
 import java.security.Principal;

@@ -123,6 +123,11 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
         })
     }
 
-
+    this.getRoundTable = function getRoundTable(roundId) {
+        return $http({
+            method: 'GET',
+            url: 'rounds/roundTable/' + roundId
+        })
+    }
 
 }])

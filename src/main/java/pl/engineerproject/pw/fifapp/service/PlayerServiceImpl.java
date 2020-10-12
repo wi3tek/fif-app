@@ -3,6 +3,7 @@ package pl.engineerproject.pw.fifapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.converter.PlayerConverter;
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
 import pl.engineerproject.pw.fifapp.model.Player;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class PlayerServiceImpl implements PlayerService {
 
     @Autowired

@@ -43,7 +43,7 @@
     <script src="/webapp/Home/AlertService.js"></script>
     <script src="/webapp/Match/MatchService.js"></script>
 
-    <title>Fifapp</title>
+    <title>Fifowa Śpoda</title>
 </head>
 
 <body ng-controller="HomeController">
@@ -56,7 +56,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>                        
             </button>
-                    <a class="navbar-brand" href="#" title="Strona główna"><span class="glyphicon glyphicon-home"></span> FIF APP</a>
+                    <a class="navbar-brand" href="#" title="Strona główna"><span class="glyphicon glyphicon-home"></span> FIFOWA ŚPODA</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -88,7 +88,7 @@
 
     <!--main content-->
     <div id="wrapper" ng-controller="HomeController">
-        <div id="main" class="container clear-top">
+        <div id="main" class="container-fluid">
             <div class="row">
 
                 <div id="eventAlert" ng-class="alertStatus == 1 ? 'alert alert-success alert-dismissible' : (alertStatus == 0 ? 'alert alert-danger alert-dismissible' : 'alert alert-info alert-dismissible')" role="alert">
@@ -121,7 +121,7 @@
                 <div class="modal-body">
 
                     <!-- Create league form -->
-                    <form novalidate name="leagueForm">
+                    <form novalidate name="leagueForm" accept-charset="UTF-8">
                         <div class=form-row>
                             <div class="form-group col-md-6" ng-class="{'has-error': leagueForm.leagueName.$invalid}">
                                 <label for="leagueName">Nazwa Ligi</label>

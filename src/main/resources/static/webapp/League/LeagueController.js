@@ -20,7 +20,7 @@ fifapp.controller('LeagueController', ["$scope", 'LeagueService', 'AlertService'
             LeagueService.addLeague($scope.league.name, $scope.league.startDate, $scope.league.endDate,
                     $scope.league.description, $scope.league.location, $rootScope.currentUser.id)
                 .then(function success(response) {
-                        $scope.getListOfLeagues();
+                        $scope.init();
                         AlertService.setAlert('Poprawnie dodano ligę', 1);
                         console.log($scope.alertMessage + '\n' + response)
                         $scope.reset();
