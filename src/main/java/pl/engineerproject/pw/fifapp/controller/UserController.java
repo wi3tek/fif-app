@@ -28,25 +28,22 @@ import java.security.Principal;
 @RequestMapping(path = "/usersControls")
 public class UserController {
 
-
-
-    @RequestMapping("/getUser")
+    @GetMapping("/getUser")
     public Principal user(Principal user) {
         return user;
     }
 
-
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST, value="/register")
+    @PostMapping("/register")
     public ResponseEntity registerUser(@RequestBody RegistrationFormDto registrationFormDto) {
 
         return userService.createUser(registrationFormDto);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value ="/activate/{userId}", method = RequestMethod.PUT)
+    @PutMapping("/activate/{userId}")
     public void activate(@PathVariable Integer userId) {
 
 
@@ -54,7 +51,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value="/deactivate/{userId}",method = RequestMethod.PUT)
+    @PutMapping("/deactivate/{userId}")
     public void deactivate(@PathVariable Integer userId) {
             userService.setUserAccess(userId, false);
 

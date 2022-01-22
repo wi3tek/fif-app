@@ -17,7 +17,7 @@ public class LegaueTableController {
     @Autowired
     LeagueTableService leagueTableService;
 
-    @RequestMapping("/getLeagueTable/{leagueId}")
+    @GetMapping("/getLeagueTable/{leagueId}")
     public List<LeagueTable> getLeagueTable(@PathVariable Integer leagueId) {
         return leagueTableService.getLeagueTable(leagueId);
     }

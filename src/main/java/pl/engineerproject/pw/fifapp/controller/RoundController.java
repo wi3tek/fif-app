@@ -20,32 +20,32 @@ public class RoundController {
     @Autowired
     RoundTableService roundTableService;
 
-    @RequestMapping("/getRound/{roundId}")
+    @GetMapping("/getRound/{roundId}")
     public RoundDto getRoundById(@PathVariable Integer roundId) {
         return roundService.getRoundById(roundId);
     }
 
-    @RequestMapping("/getAllRounds")
+    @GetMapping("/getAllRounds")
     public List<RoundDto> getAllRounds() {
         return roundService.getAllRounds();
     }
 
-    @RequestMapping("/getLeagueRounds/{leagueId}")
+    @GetMapping("/getLeagueRounds/{leagueId}")
     public List<RoundDto> getLeagueRounds(@PathVariable Integer leagueId) {
         return roundService.getLeagueRounds(leagueId);
     }
 
-    @RequestMapping(value="/addRound", method = RequestMethod.POST)
+    @PostMapping("/addRound")
     public void addRound(@RequestBody RoundDto roundDto) {
         roundService.saveRound(roundDto);
     }
 
-    @RequestMapping(value = "/deleteRound/{roundId}", method = RequestMethod.DELETE)
+    @DeleteMapping("/deleteRound/{roundId}")
     public void deleteMatch(@PathVariable Integer roundId) {
         roundService.deleteRoundById(roundId);
     }
 
-    @RequestMapping(value = "/roundTable/{leagueId}")
+    @GetMapping("/roundTable/{leagueId}")
     public List<RoundTable> roundTable(@PathVariable Integer leagueId) {
         return roundTableService.roundTable(leagueId);
     }

@@ -14,9 +14,9 @@ import java.util.Date;
 @Transactional
 public class InitServiceImpl implements InitService {
 
-	private static final String DUMMY_ADMIN_USER = "wi3tek";
+	private static final String DUMMY_ADMIN_USER = "spoda_admin";
 
-	private static final String DUMMY_ADMIN_PASSWORD = "spoda12345";
+	private static final String DUMMY_ADMIN_PASSWORD = "pizza";
 
 	private static final String DUMMY_EMAIL = "patrykwieteskapw@gmail.com";
 

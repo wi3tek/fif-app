@@ -18,7 +18,7 @@ public class MatchController {
     @Autowired
     MatchService matchService;
 
-    @RequestMapping(value="/addMatch", method = RequestMethod.POST)
+    @PostMapping("/addMatch")
     public ResponseEntity addMatch(@RequestBody MatchDto matchDto) {
 
         return matchService.createMatch(matchDto);
@@ -28,17 +28,17 @@ public class MatchController {
     @Autowired
     MatchPlayerRelService matchPlayerRelService;
 
-    @RequestMapping("/getMatch/{matchId}")
+    @GetMapping("/getMatch/{matchId}")
     public MatchDto getMatchById(@PathVariable Integer matchId) {
         return matchService.getMatchById(matchId);
     }
 
-    @RequestMapping("/getAllMatches")
+    @GetMapping("/getAllMatches")
     public List<MatchDto> getAllMatches() {
         return matchService.getAllMatches();
     }
 
-    @RequestMapping("/getRoundMatches/{roundId}")
+    @GetMapping("/getRoundMatches/{roundId}")
     public List<MatchDto> getAllMatchesFromRound(@PathVariable Integer roundId) {
         return matchService.getRoundMatches(roundId);
     }
