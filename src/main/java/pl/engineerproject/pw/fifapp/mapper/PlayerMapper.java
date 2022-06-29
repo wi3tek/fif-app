@@ -1,10 +1,10 @@
-package pl.engineerproject.pw.fifapp.converter;
+package pl.engineerproject.pw.fifapp.mapper;
 
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
 import pl.engineerproject.pw.fifapp.model.Player;
 import pl.engineerproject.pw.fifapp.model.User;
 
-public class PlayerConverter {
+public class PlayerMapper {
 
     public static Player dtoToEntity(PlayerDto playerDto) {
 

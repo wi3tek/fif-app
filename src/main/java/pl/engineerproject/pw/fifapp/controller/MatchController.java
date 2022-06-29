@@ -3,7 +3,7 @@ package pl.engineerproject.pw.fifapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.engineerproject.pw.fifapp.converter.MatchConverter;
+import pl.engineerproject.pw.fifapp.mapper.MatchMapper;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.service.MatchService;
 import pl.engineerproject.pw.fifapp.service.helper.MatchPlayerRelService;
@@ -48,7 +48,7 @@ public class MatchController {
     @RequestMapping(value = "/updateMatch", method = RequestMethod.PUT)
     public void updateMatch(@RequestBody MatchDto matchDto) {
         matchService.editMatch(matchDto);
-        matchPlayerRelService.updateMatchPlayerRel(MatchConverter.dtoToEntity(matchDto));
+        matchPlayerRelService.updateMatchPlayerRel( MatchMapper.dtoToEntity(matchDto));
     }
 
     @RequestMapping(value = "/deleteMatch/{matchId}", method = RequestMethod.DELETE)

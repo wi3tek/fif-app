@@ -1,4 +1,4 @@
-package pl.engineerproject.pw.fifapp.converter;
+package pl.engineerproject.pw.fifapp.mapper;
 
 import org.modelmapper.ModelMapper;
 import pl.engineerproject.pw.fifapp.dto.RoundDto;
@@ -6,7 +6,7 @@ import pl.engineerproject.pw.fifapp.model.League;
 import pl.engineerproject.pw.fifapp.model.Round;
 import java.util.stream.Collectors;
 
-public class RoundConverter {
+public class RoundMapper {
 
     public static Round dtoToEntity(RoundDto roundDto) {
         League league = new League(roundDto.getLeagueName(),roundDto.getDescription(),roundDto.getLeagueStartDate(),roundDto.getLeagueEndDate(),roundDto.getLeagueLocation(),null);
@@ -36,8 +36,8 @@ public class RoundConverter {
             roundDto.setLeagueLocation(round.getLeague().getLocation());
             roundDto.setLeagueStartDate(round.getLeague().getStartDate());
             roundDto.setLeagueEndDate(round.getLeague().getEndDate());
-            roundDto.setMatchDtos(round.getMatches().stream().map(MatchConverter::entityToDto).collect(Collectors.toList()));
-            roundDto.setTeamDtos(round.getTeams().stream().map(TeamConverter::entityToDto).collect(Collectors.toList()));
+            roundDto.setMatchDtos(round.getMatches().stream().map( MatchMapper::entityToDto).collect(Collectors.toList()));
+            roundDto.setTeamDtos(round.getTeams().stream().map( TeamMapper::entityToDto).collect(Collectors.toList()));
         } catch(NullPointerException e) {
             System.out.println(e);
         }

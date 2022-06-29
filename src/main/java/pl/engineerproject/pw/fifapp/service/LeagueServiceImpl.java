@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.engineerproject.pw.fifapp.converter.LeagueConverter;
-import pl.engineerproject.pw.fifapp.converter.UserConverter;
+import pl.engineerproject.pw.fifapp.mapper.LeagueMapper;
+import pl.engineerproject.pw.fifapp.mapper.UserMapper;
 import pl.engineerproject.pw.fifapp.dto.LeagueDto;
 import pl.engineerproject.pw.fifapp.model.League;
 import pl.engineerproject.pw.fifapp.model.User;
@@ -26,13 +26,13 @@ public class    LeagueServiceImpl implements LeagueService{
 
     @Override
     public LeagueDto getLeagueById(Integer leagueId) {
-        return LeagueConverter.entityToDto(leagueRepository.getOne(leagueId));
+        return LeagueMapper.entityToDto(leagueRepository.getOne(leagueId));
     }
 
     @Override
     public void saveLeague(LeagueDto leagueDto) {
-        User user = UserConverter.dtoToEntity(userService.getUserById(leagueDto.getOwnerId()));
-        League league = LeagueConverter.dtoToEntity(leagueDto);
+        User user = UserMapper.dtoToEntity(userService.getUserById(leagueDto.getOwnerId()));
+        League league = LeagueMapper.dtoToEntity(leagueDto);
         league.setOwner(user);
 
         leagueRepository.save(league);
@@ -40,7 +40,7 @@ public class    LeagueServiceImpl implements LeagueService{
 
     @Override
     public List<LeagueDto> getAllLeagues() {
-        return leagueRepository.findAll(Sort.by(Sort.Direction.DESC,"startDate")).stream().map(LeagueConverter::entityToDto).collect(Collectors.toList());
+        return leagueRepository.findAll(Sort.by(Sort.Direction.DESC,"startDate")).stream().map( LeagueMapper::entityToDto).collect(Collectors.toList());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class    LeagueServiceImpl implements LeagueService{
     }
 
     public void updateLeague(LeagueDto leagueDto) {
-        leagueRepository.save(LeagueConverter.dtoToEntity(leagueDto));
+        leagueRepository.save( LeagueMapper.dtoToEntity(leagueDto));
     }
 
 }

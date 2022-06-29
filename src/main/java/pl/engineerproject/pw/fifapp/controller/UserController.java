@@ -1,22 +1,11 @@
 package pl.engineerproject.pw.fifapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pl.engineerproject.pw.fifapp.converter.MatchConverter;
-import pl.engineerproject.pw.fifapp.converter.UserConverter;
-import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.dto.RegistrationFormDto;
 import pl.engineerproject.pw.fifapp.dto.UserDto;
-import pl.engineerproject.pw.fifapp.model.MatchData;
-import pl.engineerproject.pw.fifapp.model.Role;
-import pl.engineerproject.pw.fifapp.model.User;
 import pl.engineerproject.pw.fifapp.service.UserService;
 import java.util.List;
 

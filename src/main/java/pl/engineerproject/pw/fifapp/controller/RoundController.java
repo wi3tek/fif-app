@@ -3,8 +3,7 @@ package pl.engineerproject.pw.fifapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.RoundDto;
-import pl.engineerproject.pw.fifapp.model.helper.LeagueTable;
-import pl.engineerproject.pw.fifapp.model.helper.RoundTable;
+import pl.engineerproject.pw.fifapp.model.helper.RoundResult;
 import pl.engineerproject.pw.fifapp.service.RoundService;
 import pl.engineerproject.pw.fifapp.service.helper.RoundTableService;
 
@@ -46,7 +45,7 @@ public class RoundController {
     }
 
     @GetMapping("/roundTable/{leagueId}")
-    public List<RoundTable> roundTable(@PathVariable Integer leagueId) {
+    public List<RoundResult> roundTable(@PathVariable Integer leagueId) {
         return roundTableService.roundTable(leagueId);
     }
 }

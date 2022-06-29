@@ -1,5 +1,10 @@
 package pl.engineerproject.pw.fifapp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -7,6 +12,10 @@ import java.util.List;
 
 @Entity
 @SequenceGenerator(name="team_seq", initialValue = 800,allocationSize=1000)
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Team implements Serializable {
 
 
@@ -26,45 +35,19 @@ public class Team implements Serializable {
     @Column
     private String logoUrl;
 
+    @Enumerated(EnumType.STRING)
+    TeamType teamType;
+
     public Team(String name, Integer overallRating, String logoUrl) {
         this.name = name;
         this.overallRating = overallRating;
         this.logoUrl = logoUrl;
     }
 
-    public Team() {
-
-    }
-
-    public Integer getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Team(String name, Integer overallRating, String logoUrl, TeamType teamType) {
         this.name = name;
-    }
-
-    public Integer getOverallRating() {
-        return overallRating;
-    }
-
-    public void setOverallRating(Integer overallRating) {
         this.overallRating = overallRating;
-    }
-
-    public String getLogoUrl() {
-        return logoUrl;
-    }
-
-    public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
+        this.teamType=teamType;
     }
 }

@@ -3,21 +3,18 @@ package pl.engineerproject.pw.fifapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.engineerproject.pw.fifapp.converter.MatchConverter;
+import pl.engineerproject.pw.fifapp.mapper.MatchMapper;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.model.MatchData;
 import pl.engineerproject.pw.fifapp.repository.MatchRepository;
-import pl.engineerproject.pw.fifapp.repository.helper.MatchPlayerRelRepository;
 import pl.engineerproject.pw.fifapp.service.helper.MatchPlayerRelService;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +27,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public void addMatch(MatchDto matchDto) {
-        matchRepository.save(MatchConverter.dtoToEntity(matchDto));
+        matchRepository.save( MatchMapper.dtoToEntity(matchDto));
     }
 
     @Autowired
@@ -38,25 +35,25 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public MatchDto getMatchById(Integer matchId) {
-        return MatchConverter.entityToDto(matchRepository.getOne(matchId));
+        return MatchMapper.entityToDto(matchRepository.getOne(matchId));
     }
 
 
     @Override
     public void editMatch(MatchDto matchDto) {
-        matchRepository.save(MatchConverter.dtoToEntity(matchDto));
+        matchRepository.save( MatchMapper.dtoToEntity(matchDto));
     }
 
     @Override
     public List<MatchDto> getAllMatches() {
 
-        return matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+        return matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map( MatchMapper::entityToDto).collect(Collectors.toList());
     }
 
 
     @Override
     public List<MatchDto> getRoundMatches(Integer roundId) {
-        List<MatchDto> roundMatches = matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+        List<MatchDto> roundMatches = matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map( MatchMapper::entityToDto).collect(Collectors.toList());
         List<MatchDto> result = new ArrayList<>();
 
         for (MatchDto roundMatch : roundMatches) {
@@ -92,7 +89,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public List<MatchDto> getLeagueMatches(Integer leagueId) {
-            List<MatchDto> leagueMatches = matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map(MatchConverter::entityToDto).collect(Collectors.toList());
+            List<MatchDto> leagueMatches = matchRepository.findAll(Sort.by(Sort.Direction.DESC,"matchDate")).stream().map( MatchMapper::entityToDto).collect(Collectors.toList());
         List<MatchDto> result = new ArrayList<>();
 
         for (MatchDto match : leagueMatches) {
@@ -114,7 +111,7 @@ public class MatchServiceImpl implements MatchService {
         if(matchDto==null) {
             throw new ResourceNotFoundException("Empty object matchDto");
         } else {
-            MatchData matchData = MatchConverter.dtoToEntity(matchDto);
+            MatchData matchData = MatchMapper.dtoToEntity(matchDto);
             matchRepository.save(matchData);
 
             matchData.setMatchId(matchData.getMatchId());
