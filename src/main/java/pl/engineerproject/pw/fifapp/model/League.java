@@ -1,19 +1,22 @@
 package pl.engineerproject.pw.fifapp.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 @Entity
-@SequenceGenerator(name="league_seq", allocationSize=10000)
+@ToString
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class League implements Serializable {
 
     private static final long serialVersionUID = 8871472796696693981L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "league_seq")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer leagueId;
     @Column(unique = true)
     private String name;
@@ -88,9 +91,5 @@ public class League implements Serializable {
         this.endDate=endDate;
         this.location=location;
         this.owner = owner;
-    }
-
-    public League() {
-
     }
 }

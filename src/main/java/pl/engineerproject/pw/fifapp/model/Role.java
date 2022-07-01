@@ -7,11 +7,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
-@SequenceGenerator(name="user_seq", allocationSize=10000)
+//@SequenceGenerator(name="user_seq", allocationSize=10000)
 public class Role implements Serializable {
     private static final long serialVersionUID = 3936672744653222643L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "role_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="role_id")
     private Integer id;
 

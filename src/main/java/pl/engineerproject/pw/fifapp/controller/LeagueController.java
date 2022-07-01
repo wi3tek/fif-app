@@ -1,18 +1,22 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.LeagueDto;
+import pl.engineerproject.pw.fifapp.model.helper.LeagueTable;
 import pl.engineerproject.pw.fifapp.service.LeagueService;
+import pl.engineerproject.pw.fifapp.service.helper.LeagueTableService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/leagues")
+@RequiredArgsConstructor
 public class LeagueController {
 
-    @Autowired //adnotacja powoduje, że nie trzeba tworzyć obiektu danej klasy, gdyż jest on tworzony automatycznie
-    LeagueService leagueService;
+    private final LeagueService leagueService;
+    private final LeagueTableService leagueTableService;
 
     @GetMapping("/getLeague/{leagueId}")
     public LeagueDto getLeagueById(@PathVariable Integer leagueId) {
@@ -38,5 +42,10 @@ public class LeagueController {
     @GetMapping("/delete/{leagueId}")
     public void deleteLeague(@PathVariable Integer leagueId) {
         leagueService.deleteLeague(leagueId);
+    }
+
+    @GetMapping("/getLeagueTable/{leagueId}")
+    public List<LeagueTable> getLeagueTable(@PathVariable Integer leagueId) {
+        return leagueTableService.getLeagueTable(leagueId);
     }
 }

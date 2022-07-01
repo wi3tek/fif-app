@@ -7,11 +7,10 @@ import java.util.*;
 
 @Entity
 @Table(name="user")
-@SequenceGenerator(name="user_seq", allocationSize=10000)
 public class User implements Serializable {
     private static final long serialVersionUID = 5626055063095835491L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Integer id;
 

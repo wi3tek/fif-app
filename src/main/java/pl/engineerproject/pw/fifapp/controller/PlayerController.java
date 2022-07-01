@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/players")
+@RequiredArgsConstructor
 public class PlayerController {
 
-    @Autowired
-    PlayerService playerService;
+    private final PlayerService playerService;
 
     @Autowired
-    PlayerMatchService playerMatchService;
+    private final PlayerMatchService playerMatchService;
 
     @GetMapping("/getPlayer/{playerId}")
     public PlayerDto getPlayerById(@PathVariable Integer playerId) {
@@ -34,8 +35,6 @@ public class PlayerController {
     @PostMapping("/create")
     public ResponseEntity createPlayer(@RequestBody PlayerDto playerDto) {
         return playerService.createPlayer(playerDto);
-
-
     }
 
     @PutMapping("/update")
@@ -63,9 +62,4 @@ public class PlayerController {
     public List<PlayerMatch> getPlayersMatchesInLeague(@PathVariable Integer leagueId) {
         return playerMatchService.getPlayersMatchesInLeague(leagueId);
     }
-
-
-
-
-
 }

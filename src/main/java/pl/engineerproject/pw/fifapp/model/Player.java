@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@SequenceGenerator(name="player_seq",initialValue = 30, allocationSize=1000)
+//@SequenceGenerator(name="player_seq",initialValue = 30, allocationSize=1000)
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 8066347468898311564L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="player_seq" )
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Column
     private Integer playerId;
 
