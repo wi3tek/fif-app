@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.engineerproject.pw.fifapp.model.Round;
 import pl.engineerproject.pw.fifapp.model.helper.RoundResult;
 import pl.engineerproject.pw.fifapp.repository.RoundRepository;
-import pl.engineerproject.pw.fifapp.repository.helper.RoundTableRepository;
 import pl.engineerproject.pw.fifapp.repository.helper.RoundsResultsRepository;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 @Transactional
 @RequiredArgsConstructor
 public class RoundTableServiceImpl implements RoundTableService{
-    private final RoundTableRepository roundTableRepository;
     private final RoundRepository roundRepository;
 
     private final RoundsResultsRepository roundsResultsRepository;

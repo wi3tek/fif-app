@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.TeamDto;
@@ -11,14 +12,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/teams")
+@RequiredArgsConstructor
 public class TeamController {
 
 
-    @Autowired
-    SelectedTeamService selectedTeamService;
-
-    @Autowired
-    TeamService teamService;
+    private final SelectedTeamService selectedTeamService;
+    private final TeamService teamService;
 
     @GetMapping("/getTeam/{teamId}")
     public TeamDto getTeam(@PathVariable Integer teamId) {

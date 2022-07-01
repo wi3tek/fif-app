@@ -8,13 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@SequenceGenerator(name="round_seq", allocationSize=10000)
 public class Round implements Serializable {
     @Serial
     private static final long serialVersionUID = 6834844252091608740L;
     @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "round_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roundId;
 
     @Column

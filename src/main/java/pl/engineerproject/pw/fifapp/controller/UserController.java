@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,15 +16,15 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(path = "/usersControls")
+@RequiredArgsConstructor
 public class UserController {
+
+    private final UserService userService;
 
     @GetMapping("/getUser")
     public Principal user(Principal user) {
         return user;
     }
-
-    @Autowired
-    UserService userService;
 
     @PostMapping("/register")
     public ResponseEntity registerUser(@RequestBody RegistrationFormDto registrationFormDto) {
@@ -35,7 +36,6 @@ public class UserController {
     @PutMapping("/activate/{userId}")
     public void activate(@PathVariable Integer userId) {
 
-
         userService.setUserAccess(userId,true);
     }
 
@@ -43,10 +43,7 @@ public class UserController {
     @PutMapping("/deactivate/{userId}")
     public void deactivate(@PathVariable Integer userId) {
             userService.setUserAccess(userId, false);
-
     }
-
-
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/getAllUsers")
@@ -54,10 +51,8 @@ public class UserController {
          return userService.getAllUsers();
     }
 
-
     @RequestMapping("/getUser/{username}")
     public UserDto getUserById(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
-
 }

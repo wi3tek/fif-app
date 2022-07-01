@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.RoundDto;
@@ -11,13 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/rounds")
+@RequiredArgsConstructor
 public class RoundController {
 
-    @Autowired
-    RoundService roundService;
-
-    @Autowired
-    RoundTableService roundTableService;
+    private final RoundService roundService;
+    private final RoundTableService roundTableService;
 
     @GetMapping("/getRound/{roundId}")
     public RoundDto getRoundById(@PathVariable Integer roundId) {

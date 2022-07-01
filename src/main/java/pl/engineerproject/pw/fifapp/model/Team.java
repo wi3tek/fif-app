@@ -7,11 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
-
 @Entity
-@SequenceGenerator(name="team_seq", initialValue = 800,allocationSize=1000)
 @Setter
 @Getter
 @NoArgsConstructor
@@ -22,7 +18,7 @@ public class Team implements Serializable {
     private static final long serialVersionUID = 8221849130562357797L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="team_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer teamId;
 

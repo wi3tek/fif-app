@@ -3,17 +3,14 @@ package pl.engineerproject.pw.fifapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 @Entity
-@SequenceGenerator(name="match_seq", allocationSize=10000)
+//@SequenceGenerator(name="match_seq", allocationSize=10000)
 public class MatchData implements Serializable {
     private static final long serialVersionUID = 6477919665194573452L;
 
     @Column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "match_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer matchId;
 
