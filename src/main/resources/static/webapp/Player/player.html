@@ -21,20 +21,20 @@
                 <div class="panel-body fontFamily">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <div class="row" style="background-color:midnightblue; color:white; padding:10px; border-radius: 50px;">
+                            <div class="row" style="background-color:#e9e5e4; color:white; padding:10px; border-radius: 50px;">
                                 <div class="content col-xs-3"><strong>IMIĘ</strong></div>
                                 <div class="content col-xs-3"><strong>PSEUDONIM</strong></div>
                                 <div class="content col-xs-3"><strong>DATA UR.</strong></div>
                                 <div class="content col-xs-3"><strong>DOŁĄCZYŁ</strong></div>
-                                <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
+                                <div class="col-xs-12" style="background-color:#e9e5e4; height:3px;width:100%"></div>
                             </div>
                             <div ng-repeat="player in players" class="list-group-item list-group-item-action" ng-click=setActivePlayer(player)>
-                                <div class="row" style="background-color:aliceblue; cursor: pointer;">
+                                <div class="row" style="background-color:#e9e5e4; cursor: pointer;">
                                     <div class="content col-xs-3">{{player.name}}</div>
                                     <div class="content col-xs-3">{{player.alias}}</div>
                                     <div class="content col-xs-3">{{claculateTime(player.dateOfBirth) | date: 'yyyy-MM-dd'}}</div>
                                     <div class="content col-xs-3">{{claculateTime(player.joinDate) | date: 'yyyy-MM-dd'}}</div>
-                                    <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
+                                    <div class="col-xs-12" style="background-color:#e9e5e4; height:3px;width:100%"></div>
                                     <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                 </div>
                             </div>

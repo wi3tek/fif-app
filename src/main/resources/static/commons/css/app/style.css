@@ -14,7 +14,7 @@
                                         body {
                                             /* background-color: #ECEBEB; */
                                             font-family: 'Helvetica Neue', Arial, sans-serif;
-                                            background: url('/commons/img/background.png') no-repeat center center fixed;
+                                            background: url('/commons/img/quatar22-bg.jpg') no-repeat center center fixed;
                                             -webkit-background-size: cover;
                                             -moz-background-size: cover;
                                             background-size: cover;
@@ -160,7 +160,7 @@
                                         
                                         .table-hover tbody tr:hover td,
                                         .table-hover tbody tr:hover th {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                         }
                                         
                                         .panel {
@@ -200,13 +200,13 @@
                                         }
                                         
                                         a {
-                                            color: darkseagreen;
+                                            color: #ecc67c;
                                         }
                                         /*-Header-*/
                                         
                                         .header {
                                             background-color: #547a34;
-                                            border-bottom: 5px solid darkseagreen;
+                                            border-bottom: 5px solid #ecc67c;
                                             padding: 30px 0px;
                                         }
                                         
@@ -236,7 +236,7 @@
                                             margin: 0px 0px 5px 0px;
                                             display: table;
                                             border-radius: 4px;
-                                            color: darkseagreen;
+                                            color: #ecc67c;
                                         }
                                         
                                         .goal-summary .backers span,
@@ -256,7 +256,7 @@
                                         
                                         .goal-summary .reminder a:hover,
                                         .goal-summary .reminder a:focus {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                             color: #fff;
                                         }
                                         
@@ -282,7 +282,7 @@
                                         }
                                         
                                         .section-block.summary {
-                                            background-color: midnightblue;
+                                            background-color: #660b2a;
                                         }
                                         
                                         .section-block.summary h1 {
@@ -344,7 +344,7 @@
                                         }
                                         
                                         .profile-contents ul li a {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                             color: #FFF;
                                             height: 40px;
                                             width: 40px;
@@ -419,7 +419,7 @@
                                         .funding-meta h2,
                                         .funding-meta span.contribution {
                                             display: inline-block;
-                                            color: darkseagreen;
+                                            color: #ecc67c;
                                         }
                                         
                                         .funding-meta span.contribution,
@@ -616,7 +616,7 @@
                                         .btn.btn-reward,
                                         .btn.btn-reward:hover,
                                         .btn.btn-reward :focus {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                             box-shadow: none;
                                         }
                                         
@@ -639,7 +639,7 @@
                                         }
                                         
                                         .btn.btn-contact {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                             color: #fff;
                                             font-weight: 700;
                                         }
@@ -660,7 +660,7 @@
                                         }
                                         
                                         .btn.btn-download {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                             color: #fff;
                                         }
                                         /*-Credits-*/
@@ -694,7 +694,7 @@
                                             clear: both;
                                             padding: 10px;
                                             text-align: center;
-                                            border-bottom: 3px solid darkolivegreen;
+                                            border-bottom: 3px solid #f4f2f2;
                                         }
                                         
                                         #wrapper {
@@ -732,16 +732,16 @@
                                         .tabButton {
                                             margin: 1px;
                                             cursor: pointer;
-                                            background-color: midnightblue;
+                                            background-color: #660b2a;
                                             color: white;
                                         }
                                         
                                         .tabButton:hover {
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                             color: white;
                                         }
                                         
                                         .tabButton:focus {
                                             color: white;
-                                            background-color: darkseagreen;
+                                            background-color: #ecc67c;
                                         }

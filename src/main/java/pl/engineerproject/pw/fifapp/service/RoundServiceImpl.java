@@ -36,7 +36,10 @@ public class RoundServiceImpl implements RoundService {
 
     @Override
     public List<RoundDto> getLeagueRounds(Integer leagueId) {
-        List<RoundDto> leagueRounds = roundRepository.findAll(Sort.by(Sort.Direction.DESC,"roundDate")).stream().map( RoundMapper::entityToDto).collect(Collectors.toList());
+        List<RoundDto> leagueRounds = roundRepository.findAll( Sort.by( Sort.Direction.DESC, "roundDate" ) )
+                .stream()
+                .map( RoundMapper::entityToDto )
+                .toList();
         List<RoundDto> result = new ArrayList<>();
 
         for (RoundDto leagueRound : leagueRounds) {
