@@ -1,13 +1,9 @@
-package pl.engineerproject.pw.fifapp.converter;
+package pl.engineerproject.pw.fifapp.mapper;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import pl.engineerproject.pw.fifapp.dto.MatchDto;
 import pl.engineerproject.pw.fifapp.model.*;
 
-import java.util.stream.Collectors;
-
-public class MatchConverter {
+public class MatchMapper {
 
     public static MatchData dtoToEntity(MatchDto matchDto) {
 

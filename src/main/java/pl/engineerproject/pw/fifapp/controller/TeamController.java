@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.TeamDto;
@@ -11,39 +12,34 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/teams")
+@RequiredArgsConstructor
 public class TeamController {
 
 
-    @Autowired
-    SelectedTeamService selectedTeamService;
+    private final SelectedTeamService selectedTeamService;
+    private final TeamService teamService;
 
-    @Autowired
-    TeamService teamService;
-
-
-
-
-    @RequestMapping("/getTeam/{teamId}")
+    @GetMapping("/getTeam/{teamId}")
     public TeamDto getTeam(@PathVariable Integer teamId) {
         return teamService.getTeamById(teamId);
     }
 
-    @RequestMapping("/getAllTeams")
+    @GetMapping("/getAllTeams")
     public List<TeamDto> getAllTeams() {
         return teamService.getTeamsList();
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST)
+    @PostMapping("/create")
     public void createTeam(@RequestBody TeamDto teamDto) {
         teamService.addTeam(teamDto);
     }
 
-    @RequestMapping(value="/delete", method = RequestMethod.DELETE)
+    @DeleteMapping("/delete")
     public void deleteTeam(@RequestBody TeamDto teamDto) {
         teamService.deleteTeam(teamDto);
     }
 
-    @RequestMapping("/initTeamsList/{roundId}")
+    @GetMapping("/initTeamsList/{roundId}")
     public Map<Integer, String> getTeamToSelect(@PathVariable Integer roundId) {
         return selectedTeamService.getTeamsToChose(roundId, teamService.getTeamsList());
     }

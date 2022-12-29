@@ -1,10 +1,10 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.RoundDto;
-import pl.engineerproject.pw.fifapp.model.helper.LeagueTable;
-import pl.engineerproject.pw.fifapp.model.helper.RoundTable;
+import pl.engineerproject.pw.fifapp.model.helper.RoundResult;
 import pl.engineerproject.pw.fifapp.service.RoundService;
 import pl.engineerproject.pw.fifapp.service.helper.RoundTableService;
 
@@ -12,41 +12,39 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/rounds")
+@RequiredArgsConstructor
 public class RoundController {
 
-    @Autowired
-    RoundService roundService;
+    private final RoundService roundService;
+    private final RoundTableService roundTableService;
 
-    @Autowired
-    RoundTableService roundTableService;
-
-    @RequestMapping("/getRound/{roundId}")
+    @GetMapping("/getRound/{roundId}")
     public RoundDto getRoundById(@PathVariable Integer roundId) {
         return roundService.getRoundById(roundId);
     }
 
-    @RequestMapping("/getAllRounds")
+    @GetMapping("/getAllRounds")
     public List<RoundDto> getAllRounds() {
         return roundService.getAllRounds();
     }
 
-    @RequestMapping("/getLeagueRounds/{leagueId}")
+    @GetMapping("/getLeagueRounds/{leagueId}")
     public List<RoundDto> getLeagueRounds(@PathVariable Integer leagueId) {
         return roundService.getLeagueRounds(leagueId);
     }
 
-    @RequestMapping(value="/addRound", method = RequestMethod.POST)
+    @PostMapping("/addRound")
     public void addRound(@RequestBody RoundDto roundDto) {
         roundService.saveRound(roundDto);
     }
 
-    @RequestMapping(value = "/deleteRound/{roundId}", method = RequestMethod.DELETE)
+    @DeleteMapping("/deleteRound/{roundId}")
     public void deleteMatch(@PathVariable Integer roundId) {
         roundService.deleteRoundById(roundId);
     }
 
-    @RequestMapping(value = "/roundTable/{leagueId}")
-    public List<RoundTable> roundTable(@PathVariable Integer leagueId) {
+    @GetMapping("/roundTable/{leagueId}")
+    public List<RoundResult> roundTable(@PathVariable Integer leagueId) {
         return roundTableService.roundTable(leagueId);
     }
 }

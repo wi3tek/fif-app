@@ -3,7 +3,7 @@ package pl.engineerproject.pw.fifapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.engineerproject.pw.fifapp.converter.TeamConverter;
+import pl.engineerproject.pw.fifapp.mapper.TeamMapper;
 import pl.engineerproject.pw.fifapp.dto.TeamDto;
 import pl.engineerproject.pw.fifapp.repository.TeamRepository;
 
@@ -19,22 +19,22 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public TeamDto getTeamById(Integer teamId){
-        return TeamConverter.entityToDto(teamRepository.getOne(teamId   ));
+        return TeamMapper.entityToDto(teamRepository.getOne(teamId   ));
     }
 
     @Override
     public List<TeamDto> getTeamsList() {
-        return teamRepository.findAll().stream().map(TeamConverter::entityToDto).collect(Collectors.toList());
+        return teamRepository.findAll().stream().map( TeamMapper::entityToDto).collect(Collectors.toList());
     }
 
     @Override
     public void addTeam(TeamDto teamDto) {
-        teamRepository.save(TeamConverter.dtoToEntity(teamDto));
+        teamRepository.save( TeamMapper.dtoToEntity(teamDto));
     }
 
     @Override
     public void deleteTeam(TeamDto teamDto) {
-        teamRepository.delete(TeamConverter.dtoToEntity(teamDto));
+        teamRepository.delete( TeamMapper.dtoToEntity(teamDto));
     }
 
 

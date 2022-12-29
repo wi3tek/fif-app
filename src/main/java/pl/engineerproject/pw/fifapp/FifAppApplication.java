@@ -20,11 +20,10 @@ public class FifAppApplication {
 	private InitService initService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(FifAppApplication.class, args);
+		SpringApplication.run(
+				FifAppApplication.class, args);
 
 	}
-
-
 
 	@Bean
 	public ModelMapper modelMapper() {

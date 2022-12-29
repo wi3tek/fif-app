@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.engineerproject.pw.fifapp.converter.PlayerConverter;
+import pl.engineerproject.pw.fifapp.mapper.PlayerMapper;
 import pl.engineerproject.pw.fifapp.dto.PlayerDto;
 import pl.engineerproject.pw.fifapp.model.Player;
-import pl.engineerproject.pw.fifapp.repository.MatchRepository;
 import pl.engineerproject.pw.fifapp.repository.PlayerRepository;
 
 import java.util.List;
@@ -22,19 +21,19 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public PlayerDto getPlayerById(Integer playerId) {
-        return PlayerConverter.entityToDto(playerRepository.getOne(playerId));
+        return PlayerMapper.entityToDto(playerRepository.getOne(playerId));
     }
 
     @Override
     public List<PlayerDto> getPlayers() {
-        return playerRepository.findAll().stream().map(PlayerConverter::entityToDto).collect(Collectors.toList());
+        return playerRepository.findAll().stream().map( PlayerMapper::entityToDto).collect(Collectors.toList());
     }
 
     @Override
     public ResponseEntity createPlayer(PlayerDto playerDto) {
 
-        Player player = PlayerConverter.dtoToEntity(playerDto);
-        playerRepository.save(PlayerConverter.dtoToEntity(playerDto));
+        Player player = PlayerMapper.dtoToEntity(playerDto);
+        playerRepository.save( PlayerMapper.dtoToEntity(playerDto));
 
         player.setPlayerId(player.getPlayerId());
 
@@ -44,7 +43,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public void updatePlayer(PlayerDto playerDto) {
-        playerRepository.save(PlayerConverter.dtoToEntity(playerDto));
+        playerRepository.save( PlayerMapper.dtoToEntity(playerDto));
     }
 
     @Override

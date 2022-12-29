@@ -2,12 +2,10 @@ package pl.engineerproject.pw.fifapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.engineerproject.pw.fifapp.converter.UserConverter;
+import pl.engineerproject.pw.fifapp.mapper.UserMapper;
 import pl.engineerproject.pw.fifapp.dto.RegistrationFormDto;
 import pl.engineerproject.pw.fifapp.dto.UserDto;
 import pl.engineerproject.pw.fifapp.model.Role;
@@ -60,22 +58,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getAllUsers() {
-        return userRepository.findAll().stream().map(UserConverter::entityToDto).collect(Collectors.toList());
+        return userRepository.findAll().stream().map( UserMapper::entityToDto).collect(Collectors.toList());
     }
 
     @Override
     public void updateUser(UserDto userDto) {
-        userRepository.save(UserConverter.dtoToEntity(userDto));
+        userRepository.save( UserMapper.dtoToEntity(userDto));
     }
 
     @Override
     public UserDto getUserById(Integer userId) {
-        return UserConverter.entityToDto(userRepository.getOne(userId));
+        return UserMapper.entityToDto(userRepository.getOne(userId));
     }
 
     @Override
     public UserDto getUserByUsername(String username) {
-        return UserConverter.entityToDto(userRepository.findByUsername(username));
+        return UserMapper.entityToDto(userRepository.findByUsername(username));
     }
 
     public void setUserAccess(Integer userId, boolean access) {

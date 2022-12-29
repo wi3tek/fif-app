@@ -1,6 +1,5 @@
-package pl.engineerproject.pw.fifapp.converter;
+package pl.engineerproject.pw.fifapp.mapper;
 
-import pl.engineerproject.pw.fifapp.dto.RoleDto;
 import pl.engineerproject.pw.fifapp.dto.UserDto;
 import pl.engineerproject.pw.fifapp.model.Role;
 import pl.engineerproject.pw.fifapp.model.User;
@@ -8,7 +7,7 @@ import pl.engineerproject.pw.fifapp.model.User;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserConverter   {
+public class UserMapper {
 
     public static User dtoToEntity(UserDto userDto) {
         User user = new User();

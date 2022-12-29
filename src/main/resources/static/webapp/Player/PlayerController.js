@@ -18,7 +18,7 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService'
 
     $scope.addPlayer = function() {
         if ($scope.player != null && $scope.player.name && $scope.player.alias) {
-            PlayerService.addPlayer($scope.player.name, $scope.player.alias, $scope.player.dateOfBirth, $rootScope.currentUser.id)
+            PlayerService.addPlayer($scope.player.name, $scope.player.alias, $rootScope.currentUser.id)
                 .then(function success(response) {
                         AlertService.setAlert('Poprawnie dodano zawodnika "' + $scope.player.alias + '"', 1);
                         console.log(response)
@@ -35,7 +35,7 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService'
 
     $scope.updatePlayer = function() {
         if ($scope.playerEdited != null && $scope.playerEdited.name && $scope.playerEdited.alias) {
-            PlayerService.updatePlayer($scope.playerEdited.playerId, $scope.playerEdited.name, $scope.playerEdited.alias, $scope.playerEdited.dateOfBirth,
+            PlayerService.updatePlayer($scope.playerEdited.playerId, $scope.playerEdited.name, $scope.playerEdited.alias,
                     $scope.playerEdited.joinDate, $rootScope.currentUser.id)
                 .then(function success(response) {
                         AlertService.setAlert('Porpawnie zaktualizowano dane zawodnika "' + $scope.playerEdited.alias + '"', 1);
@@ -97,8 +97,8 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService'
     }
 
     $scope.calculateAge = function() { // birthday is a date
-        var _birthDay = new Date($scope.activePlayer.dateOfBirth)
-        var ageDifMs = Date.now() - _birthDay.getTime();
+        var _joinDate = new Date($scope.activePlayer.joinDate)
+        var ageDifMs = Date.now() - _joinDate.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
@@ -110,7 +110,6 @@ fifapp.controller('PlayerController', ["$scope", 'PlayerService', 'AlertService'
 
     $scope.setPlayerEdited = function() {
         $scope.playerEdited = $scope.activePlayer;
-        $scope.playerEdited.dateOfBirth = new Date($scope.playerEdited.dateOfBirth);
     }
 
 

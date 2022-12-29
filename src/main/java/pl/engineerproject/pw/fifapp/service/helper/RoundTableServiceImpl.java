@@ -1,37 +1,40 @@
 package pl.engineerproject.pw.fifapp.service.helper;
 
-import net.bytebuddy.TypeCache;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.engineerproject.pw.fifapp.model.helper.LeagueTable;
-import pl.engineerproject.pw.fifapp.model.helper.RoundTable;
-import pl.engineerproject.pw.fifapp.repository.helper.RoundTableRepository;
+import pl.engineerproject.pw.fifapp.model.Round;
+import pl.engineerproject.pw.fifapp.model.helper.RoundResult;
+import pl.engineerproject.pw.fifapp.repository.RoundRepository;
+import pl.engineerproject.pw.fifapp.repository.helper.RoundsResultsRepository;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class RoundTableServiceImpl implements RoundTableService{
+    private final RoundRepository roundRepository;
 
-    @Autowired
-    RoundTableRepository roundTableRepository;
-
+    private final RoundsResultsRepository roundsResultsRepository;
 
     @Override
-    public List<RoundTable> roundTable(Integer leagueId) {
-        List<RoundTable> roundTables = roundTableRepository.findAll(Sort.by(Sort.Direction.DESC, "pointsRate"));
-        List<RoundTable> resultTable = new ArrayList<>();
+    public List<RoundResult> roundTable(Integer leagueId) {
+        List<RoundResult> storedRoundResults = roundsResultsRepository.findByRoundIds(generateRoundIds(leagueId));
+        return storedRoundResults.stream()
+                .sorted( Comparator.comparingDouble(RoundResult::getPointsRate)
+                .reversed())
+                .collect( Collectors.toList());
 
-        for (RoundTable roundTable : roundTables) {
-            if (roundTable.getLeagueId().equals(leagueId)) {
-                resultTable.add(roundTable);
-            }
-        }
+    }
+    private List<Integer> generateRoundIds(Integer leagueId) {
+        List<Round> storedRounds = roundRepository.findByLeagueId(leagueId);
+        List<Integer> integers = storedRounds.stream().map(Round::getRoundId).toList();
 
-        return resultTable;
+        System.out.println("ROUND ID "+ integers);
+        return integers;
 
     }
 }

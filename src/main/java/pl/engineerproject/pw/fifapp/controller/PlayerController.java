@@ -1,5 +1,6 @@
 package pl.engineerproject.pw.fifapp.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,59 +14,52 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/players")
+@RequiredArgsConstructor
 public class PlayerController {
 
-    @Autowired
-    PlayerService playerService;
+    private final PlayerService playerService;
 
     @Autowired
-    PlayerMatchService playerMatchService;
+    private final PlayerMatchService playerMatchService;
 
-    @RequestMapping("/getPlayer/{playerId}")
+    @GetMapping("/getPlayer/{playerId}")
     public PlayerDto getPlayerById(@PathVariable Integer playerId) {
         return playerService.getPlayerById(playerId);
     }
 
-    @RequestMapping("/getAll")
+    @GetMapping("/getAll")
     public List<PlayerDto> getAllPlayers() {
         return playerService.getPlayers();
     }
 
-    @RequestMapping(value ="/create", method = RequestMethod.POST)
+    @PostMapping("/create")
     public ResponseEntity createPlayer(@RequestBody PlayerDto playerDto) {
         return playerService.createPlayer(playerDto);
-
-
     }
 
-    @RequestMapping(value ="/update", method = RequestMethod.PUT)
+    @PutMapping("/update")
     public void updatelayer(@RequestBody PlayerDto playerDto) {
         playerService.updatePlayer(playerDto);
     }
 
-    @RequestMapping(value ="/delete/{playerId}", method = RequestMethod.DELETE)
+    @DeleteMapping("/delete/{playerId}")
     public void deletePlayer(@PathVariable Integer playerId) {
         playerService.deletePlayer(playerId);
     }
 
 
-    @RequestMapping("/getMatches/{playerId}")
+    @GetMapping("/getMatches/{playerId}")
     public List<PlayerMatch> getPlayerMatches(@PathVariable Integer playerId) {
         return playerMatchService.getPlayerMatches(playerId);
     }
 
-    @RequestMapping("/getAllMatches")
+    @GetMapping("/getAllMatches")
     public List<PlayerMatch> getAllMatches() {
         return playerMatchService.getAllMatches();
     }
 
-    @RequestMapping("/matchesInLeague/{leagueId}")
+    @GetMapping("/matchesInLeague/{leagueId}")
     public List<PlayerMatch> getPlayersMatchesInLeague(@PathVariable Integer leagueId) {
         return playerMatchService.getPlayersMatchesInLeague(leagueId);
     }
-
-
-
-
-
 }

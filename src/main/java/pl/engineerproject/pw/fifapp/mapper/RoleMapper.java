@@ -1,11 +1,9 @@
-package pl.engineerproject.pw.fifapp.converter;
+package pl.engineerproject.pw.fifapp.mapper;
 
 import pl.engineerproject.pw.fifapp.dto.RoleDto;
-import pl.engineerproject.pw.fifapp.dto.UserDto;
 import pl.engineerproject.pw.fifapp.model.Role;
-import pl.engineerproject.pw.fifapp.model.User;
 
-public class RoleConverter {
+public class RoleMapper {
 
     public static Role dtoToEntity(RoleDto roleDto) {
         Role role = new Role();
