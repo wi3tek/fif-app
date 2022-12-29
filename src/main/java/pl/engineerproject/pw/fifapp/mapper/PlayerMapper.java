@@ -8,7 +8,7 @@ public class PlayerMapper {
 
     public static Player dtoToEntity(PlayerDto playerDto) {
 
-        Player player = new Player(playerDto.getName(),playerDto.getAlias(),playerDto.getDateOfBirth(),playerDto.getJoinDate(),playerDto.getLastModificationDate());
+        Player player = new Player(playerDto.getName(),playerDto.getAlias(),playerDto.getJoinDate(),playerDto.getLastModificationDate());
         player.setPlayerId(playerDto.getPlayerId());
 
         if(playerDto.getOwnerId()!=null) {
@@ -20,7 +20,7 @@ public class PlayerMapper {
     }
 
     public static PlayerDto entityToDto(Player player) {
-        PlayerDto playerDto = new PlayerDto(player.getPlayerId(),player.getName(), player.getAlias(),player.getDateOfBirth(),player.getJoinDate(),player.getLastModificationDate());
+        PlayerDto playerDto = new PlayerDto(player.getPlayerId(),player.getName(), player.getAlias(),player.getJoinDate(),player.getLastModificationDate());
 
         if(player.getOwner()!=null) {
             playerDto.setOwnerId(player.getOwner().getId());

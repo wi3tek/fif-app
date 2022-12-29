@@ -116,6 +116,13 @@ angular.module('round.services', []).service('RoundService', ["$http", function(
         });
     }
 
+    this.getFullLeagueTable = function getFullLeagueTable(leagueId) {
+        return $http({
+            method: 'GET',
+            url: 'leagues/getFullLeagueTable/' + leagueId
+        })
+    }
+
     this.getLeagueTable = function getLeagueTable(leagueId) {
         return $http({
             method: 'GET',

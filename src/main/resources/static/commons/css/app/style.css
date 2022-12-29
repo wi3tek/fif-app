@@ -19,7 +19,7 @@
                                             -moz-background-size: cover;
                                             background-size: cover;
                                             -o-background-size: cover;
-                                            height: 100%;
+                                            height: 93%;
                                         }
                                         
                                         .position0 {
@@ -161,6 +161,7 @@
                                         .table-hover tbody tr:hover td,
                                         .table-hover tbody tr:hover th {
                                             background-color: #ecc67c;
+                                            color: black;
                                         }
                                         
                                         .panel {
@@ -279,6 +280,7 @@
                                             border-radius: 4px;
                                             padding: 30px;
                                             margin-bottom: 30px;
+                                            box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
                                         }
                                         
                                         .section-block.summary {
@@ -687,14 +689,14 @@
                                         /*-Footer-*/
                                         
                                         .footer {
-                                            background-color: white;
+                                            background-color: #660b2a;
                                             position: relative;
                                             margin-top: -150px;
                                             height: auto;
                                             clear: both;
                                             padding: 10px;
                                             text-align: center;
-                                            border-bottom: 3px solid #f4f2f2;
+                                            border-bottom: 1px solid #f4f2f2;
                                         }
                                         
                                         #wrapper {
@@ -707,13 +709,15 @@
                                         }
                                         
                                         .copyright {
+                                            color:white;
+                                            background-color:#660b2a;
                                             columns: #f7f7f7;
                                             ;
                                         }
                                         
                                         .copyright a {
-                                            background: #fff;
-                                            color: #547a34;
+                                            background-color: #660b2a;
+                                            color: white;
                                             padding: 0px 5px;
                                             margin-left: 4px;
                                             border-radius: 4px;
@@ -745,3 +749,35 @@
                                             color: white;
                                             background-color: #ecc67c;
                                         }
+
+
+.team-logo-home {
+	border: 1px outset white;
+    	border-radius: 200px 400px 200px 400px;
+    	margin-top: -4px;
+    	height: 35px;
+    	margin-left:15px;
+    	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.team-logo-away {
+	border: 1px outset white;
+    	border-radius: 200px 400px 200px 400px;
+    	margin-top: -4px;
+    	height: 35px;
+    	margin-left:-20px;
+    	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.main-table {
+box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+
+.label-time {
+color:black;
+}
+
+.panel-body {
+margin-left:10px
+}

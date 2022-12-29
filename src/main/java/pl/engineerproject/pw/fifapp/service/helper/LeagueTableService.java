@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface LeagueTableService {
 
+    List<LeagueTable> getFullLeagueTable(Integer leagueId);
+
     List<LeagueTable> getLeagueTable(Integer leagueId);
 }

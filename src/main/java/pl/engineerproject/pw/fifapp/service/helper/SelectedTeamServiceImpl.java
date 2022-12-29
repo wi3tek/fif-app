@@ -45,12 +45,12 @@ public class SelectedTeamServiceImpl implements SelectedTeamService {
                 teamsToChose.put(team.getTeamId(), team.getName());
             }
         }
-
-        if(!selectedTeamIds.isEmpty()) {
-            for (Integer teamId : selectedTeamIds) {
-                teamsToChose.remove(teamId);
-            }
-        }
+//TODO zmiana na potrzeby mundialu 2022 - drużny mogą się powtarzać jeśli zagramy więcej meczów
+//        if(!selectedTeamIds.isEmpty()) {
+//            for (Integer teamId : selectedTeamIds) {
+//                teamsToChose.remove(teamId);
+//            }
+//        }
 
         return teamsToChose;
     }

@@ -3,10 +3,8 @@ package pl.engineerproject.pw.fifapp.controller;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.engineerproject.pw.fifapp.dto.LeagueDto;
-import pl.engineerproject.pw.fifapp.model.League;
 import pl.engineerproject.pw.fifapp.model.helper.LeagueTable;
 import pl.engineerproject.pw.fifapp.service.LeagueService;
 import pl.engineerproject.pw.fifapp.service.helper.LeagueTableService;
@@ -52,8 +50,14 @@ public class LeagueController {
         leagueService.deleteLeague(leagueId);
     }
 
+    @GetMapping("/getFullLeagueTable/{leagueId}")
+    public List<LeagueTable> getFullLeagueTable(@PathVariable Integer leagueId) {
+        return leagueTableService.getFullLeagueTable(leagueId);
+    }
+
     @GetMapping("/getLeagueTable/{leagueId}")
     public List<LeagueTable> getLeagueTable(@PathVariable Integer leagueId) {
+        System.out.println("DOBIJAM SIE");
         return leagueTableService.getLeagueTable(leagueId);
     }
 }

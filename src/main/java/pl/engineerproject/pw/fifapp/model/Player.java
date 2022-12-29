@@ -31,9 +31,6 @@ public class Player implements Serializable {
     private String alias;
 
     @Column
-    private Date dateOfBirth;
-
-    @Column
     private Date joinDate;
 
     @Column
@@ -43,10 +40,9 @@ public class Player implements Serializable {
     private User owner;
 
 
-    public Player(String name, String alias, Date dateOfBirth, Date joinDate, Date lastModificationDate) {
+    public Player(String name, String alias, Date joinDate, Date lastModificationDate) {
         this.name=name;
         this.alias=alias;
-        this.dateOfBirth=dateOfBirth;
         this.joinDate=joinDate;
         this.lastModificationDate=lastModificationDate;
 

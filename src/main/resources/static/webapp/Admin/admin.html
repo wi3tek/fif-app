@@ -33,18 +33,18 @@
                                 <div class="panel-body fontFamily">
                                     <div class="list-group">
                                         <div class="list-group-item">
-                                            <div class="row text-center" style="background-color:#e9e5e4; color:white; padding:10px; border-radius: 50px;">
+                                            <div class="row text-center" style="background-color:#e0d1cb; color:white; padding:10px; border-radius: 50px;">
                                                 <div class="content col-md-4 col-xs-6"><strong>UŻYTKOWNIK</strong></div>
                                                 <div class="content col-md-4 col-xs-0 hidden-xs"><strong>DATA REJESTRACJI</strong></div>
                                                 <div class="content col-md-4 col-xs-6"><strong>AKCJA</strong></div>
-                                                <div class="col-xs-12" style="background-color:#e9e5e4; height:3px;width:100%"></div>
+                                                <div class="col-xs-12" style="background-color:#e0d1cb; height:3px;width:100%"></div>
                                             </div>
                                             <div ng-repeat="user in users | filter : {activeFlag: true}" ng-if="user.username!=currentUser.username" class="list-group-item list-group-item-action text-center" ng-click=setActiveUserPanel(user)>
-                                                <div class="row" style="background-color:#e9e5e4; cursor: pointer;">
+                                                <div class="row" style="background-color:#e0d1cb; cursor: pointer;">
                                                     <div class="content col-md-4 col-xs-6">{{user.username}}</div>
                                                     <div class="content col-md-4 hidden-xs">{{claculateTime(user.registrationDate) | date: 'yyyy-MM-dd HH:mm'}}</div>
                                                     <div class="content col-md-4 col-xs-6"><button class="btn btn-sm btn-danger alertAction" ng-click="deactivate(user.id)">Dezaktywuj</button></div>
-                                                    <div class="col-xs-12" style="background-color:#e9e5e4; height:3px;width:100%"></div>
+                                                    <div class="col-xs-12" style="background-color:#e0d1cb; height:3px;width:100%"></div>
                                                     <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                                 </div>
                                             </div>
@@ -60,18 +60,18 @@
                                 <div class="panel-body fontFamily">
                                     <div class="list-group">
                                         <div class="list-group-item">
-                                            <div class="row text-center" style="background-color:#e9e5e4; color:white; padding:10px; border-radius: 50px;">
+                                            <div class="row text-center" style="background-color:#e0d1cb; color:white; padding:10px; border-radius: 50px;">
                                                 <div class="content col-md-4 col-xs-6"><strong>UŻYTKOWNIK</strong></div>
                                                 <div class="content col-md-4 col-xs-0 hidden-xs"><strong>DATA REJESTRACJI</strong></div>
                                                 <div class="content col-md-4 col-xs-6"><strong>AKCJA</strong></div>
-                                                <div class="col-xs-12" style="background-color:#e9e5e4; height:3px;width:100%"></div>
+                                                <div class="col-xs-12" style="background-color:#e0d1cb; height:3px;width:100%"></div>
                                             </div>
                                             <div ng-repeat="user in users | filter : {activeFlag: false}" ng-if="user.username!=currentUser.username" class="list-group-item list-group-item-action text-center" ng-click=setActiveUserPanel(user)>
-                                                <div class="row" style="background-color:#e9e5e4; cursor: pointer;">
+                                                <div class="row" style="background-color:#e0d1cb; cursor: pointer;">
                                                     <div class="content col-md-4 col-xs-3">{{user.username}}</div>
                                                     <div class="content col-md-4 hidden-xs">{{claculateTime(user.registrationDate) | date: 'yyyy-MM-dd HH:mm'}}</div>
                                                     <div class="content col-md-4 col-xs-3"><button class="btn btn-sm btn-success alertAction" ng-click="activate(user.id)">Aktywuj</button></div>
-                                                    <div class="col-xs-12" style="background-color:#e9e5e4; height:3px;width:100%"></div>
+                                                    <div class="col-xs-12" style="background-color:#e0d1cb; height:3px;width:100%"></div>
                                                     <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                                 </div>
                                             </div>

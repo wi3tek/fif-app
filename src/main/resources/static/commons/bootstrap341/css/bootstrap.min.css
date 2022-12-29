@@ -3797,8 +3797,8 @@ fieldset[disabled] .btn-default:hover {
 
 .btn-primary {
     color: #fff;
-    background-color: #dcc8b5;
-    border-color: #2e6da4
+    background-color: #660b2a;
+    border-color: #ecc67c
 }
 
 .btn-primary.focus,
@@ -3810,7 +3810,7 @@ fieldset[disabled] .btn-default:hover {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #286090;
+    background-color: #ecc67c;
     border-color: #204d74
 }
 
@@ -3856,21 +3856,21 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .btn-success {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #4cae4c
+    color: #000000;
+    background-color: #ecc67c;
+    border-color: #ebca8a
 }
 
 .btn-success.focus,
 .btn-success:focus {
     color: #fff;
-    background-color: #449d44;
+    background-color: #e3b865;
     border-color: #255625
 }
 
 .btn-success:hover {
-    color: #fff;
-    background-color: #449d44;
+    color: #000000;
+    background-color: #e3b865;
     border-color: #398439
 }
 
@@ -3907,7 +3907,7 @@ fieldset[disabled] .btn-success.focus,
 fieldset[disabled] .btn-success:focus,
 fieldset[disabled] .btn-success:hover {
     background-color: #5cb85c;
-    border-color: #4cae4c
+    border-color: #ebca8a
 }
 
 .btn-success .badge {
@@ -4260,7 +4260,7 @@ tbody.collapse.in {
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
-    background-color: #e9e5e4;
+    background-color: #e0d1cb;
 }
 
 .dropdown-menu.pull-right {
@@ -7065,7 +7065,7 @@ button.close {
 
 .modal-content {
     position: relative;
-    background-color: #e9e5e4;
+    background-color: #e0d1cb;
     background-clip: padding-box;
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, .2);

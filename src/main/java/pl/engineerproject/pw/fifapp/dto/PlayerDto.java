@@ -14,19 +14,17 @@ public class PlayerDto {
     private Integer playerId;
     private String name;
     private String alias;
-    private Date dateOfBirth;
     private Date joinDate;
     private Date lastModificationDate;
     private Integer ownerId;
     private String userName;
 
 
-    public PlayerDto(Integer playerId, String name, String alias, Date dateOfBirth, Date joinDate,
+    public PlayerDto(Integer playerId, String name, String alias, Date joinDate,
                      Date lastModificationDate) {
         this.playerId = playerId;
         this.name = name;
         this.alias = alias;
-        this.dateOfBirth = dateOfBirth;
         this.joinDate = joinDate;
         this.lastModificationDate = lastModificationDate;
     }
