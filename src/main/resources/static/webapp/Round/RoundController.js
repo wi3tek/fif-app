@@ -134,8 +134,8 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
         $scope.getLeague();
         $scope.getLeagueRounds();
         $scope.getLeagueMatches();
+        $scope.getFullLeagueTable();
         $scope.getLeagueTable();
-
 
     }
 
@@ -325,15 +325,25 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
         }
     }
 
-    $scope.getLeagueTable = function() {
-        RoundService.getLeagueTable($scope.leagueId)
+    $scope.getFullLeagueTable = function() {
+        RoundService.getFullLeagueTable($scope.leagueId)
             .then(function success(response) {
-                    $scope.leagueTable = response.data;
+                    $scope.fullLeagueTable = response.data;
                 },
                 function error(response) {
                     console.log($scope.alertMessage + '\n' + response);
                 })
     }
+
+        $scope.getLeagueTable = function() {
+            RoundService.getLeagueTable($scope.leagueId)
+                .then(function success(response) {
+                        $scope.leagueTable = response.data;
+                    },
+                    function error(response) {
+                        console.log($scope.alertMessage + '\n' + response);
+                    })
+        }
 
 
     $scope.getPlayersMatchesInLeague = function(leagueId) {
@@ -350,5 +360,9 @@ fifapp.controller('RoundController', ['$scope', 'RoundService', 'PlayerService',
         }
     }
 
-
+    $scope.GreaterThan = function (prop) {
+        return function (item) {
+            return item[prop] > 4;
+        }
+    }
 }])

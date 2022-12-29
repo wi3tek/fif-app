@@ -1,9 +1,6 @@
 package pl.engineerproject.pw.fifapp.model.helper;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -17,6 +14,7 @@ import javax.persistence.Entity;
 @Table(name="rounds_results")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class RoundResult {
 
 
@@ -26,7 +24,6 @@ public class RoundResult {
     private Integer playerId;
     private String alias;
     private Integer roundId;
-    private Integer leagueId;
     private Integer matches;
     private Integer points;
     private Integer wins;
@@ -38,6 +35,5 @@ public class RoundResult {
     private Double goalsScoredRate;
     private Double goalsConcededRate;
     private Double pointsRate;
-
 
 }

@@ -9,7 +9,7 @@ angular.module('player.services', []).service('PlayerService', ["$http", functio
         });
     }
 
-    this.addPlayer = function addPlayer(name, alias, dateOfBirth, ownerId) {
+    this.addPlayer = function addPlayer(name, alias, ownerId) {
         const myDate = new Date();
         const currentDate = new Date(myDate);
         currentDate.setHours(currentDate.getHours() + 1);
@@ -19,7 +19,6 @@ angular.module('player.services', []).service('PlayerService', ["$http", functio
             data: {
                 name: name,
                 alias: alias,
-                dateOfBirth: dateOfBirth,
                 joinDate: currentDate.toISOString(),
                 lastModificationDate: currentDate.toISOString(),
                 ownerId: ownerId,
@@ -27,7 +26,7 @@ angular.module('player.services', []).service('PlayerService', ["$http", functio
         });
     }
 
-    this.updatePlayer = function updatePlayer(playerId, name, alias, dateOfBirth, joinDate, ownerId) {
+    this.updatePlayer = function updatePlayer(playerId, name, alias, joinDate, ownerId) {
         const myDate = new Date();
         const currentDate = new Date(myDate);
         currentDate.setHours(currentDate.getHours() + 1);
@@ -38,7 +37,6 @@ angular.module('player.services', []).service('PlayerService', ["$http", functio
                 playerId: playerId,
                 name: name,
                 alias: alias,
-                dateOfBirth: dateOfBirth,
                 joinDate: joinDate,
                 lastModificationDate: currentDate.toISOString(),
                 ownerId: ownerId,

@@ -1,10 +1,19 @@
 package pl.engineerproject.pw.fifapp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 //@SequenceGenerator(name="player_seq",initialValue = 30, allocationSize=1000)
 public class Player implements Serializable {
 
@@ -22,9 +31,6 @@ public class Player implements Serializable {
     private String alias;
 
     @Column
-    private Date dateOfBirth;
-
-    @Column
     private Date joinDate;
 
     @Column
@@ -34,73 +40,12 @@ public class Player implements Serializable {
     private User owner;
 
 
-    public Player(String name, String alias, Date dateOfBirth, Date joinDate, Date lastModificationDate) {
+    public Player(String name, String alias, Date joinDate, Date lastModificationDate) {
         this.name=name;
         this.alias=alias;
-        this.dateOfBirth=dateOfBirth;
         this.joinDate=joinDate;
         this.lastModificationDate=lastModificationDate;
 
-    }
-
-    public Player() {
-
-    }
-
-    public Integer getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(Integer playerId) {
-        this.playerId = playerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Date getJoinDate() {
-        return joinDate;
-    }
-
-    public void setJoinDate(Date joinDate) {
-        this.joinDate = joinDate;
-    }
-
-    public Date getLastModificationDate() {
-        return lastModificationDate;
-    }
-
-    public void setLastModificationDate(Date lastModificationDate) {
-        this.lastModificationDate = lastModificationDate;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
     }
 }
 

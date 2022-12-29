@@ -21,20 +21,20 @@
                 <div class="panel-body fontFamily">
                     <div class="list-group">
                         <div class="list-group-item">
-                            <div class="row text-center" style="background-color:midnightblue; color:white; padding:10px; border-radius: 50px;">
+                            <div class="row text-center" style="background-color:#e0d1cb; color:white; padding:10px; border-radius: 50px;">
                                 <div class="content col-xs-3"><strong>NAZWA</strong></div>
                                 <div class="content col-xs-3"><strong>LOKALIZACJA</strong></div>
                                 <div class="content col-xs-3"><strong>OPIS</strong></div>
                                 <div class="content col-xs-3"><strong>START</strong></div>
-                                <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
+                                <div class="col-xs-12" style="background-color:#e0d1cb; height:3px;width:100%"></div>
                             </div>
                             <div ng-repeat="league in leagues" class="list-group-item list-group-item-action text-center" ng-click=setActiveLeague(league)>
-                                <div class="row" style="background-color:aliceblue; cursor: pointer;">
+                                <div class="row" style="background-color:#e0d1cb; cursor: pointer;">
                                     <div class="content col-xs-3">{{league.name}}</div>
                                     <div class="content col-xs-3">{{league.location}}</div>
                                     <div class="content col-xs-3">{{league.description}}</div>
                                     <div class="content col-xs-3">{{claculateTime(league.startDate) | date: 'yyyy-MM-dd'}}</div>
-                                    <div class="col-xs-12" style="background-color:midnightblue; height:3px;width:100%"></div>
+                                    <div class="col-xs-12" style="background-color:#e0d1cb; height:3px;width:100%"></div>
                                     <div class="col-xs-12" style="background-color:gray; height:2px;width:100%"></div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-xs-12 text-center">
                     <br>
-                    <a type="button" class="btn btn-block btn-default" style="background-color: darkseagreen; color:white" ng-href="{{'#!leagues/' + activeLeague.leagueId}}" title="Przejdź do aktywnej ligi"><span class="glyphicon glyphicon-new-window"> Przejdź</span></a>
+                    <a type="button" class="btn btn-block btn-default" style="background-color: #ecc67c; color:white" ng-href="{{'#!leagues/' + activeLeague.leagueId}}" title="Przejdź do aktywnej ligi"><span class="glyphicon glyphicon-new-window"> Przejdź</span></a>
                 </div>
             </div>
 
